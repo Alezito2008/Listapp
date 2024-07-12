@@ -7,7 +7,7 @@ const Item = sequelize.define('Items', {
         primaryKey: true,
         autoIncrement: true
     },
-    texto: {
+    nombre: {
         type: DataTypes.STRING,
         allowNull: false
     },
@@ -18,6 +18,10 @@ const Item = sequelize.define('Items', {
     cantidadNecesitada: {
         type: DataTypes.INTEGER,
         defaultValue: 1
+    },
+    listaId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
     }
 }, {
     timestamps: false
