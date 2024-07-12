@@ -1,14 +1,14 @@
 const { Router } = require('express')
-const { registrarUsuario, iniciarSesion } = require('../controllers/users.controller')
+const { registrarUsuario, iniciarSesion, obtenerUsuarios, obtenerUsuario, actualizarUsuario, eliminarUsuario } = require('../controllers/users.controller')
 
 const router = Router()
 
 router.post('/register', registrarUsuario)
 router.post('/login', iniciarSesion)
 
-router.get('/users')
-router.get('/users/:tag')
-router.put('/users/:tag')
-router.delete('/users/:tag')
+router.get('/usuarios', obtenerUsuarios)
+router.get('/usuarios/:tag', obtenerUsuario)
+router.put('/usuarios/:tag', actualizarUsuario)
+router.delete('/usuarios/:tag', eliminarUsuario)
 
 module.exports = router

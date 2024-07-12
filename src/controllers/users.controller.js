@@ -1,5 +1,17 @@
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 const Usuario = require('../models/Usuarios')
+
+const JWT_SECRET = process.env.JWT_SECRET
+
+const esAdmin = (token) => {
+    try {
+        const { administrador } = jwt.verify(token, JWT_SECRET)
+        return administrador
+    } catch (error) {
+        console.log('Error: ' + error)
+    }
+}
 
 const registrarUsuario = async (req, res) => {
     try {
@@ -11,6 +23,7 @@ const registrarUsuario = async (req, res) => {
             tag,
             hash
         })
+
         res.sendStatus(204)
     } catch (error) {
         res.sendStatus(500)
@@ -20,19 +33,77 @@ const registrarUsuario = async (req, res) => {
 const iniciarSesion = async (req, res) => {
     try {
         const { tag, contraseña } = req.body
-
-        const { hash } = await Usuario.findOne({
+        const { hash, administrador } = await Usuario.findOne({
             where: { tag },
-            attributes: ['hash']
+            attributes: ['hash', 'administrador']
         })
-    
         const resultado = bcrypt.compareSync(contraseña, hash)
-        res.json({
-            message: resultado ? 'Sesión Iniciada' : 'Datos incorrectos'
-        })
+        if (resultado) {
+            const token = jwt.sign({
+                tag,
+                administrador
+            }, JWT_SECRET, { expiresIn: '1h' })
+
+            res.cookie('token', token).json({ message: 'Sesión Iniciada' })
+        } else {
+            res.json({ message: 'Datos Incorrectos' })
+        }
     } catch (error) {
         res.sendStatus(500)
     }
 }
 
-module.exports = { registrarUsuario, iniciarSesion }
+const obtenerUsuarios = async (req, res) => {
+    try {
+        const { token } = req.cookies
+        if (esAdmin(token)) {
+            const usuarios = await Usuario.findAll()
+            res.json(usuarios)
+        } else {
+            res.sendStatus(401)
+        }
+    } catch (error) {
+        res.sendStatus(500)
+    }
+}
+
+const obtenerUsuario = async (req, res) => {
+    try {
+        const { tag } = req.params
+        const { token } = req.cookies
+
+        if (esAdmin(token)) {
+            const usuario = await Usuario.findOne({
+                where: { tag }
+            })
+            res.json(usuario)
+        } else {
+            res.sendStatus(401)
+        }
+    } catch (error) {
+        res.sendStatus(500)
+    }
+}
+
+const actualizarUsuario = async (req, res) => {}
+
+const eliminarUsuario = async (req, res) => {
+    try {
+        const { token } = req.cookies
+        const info = jwt.verify(token, JWT_SECRET)
+        const { tag } = req.params
+        console.log(info)
+        if (info.tag !== tag && !info.administrador) {
+            res.sendStatus(401)
+            return
+        }
+        Usuario.destroy({
+            where: { tag }
+        })
+        res.sendStatus(204)
+    } catch (error) {
+        res.sendStatus(500)
+    }
+}
+
+module.exports = { registrarUsuario, iniciarSesion, obtenerUsuarios, obtenerUsuario, actualizarUsuario, eliminarUsuario }
