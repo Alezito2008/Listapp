@@ -85,14 +85,40 @@ const obtenerUsuario = async (req, res) => {
     }
 }
 
-const actualizarUsuario = async (req, res) => {}
+const actualizarUsuario = async (req, res) => {
+    try {
+        const { token } = req.cookies
+        const info = jwt.verify(token, JWT_SECRET)
+        const etiqueta = req.params.tag
+        const { tag, nombre, contraseña } = req.body
+        if (info.tag !== etiqueta && !info.administrador) {
+            res.sendStatus(401)
+            return
+        }
+        await Usuario.update({
+            tag,
+            nombre
+        }, {
+            where: { tag: etiqueta }
+        })
+        if (tag) {
+            res.cookie('token', jwt.sign({
+                tag,
+                administrador: info.administrador
+            }, JWT_SECRET)).json({message: 'Datos cambiados'})
+            return
+        }
+        res.sendStatus(204)
+    } catch (error) {
+        res.sendStatus(500)
+    }
+}
 
 const eliminarUsuario = async (req, res) => {
     try {
         const { token } = req.cookies
         const info = jwt.verify(token, JWT_SECRET)
         const { tag } = req.params
-        console.log(info)
         if (info.tag !== tag && !info.administrador) {
             res.sendStatus(401)
             return
