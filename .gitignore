@@ -1,3 +1,4 @@
+.env
 package-lock.json
 MySQL.session.sql
 /node_modules

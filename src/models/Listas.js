@@ -10,7 +10,10 @@ const Lista = sequelize.define('Listas', {
     },
     nombre: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        validate: {
+            len: [1]
+        }
     },
     descripcion: {
         type: DataTypes.STRING

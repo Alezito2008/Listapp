@@ -36,8 +36,33 @@ const Item = require('../models/Items')
     }
  }
 
- const actualizarItem = async (req, res) => {}
+ const actualizarItem = async (req, res) => {
+    try {
+        const { id } = req.params
+        const { nombre, cantidadNecesitada, cantidadConseguida } = req.body
+        const item = await Item.update({
+            nombre,
+            cantidadNecesitada,
+            cantidadConseguida
+        }, {
+            where: { id }
+        })
+        res.json(item)
+    } catch (error) {
+        res.sendStatus(500)
+    }
+ }
 
- const eliminarItem = async (req, res) => {}
+ const eliminarItem = async (req, res) => {
+    try {
+        const { id } = req.params
+        const item = await Item.destroy({
+            where: { id }
+        })
+        res.sendStatus(204)
+    } catch (error) {
+        res.sendStatus(500)
+    }
+ }
 
  module.exports = { obtenerItems, obtenerItem, crearItem, actualizarItem, eliminarItem }

@@ -13,11 +13,13 @@ const Item = sequelize.define('Items', {
     },
     cantidadConseguida: {
         type: DataTypes.INTEGER,
-        defaultValue: 0
+        defaultValue: 0,
+        allowNull: false
     },
     cantidadNecesitada: {
         type: DataTypes.INTEGER,
-        defaultValue: 1
+        defaultValue: 1,
+        allowNull: false
     },
     listaId: {
         type: DataTypes.INTEGER,
