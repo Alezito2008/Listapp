@@ -4,6 +4,7 @@ const sequelize = require('./database/database')
 
 require('./models/Listas')
 require('./models/Items')
+require('./models/Usuarios')
 
 const PORT = 5000
 
