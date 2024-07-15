@@ -4,7 +4,6 @@ const { obtenerListas, crearLista, obtenerLista, actualizarLista, eliminarLista 
 const router = Router()
 
 router.get('/listas', obtenerListas)
-router.get('/listas/:id', obtenerLista)
 router.post('/listas', crearLista)
 router.put('/listas/:id', actualizarLista)
 router.delete('/listas/:id', eliminarLista)

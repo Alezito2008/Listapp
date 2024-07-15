@@ -2,11 +2,9 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const Usuario = require('../models/Usuarios')
 
-const JWT_SECRET = process.env.JWT_SECRET
-
 const esAdmin = (token) => {
     try {
-        const { administrador } = jwt.verify(token, JWT_SECRET)
+        const { administrador } = jwt.verify(token, process.env.JWT_SECRET)
         return administrador
     } catch (error) {
         console.log('Error: ' + error)
@@ -33,16 +31,17 @@ const registrarUsuario = async (req, res) => {
 const iniciarSesion = async (req, res) => {
     try {
         const { tag, contraseña } = req.body
-        const { hash, administrador } = await Usuario.findOne({
+        const { hash, administrador, id } = await Usuario.findOne({
             where: { tag },
-            attributes: ['hash', 'administrador']
+            attributes: ['hash', 'administrador', 'id']
         })
         const resultado = bcrypt.compareSync(contraseña, hash)
         if (resultado) {
             const token = jwt.sign({
+                id,
                 tag,
                 administrador
-            }, JWT_SECRET, { expiresIn: '1h' })
+            }, process.env.JWT_SECRET, { expiresIn: '1h' })
 
             res.cookie('token', token).json({ message: 'Sesión Iniciada' })
         } else {
@@ -88,7 +87,7 @@ const obtenerUsuario = async (req, res) => {
 const actualizarUsuario = async (req, res) => {
     try {
         const { token } = req.cookies
-        const info = jwt.verify(token, JWT_SECRET)
+        const info = jwt.verify(token, process.env.JWT_SECRET)
         const etiqueta = req.params.tag
         const { tag, nombre, contraseña } = req.body
         if (info.tag !== etiqueta && !info.administrador) {
@@ -105,7 +104,7 @@ const actualizarUsuario = async (req, res) => {
             res.cookie('token', jwt.sign({
                 tag,
                 administrador: info.administrador
-            }, JWT_SECRET)).json({message: 'Datos cambiados'})
+            }, process.env.JWT_SECRET)).json({message: 'Datos cambiados'})
             return
         }
         res.sendStatus(204)
@@ -117,7 +116,7 @@ const actualizarUsuario = async (req, res) => {
 const eliminarUsuario = async (req, res) => {
     try {
         const { token } = req.cookies
-        const info = jwt.verify(token, JWT_SECRET)
+        const info = jwt.verify(token, process.env.JWT_SECRET)
         const { tag } = req.params
         if (info.tag !== tag && !info.administrador) {
             res.sendStatus(401)

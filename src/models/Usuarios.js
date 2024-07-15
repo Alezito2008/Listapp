@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize')
 const sequelize = require('../database/database')
+const Lista = require('./Listas')
 
 const Usuario = sequelize.define('Usuarios', {
     id: {
@@ -31,6 +32,14 @@ const Usuario = sequelize.define('Usuarios', {
         allowNull: false,
         defaultValue: false
     }
+})
+
+Lista.belongsToMany(Usuario, {
+    through: 'Usuario_Listas'
+})
+
+Usuario.belongsToMany(Lista, {
+    through: 'Usuario_Listas'
 })
 
 module.exports = Usuario

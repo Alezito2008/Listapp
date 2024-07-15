@@ -24,12 +24,14 @@ const Lista = sequelize.define('Listas', {
 
 Lista.hasMany(Item, {
     foreignKey: 'listaId',
-    sourceKey: 'id'
+    sourceKey: 'id',
+    onDelete: 'cascade'
 })
 
 Item.belongsTo(Lista, {
     foreignKey: 'listaId',
-    targetKey: 'id'
+    targetKey: 'id',
+    onDelete: 'cascade'
 })
 
 module.exports = Lista
