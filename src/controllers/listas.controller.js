@@ -1,4 +1,3 @@
-const { where } = require('sequelize')
 const jwt = require('jsonwebtoken')
 const Lista = require('../models/Listas')
 const Usuario = require('../models/Usuarios')

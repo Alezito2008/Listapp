@@ -67,6 +67,7 @@ const obtenerUsuarios = async (req, res) => {
 }
 
 const obtenerUsuario = async (req, res) => {
+    // TODO: Hacer que todos puedan (info limitada)
     try {
         const { tag } = req.params
         const { token } = req.cookies
@@ -89,7 +90,7 @@ const actualizarUsuario = async (req, res) => {
         const { token } = req.cookies
         const info = jwt.verify(token, process.env.JWT_SECRET)
         const etiqueta = req.params.tag
-        const { tag, nombre, contraseña } = req.body
+        const { tag, nombre } = req.body
         if (info.tag !== etiqueta && !info.administrador) {
             res.sendStatus(401)
             return

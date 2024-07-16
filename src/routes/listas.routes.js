@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { obtenerListas, crearLista, obtenerLista, actualizarLista, eliminarLista } = require('../controllers/listas.controller')
+const { obtenerListas, crearLista, actualizarLista, eliminarLista } = require('../controllers/listas.controller')
 
 const router = Router()
 
