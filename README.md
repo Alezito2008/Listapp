@@ -57,6 +57,10 @@
 - **Método**: <span style="color: lime"> **GET** </span>
 - **Descripción**: Obtiene todas las listas del usuario
 
+### /listas/:id
+- **Método**: <span style="color: lime"> **GET** </span>
+- **Descripción**: Obtiene el nombre, descripcion e items de una lista
+
 ### /listas
 - **Método**: <span style="color: yellow"> **POST** </span>
 - **Body**:

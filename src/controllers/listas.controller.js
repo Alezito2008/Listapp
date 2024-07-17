@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken')
 const Lista = require('../models/Listas')
 const Usuario = require('../models/Usuarios')
+const Item = require('../models/Items')
 
 const obtenerListas = async (req, res) => {
     const { token } = req.cookies
@@ -25,6 +26,46 @@ const obtenerListas = async (req, res) => {
         res.json(listas)
     } catch (error) {
         res.sendStatus(500);
+    }
+}
+
+const obtenerLista = async (req, res) => {
+    const { id } = req.params
+    const { token } = req.cookies
+
+    let info
+    try {
+        info = jwt.verify(token, process.env.JWT_SECRET)
+    } catch (error) {
+        return res.status(401).json({ message: 'Token inválido o expirado' });
+    }
+
+    try {
+        const usuario = await Usuario.findByPk(info.id, {
+            include: [{
+                model: Lista,
+                where: { id }
+            }]
+        })
+
+        if (!usuario || usuario.Listas.length === 0) {
+            return res.sendStatus(404)
+        }
+
+        const items = await Item.findAll({
+            where: { listaId: id }
+        })
+
+        const listaInfo = {
+            id: usuario.Listas[0].id,
+            nombre: usuario.Listas[0].nombre,
+            descripcion: usuario.Listas[0].descripcion
+        }
+        const listaItems = JSON.parse(JSON.stringify(items))
+
+        res.json({ ...listaInfo, items: listaItems })
+    } catch (error) {
+        res.sendStatus(500)
     }
 }
 
@@ -127,4 +168,4 @@ const eliminarLista = async (req, res) => {
     }
 }
 
-module.exports = { obtenerListas, crearLista, actualizarLista, eliminarLista }
+module.exports = { obtenerListas, obtenerLista, crearLista, actualizarLista, eliminarLista }
