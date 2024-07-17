@@ -14,7 +14,6 @@
 ```
 - **Descripción**: Registrar un usuario
 
-
 ### /login
 - **Método**: <span style="color: yellow"> **POST** </span>
 - **Body**:

@@ -3,9 +3,16 @@ const Lista = require('../models/Listas')
 const Usuario = require('../models/Usuarios')
 
 const obtenerListas = async (req, res) => {
+    const { token } = req.cookies
+
+    let id
     try {
-        const { token } = req.cookies
-        const { id } = jwt.verify(token, process.env.JWT_SECRET)
+        id = jwt.verify(token, process.env.JWT_SECRET).id
+    } catch (error) {
+        return res.status(401).json({ message: 'Token inválido o expirado' });
+    }
+
+    try {
         const result = await Usuario.findOne({
             where: { id },
             include: Lista
@@ -17,19 +24,23 @@ const obtenerListas = async (req, res) => {
         }));
         res.json(listas)
     } catch (error) {
-        if (error.name === 'JsonWebTokenError' || error.name === 'TokenExpiredError') {
-            return res.status(401).json({ message: 'Token inválido o expirado' });
-        }
-
         res.sendStatus(500);
     }
 }
 
 const crearLista = async (req, res) => {
+    const { nombre, descripcion } = req.body
+    const { token } = req.cookies
+
+    let id
     try {
-        const { nombre, descripcion } = req.body
-        const { token } = req.cookies
-        const { id } = jwt.verify(token, process.env.JWT_SECRET)
+        id = jwt.verify(token, process.env.JWT_SECRET).id
+    } catch (error) {
+        return res.status(401).json({ message: 'Token inválido o expirado' });
+    }
+
+    try {
+        console.log(id)
         const lista = await Lista.create({
             nombre,
             descripcion
@@ -38,22 +49,24 @@ const crearLista = async (req, res) => {
         await usuario.addLista(lista)
         res.json(lista)
     } catch (error) {
-        if (error.name === 'JsonWebTokenError' || error.name === 'TokenExpiredError') {
-            return res.status(401).json({ message: 'Token inválido o expirado' });
-        }
-
         res.sendStatus(500);
     }
 }
 
 const actualizarLista = async (req, res) => {
-    try {
-        const { id } = req.params
-        const { nombre, descripcion } = req.body
-        
-        const { token } = req.cookies
-        const info = jwt.verify(token, process.env.JWT_SECRET)
+    const { id } = req.params
+    const { nombre, descripcion } = req.body
+    const { token } = req.cookies
 
+    let info
+    try {
+        jwt.verify(token, process.env.JWT_SECRET)
+    } catch (error) {
+        return res.status(401).json({ message: 'Token inválido o expirado' });
+        
+    }
+
+    try {
         const usuario = await Usuario.findOne({
             where: { id: info.id },
             include: [{
@@ -75,19 +88,22 @@ const actualizarLista = async (req, res) => {
         })
         res.sendStatus(204)
     } catch (error) {
-        if (error.name === 'JsonWebTokenError' || error.name === 'TokenExpiredError') {
-            return res.status(401).json({ message: 'Token inválido o expirado' });
-        }
-
         res.sendStatus(500);
     }
 }
 
 const eliminarLista = async (req, res) => {
+    const { id } = req.params
+    const { token } = req.cookies
+
+    let info
     try {
-        const { id } = req.params
-        const { token } = req.cookies
-        const info = jwt.verify(token, process.env.JWT_SECRET)
+        info = jwt.verify(token, process.env.JWT_SECRET)
+    } catch (error) {
+        return res.status(401).json({ message: 'Token inválido o expirado' });
+    }
+
+    try {
 
         const usuario = await Usuario.findOne({
             where: { id: info.id },
@@ -107,11 +123,6 @@ const eliminarLista = async (req, res) => {
         })
         res.sendStatus(204)
     } catch (error) {
-        console.log(error)
-        if (error.name === 'JsonWebTokenError' || error.name === 'TokenExpiredError') {
-            return res.status(401).json({ message: 'Token inválido o expirado' });
-        }
-
         res.sendStatus(500);
     }
 }
