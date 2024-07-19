@@ -1,0 +1,41 @@
+.cargando {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100dvh;
+  width: 100%;
+  position: fixed;
+  background-color: #fff;
+  z-index: 999;
+}
+
+.cargando > div {
+    width: 1rem;
+    height: 1rem;
+    background-color: #3B8FDA;
+    border-radius: 50%;
+    margin: .5rem;
+    animation: cargando 1.5s infinite;
+}
+
+.cargando > div:nth-child(2) {
+    background-color: #3b90dabe;
+    animation-delay: .15s;
+}
+
+.cargando > div:nth-child(3) {
+    background-color: #3B8FDA;
+    animation-delay: .30s;
+}
+
+@keyframes cargando {
+    0% {
+        transform: scale(1) translateY(0);
+    }
+    50% {
+        transform: scale(1.2) translateY(-2rem);
+    }
+    100% {
+        transform: scale(1) translateY(0);
+    }
+}

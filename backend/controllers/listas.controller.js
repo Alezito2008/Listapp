@@ -81,12 +81,12 @@ const crearLista = async (req, res) => {
     }
 
     try {
-        console.log(id)
         const lista = await Lista.create({
             nombre,
-            descripcion
+            descripcion,
+            creadorId: id
         })
-        const usuario = await Usuario.findOne({ where: { id } })
+        const usuario = await Usuario.findByPk(id)
         await usuario.addLista(lista)
         res.json(lista)
     } catch (error) {

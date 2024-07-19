@@ -1,0 +1,59 @@
+.navbar {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    max-height: 15dvh;
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+    min-height: fit-content;
+    display: flex;
+    justify-content: space-evenly;
+    place-items: center;
+    background-color: #E8EFF6;
+    font-weight: 500;
+}
+
+.navbar > div {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    color: #777;
+    font-size: .7rem;
+}
+
+.material-symbols-outlined {
+    font-size: 1.8rem !important;
+}
+
+.activo {
+    position: relative;
+    border-radius: 15px;
+    color: #333 !important;
+}
+
+.activo::after {
+    content: '';
+    top: 50%;
+    position: absolute;
+    height: 100%;
+    width: 110%;
+    z-index: -1;
+    background-color: #BBDEFB;
+    transform: translateY(-50%);
+    border-radius: 15px;
+    padding: .3rem .7rem;
+}
+
+.activo > a > span {
+    font-variation-settings: 'FILL' 1;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    gap: .4rem;
+    -webkit-tap-highlight-color: transparent;
+}

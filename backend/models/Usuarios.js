@@ -34,6 +34,18 @@ const Usuario = sequelize.define('Usuarios', {
     }
 })
 
+Usuario.hasMany(Lista, {
+    foreignKey: 'creadorId',
+    sourceKey: 'id',
+    onDelete: 'cascade'
+})
+
+Lista.belongsTo(Usuario, {
+    foreignKey: 'creadorId',
+    targetKey: 'id',
+    onDelete: 'cascade'
+})
+
 Lista.belongsToMany(Usuario, {
     through: 'Usuario_Listas'
 })

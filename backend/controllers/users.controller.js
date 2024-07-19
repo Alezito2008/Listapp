@@ -29,13 +29,19 @@ const registrarUsuario = async (req, res) => {
 }
 
 const iniciarSesion = async (req, res) => {
+    const { tag, contraseña } = req.body
+
     try {
-        const { tag, contraseña } = req.body
-        const { hash, administrador, id } = await Usuario.findOne({
+        const usuario = await Usuario.findOne({
             where: { tag },
             attributes: ['hash', 'administrador', 'id']
         })
+
+        if (!usuario) return res.status(401).json({ message: 'Datos Incorrectos' })
+
+        const { hash, administrador, id } = usuario
         const resultado = bcrypt.compareSync(contraseña, hash)
+
         if (resultado) {
             const token = jwt.sign({
                 id,
@@ -45,10 +51,10 @@ const iniciarSesion = async (req, res) => {
 
             res.cookie('token', token).json({ message: 'Sesión Iniciada' })
         } else {
-            res.json({ message: 'Datos Incorrectos' })
+            res.status(401).json({ message: 'Datos Incorrectos' })
         }
     } catch (error) {
-        res.sendStatus(500)
+        res.status(500).json({ message: 'Error Interno' })
     }
 }
 
