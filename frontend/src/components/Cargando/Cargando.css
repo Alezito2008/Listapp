@@ -1,6 +1,7 @@
 .cargando {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
   height: 100dvh;
   width: 100%;
@@ -9,7 +10,17 @@
   z-index: 999;
 }
 
-.cargando > div {
+.cargando > h1 {
+    color: #999;
+    font-weight: 500;
+    margin-top: 1rem;
+}
+
+.bolas {
+    display: flex;
+}
+
+.bolas > div {
     width: 1rem;
     height: 1rem;
     background-color: #3B8FDA;
@@ -18,12 +29,12 @@
     animation: cargando 1.5s infinite;
 }
 
-.cargando > div:nth-child(2) {
+.bolas > div:nth-child(2) {
     background-color: #3b90dabe;
     animation-delay: .15s;
 }
 
-.cargando > div:nth-child(3) {
+.bolas > div:nth-child(3) {
     background-color: #3B8FDA;
     animation-delay: .30s;
 }

@@ -12,8 +12,9 @@ const esAdmin = (token) => {
 }
 
 const registrarUsuario = async (req, res) => {
+    const { nombre, tag, contraseña } = req.body
+
     try {
-        const { nombre, tag, contraseña } = req.body
         const salt = bcrypt.genSaltSync(10)
         const hash = bcrypt.hashSync(contraseña, salt)
         await Usuario.create({
@@ -22,9 +23,10 @@ const registrarUsuario = async (req, res) => {
             hash
         })
 
-        res.sendStatus(204)
+        res.status(200).json({ nombre, tag })
     } catch (error) {
-        res.sendStatus(500)
+        if (error.name === 'SequelizeUniqueConstraintError') return res.status(400).json({ message: 'Usuario ya registrado' })
+        res.status(500).json({ message: 'Error Interno' })
     }
 }
 
@@ -59,8 +61,9 @@ const iniciarSesion = async (req, res) => {
 }
 
 const obtenerUsuarios = async (req, res) => {
+    const { token } = req.cookies
+
     try {
-        const { token } = req.cookies
         if (esAdmin(token)) {
             const usuarios = await Usuario.findAll()
             res.json(usuarios)
@@ -74,9 +77,10 @@ const obtenerUsuarios = async (req, res) => {
 
 const obtenerUsuario = async (req, res) => {
     // TODO: Hacer que todos puedan (info limitada)
+    const { token } = req.cookies
+    const { tag } = req.params
+
     try {
-        const { tag } = req.params
-        const { token } = req.cookies
 
         if (esAdmin(token)) {
             const usuario = await Usuario.findOne({
@@ -92,11 +96,18 @@ const obtenerUsuario = async (req, res) => {
 }
 
 const actualizarUsuario = async (req, res) => {
+    const { token } = req.cookies
+    const etiqueta = req.params.tag
+    const { tag, nombre } = req.body
+
+    let info
     try {
-        const { token } = req.cookies
-        const info = jwt.verify(token, process.env.JWT_SECRET)
-        const etiqueta = req.params.tag
-        const { tag, nombre } = req.body
+        info = jwt.verify(token, process.env.JWT_SECRET)
+    } catch (error) {
+        return res.status(401).json({ message: 'Token inválido o expirado' })
+    }
+
+    try {
         if (info.tag !== etiqueta && !info.administrador) {
             res.sendStatus(401)
             return
@@ -121,10 +132,17 @@ const actualizarUsuario = async (req, res) => {
 }
 
 const eliminarUsuario = async (req, res) => {
+    const { tag } = req.params
+    const { token } = req.cookies
+
+    let info
     try {
-        const { token } = req.cookies
-        const info = jwt.verify(token, process.env.JWT_SECRET)
-        const { tag } = req.params
+        info = jwt.verify(token, process.env.JWT_SECRET)
+    } catch (error) {
+        return res.status(401).json({ message: 'Token inválido o expirado' })
+    }
+
+    try {
         if (info.tag !== tag && !info.administrador) {
             res.sendStatus(401)
             return

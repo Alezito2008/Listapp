@@ -1,0 +1,33 @@
+.cuenta {
+    background: linear-gradient(180deg, #E6E9F3 0%, #FFF 23%, #FFF 52%, #FFF 74%, #E7E9F3 100%);
+    padding: 2rem;
+    padding-top: 8dvh;
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    min-height: 90dvh;
+}
+
+.cuenta h1 {
+    font-size: 1.7rem;
+    font-weight: 500;
+}
+
+.cuenta h2 {
+    font-size: 1.2rem;
+}
+
+.cuenta img {
+    margin-top: 2rem;
+    border-radius: 50%;
+    width: 10rem;
+    height: 10rem;
+}
+
+.cerrar-sesion {
+    margin-top: auto;
+    display: flex;
+    color: rgb(255, 68, 68);
+    gap: .5rem;
+    font-weight: 500;
+}

@@ -24,7 +24,7 @@ label {
 }
 
 .login-form {
-    margin-top: 10dvh;
+    margin-top: 5dvh;
     display: flex;
     flex-direction: column;
     gap: 1rem;
