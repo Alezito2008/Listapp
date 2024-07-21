@@ -4,8 +4,11 @@ import '@/styles/cuentas.css'
 import Link from 'next/link'
 import { useState } from 'react'
 import Cargando from '@/components/Cargando/Cargando'
+import { useRouter } from 'next/navigation'
 
 export default function LoginPage() {
+
+    const router = useRouter()
 
     let [usuario, setUsuario] = useState('')
     let [contraseña, setContraseña] = useState('')
@@ -20,7 +23,7 @@ export default function LoginPage() {
             contraseña
         }
         setCargando(true)
-        let response = await fetch('http://localhost:5000/register', {
+        let response = await fetch('http://localhost:5000/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -31,6 +34,7 @@ export default function LoginPage() {
         let json = await response.json()
         if (response.status !== (200 || 204)) setError(json.message)
         setCargando(false)
+        router.push('/inicio')
     }
 
     return (

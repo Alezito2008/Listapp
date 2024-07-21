@@ -36,17 +36,17 @@ const iniciarSesion = async (req, res) => {
     try {
         const usuario = await Usuario.findOne({
             where: { tag },
-            attributes: ['hash', 'administrador', 'id']
         })
 
         if (!usuario) return res.status(401).json({ message: 'Datos Incorrectos' })
 
-        const { hash, administrador, id } = usuario
-        const resultado = bcrypt.compareSync(contraseña, hash)
+        const { nombre, hash, administrador, id } = usuario
+        const resultado = await bcrypt.compare(contraseña, hash)
 
         if (resultado) {
             const token = jwt.sign({
                 id,
+                nombre,
                 tag,
                 administrador
             }, process.env.JWT_SECRET, { expiresIn: '1h' })
