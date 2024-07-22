@@ -2,6 +2,7 @@ import Boton from '@/components/Boton/Boton';
 import './styles.css';
 import Lista from '@/components/Lista/Lista';
 import { cookies } from 'next/headers';
+import Link from 'next/link';
 
 export default async function ListasPage() {
 
@@ -22,7 +23,9 @@ export default async function ListasPage() {
         <div className="listas">
             <div className='flex justify-between items-center'>
                 <h1>Listas</h1>
-                <Boton icono='add' texto='Nueva' />
+                <Link href='/listas/crear'>
+                    <Boton icono='add' texto='Nueva' />
+                </Link>
             </div>
             <div className='contenedor-listas'>
                 {!data.message && data.map(lista => (

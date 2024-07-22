@@ -1,6 +1,6 @@
 .lista {
     display: grid;
-    grid-template-columns: 1fr 6fr;
+    grid-template-columns: 1fr 9fr;
     background-color: #f2f2f2;
     padding: .5rem 1rem;
     align-items: center;

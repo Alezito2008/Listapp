@@ -55,7 +55,7 @@ const obtenerLista = async (req, res) => {
         })
 
         if (!usuario || usuario.Listas.length === 0) {
-            return res.sendStatus(404)
+            return res.status(404).json({ message: 'No se encontró la lista' });
         }
 
         const items = await Item.findAll({
@@ -71,7 +71,7 @@ const obtenerLista = async (req, res) => {
 
         res.json({ ...listaInfo, items: listaItems })
     } catch (error) {
-        res.sendStatus(500)
+        res.status(500).json({ message: 'Error al obtener la lista' });
     }
 }
 
@@ -96,8 +96,7 @@ const crearLista = async (req, res) => {
         await usuario.addLista(lista)
         res.json(lista)
     } catch (error) {
-        console.log(error)
-        res.sendStatus(500);
+        res.status(500).json({ message: 'Error al crear la lista' });
     }
 }
 

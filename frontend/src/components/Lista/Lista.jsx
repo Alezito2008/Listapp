@@ -9,7 +9,7 @@ export default function Lista({ nombre, descripcion, idLista }) {
                     shopping_cart
                 </span>
             </div>
-            <div>
+            <div className='w-full pl-2'>
                 <h2>{nombre}</h2>
                 <p>{descripcion}</p>
             </div>
