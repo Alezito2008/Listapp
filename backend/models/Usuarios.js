@@ -46,12 +46,13 @@ Lista.belongsTo(Usuario, {
     onDelete: 'cascade'
 })
 
-Lista.belongsToMany(Usuario, {
-    through: 'Usuario_Listas'
-})
+// Lista.belongsToMany(Usuario, {
+//     through: 'Usuario_Listas',
+//     targetKey: 'id'
+// })
 
-Usuario.belongsToMany(Lista, {
-    through: 'Usuario_Listas'
-})
+// Usuario.belongsToMany(Lista, {
+//     through: 'Usuario_Listas'
+// })
 
 module.exports = Usuario

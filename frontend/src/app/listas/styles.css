@@ -1,0 +1,16 @@
+.listas {
+    padding: 2rem;
+    padding-top: 3rem;
+}
+
+.listas h1 {
+    font-weight: 500;
+    font-size: 2rem;
+}
+
+.contenedor-listas {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}

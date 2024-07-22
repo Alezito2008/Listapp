@@ -18,14 +18,20 @@ const obtenerListas = async (req, res) => {
             where: { id },
             include: Lista
         })
+  
+        if (!result) {
+            return res.status(404).json({ message: 'No tenés listas' });
+        }
+
         const listas = result.Listas.map(lista => ({
             id: lista.id,
             nombre: lista.nombre,
             descripcion: lista.descripcion
         }));
+
         res.json(listas)
     } catch (error) {
-        res.sendStatus(500);
+        res.status(500).json({ message: 'Error al obtener las listas' });
     }
 }
 
@@ -90,6 +96,7 @@ const crearLista = async (req, res) => {
         await usuario.addLista(lista)
         res.json(lista)
     } catch (error) {
+        console.log(error)
         res.sendStatus(500);
     }
 }

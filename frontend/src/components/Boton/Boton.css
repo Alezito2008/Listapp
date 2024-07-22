@@ -1,0 +1,16 @@
+.boton {
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+    color: #fff;
+    display: flex;
+    place-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: .3rem;
+    padding: .5rem;
+    max-height: 2.3rem;
+}
+
+.boton > span {
+    font-size: 1.5rem !important;
+}
