@@ -19,7 +19,9 @@
     "js-cookie": "^3.0.5",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.10.2",
-    "sequelize": "^6.37.3"
+    "sequelize": "^6.37.3",
+    "socket.io": "^4.7.5",
+    "socket.io-client": "^4.7.5"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.19",

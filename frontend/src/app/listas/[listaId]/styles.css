@@ -1,0 +1,75 @@
+.contenedor-lista {
+    padding: 2rem;
+    padding-top: 3rem;
+}
+
+.contenedor-lista h1 {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+}
+
+.contenedor-items {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.contenedor-items button {
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    border: 2px dashed #aaa;
+    box-sizing: border-box;
+    max-width: fit-content;
+    padding: .2rem .5rem;
+    color: #aaa;
+    border-radius: 5px;
+    font-weight: 500;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 4;
+    backdrop-filter: blur(5px);
+}
+
+.modal-agregar {
+    position: fixed;
+    background-color: #fff;
+    top: 20dvh;
+    padding: 2rem;
+    width: 93vw;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    border-radius: 10px;
+}
+
+.modal-agregar h1 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+
+.modal-agregar form {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.modal-agregar form input {
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
+    padding: .3rem 1rem;
+    outline: none;
+}
+
+.modal-agregar form input:focus {
+    box-shadow: 0 0 5px rgba(30, 143, 255, 0.411);
+}

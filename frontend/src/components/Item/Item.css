@@ -1,0 +1,48 @@
+.item {
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 50px 2fr 1fr;
+    place-items: center;
+    padding: .5rem 0;
+    padding-right: .5rem;
+    width: 100%;
+}
+
+.checkbox {
+    width: 1rem;
+    height: 1rem;
+    background-color: #ddd;
+    border-radius: 5px;
+    border: 2px solid var(--secondary-color);
+    box-sizing: border-box;
+    transition: background-color .1s;
+}
+
+.nombre {
+    width: 100%;
+    transition: color .2s;
+}
+
+.checkbox.checked {
+    background-color: var(--secondary-color);
+}
+
+.nombre.checked {
+    text-decoration: line-through;
+    color: #444;
+}
+
+.cantidad {
+    display: flex;
+    font-weight: 500;
+}
+
+.cantidad > .material-symbols-outlined {
+    font-size: 1.5rem !important;
+    color: #777;
+}
+
+.cantidad > span:last-of-type {
+    margin-inline: .5rem;
+}

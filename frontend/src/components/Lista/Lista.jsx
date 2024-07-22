@@ -3,7 +3,7 @@ import './Lista.css'
 
 export default function Lista({ nombre, descripcion, idLista }) {
     return (
-        <Link href={'/lista/' + idLista} className='lista'>
+        <Link href={'/listas/' + idLista} className='lista'>
             <div>
                 <span className='material-symbols-outlined'>
                     shopping_cart

@@ -58,7 +58,7 @@ const jwt = require('jsonwebtoken')
         })
         res.json(item)
     } catch (error) {
-        res.sendStatus(500)
+        res.status(500).json({ message: 'Error al crear la lista' })
     }
  }
 
