@@ -10,8 +10,9 @@ export default function Navbar() {
     const pathname = usePathname()
     const path = pathname.split('/')[1]
 
-    const hiddenPaths = ['login', 'register']
+    const hiddenPaths = ['login', 'register', 'editar']
     if (hiddenPaths.includes(path)) return null;
+    if (pathname.split('/')[3] === 'editar') return null;
 
     return (
         <div className={'navbar ' + inter.className}>

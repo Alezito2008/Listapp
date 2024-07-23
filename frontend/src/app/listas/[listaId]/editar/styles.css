@@ -1,31 +1,99 @@
 .editar-lista {
     padding: 2rem;
-    padding-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
 }
 
 .editar-lista h1 {
     font-size: 2rem;
     font-weight: 500;
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
 }
 
 .boton-eliminar {
-    position: absolute;
     bottom: 6rem;
-    width: calc(100% - 4rem);
     background-color: #ec1e52;
     color: #fff;
     font-weight: 500;
     border-radius: 5px;
     padding: .5rem;
-    margin-top: auto;
     display: flex;
     justify-content: center;
     place-items: center;
     gap: .5rem;
+    width: 100%;
+    height: 2.5rem;
+    margin-top: auto;
+}
+
+.boton-compartir {
+    display: flex;
+    place-items: center;
+    color: #333;
+    background-color: #C2E7FF;
+    padding: 1.3rem 1rem;
+    border-radius: 10px;
+    max-height: 2.3rem;
+    font-weight: 500;
+    gap: .5rem;
+}
+
+.boton-compartir > span {
+    font-size: 1.5rem !important;
 }
 
 form {
     display: flex;
     flex-direction: column;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    z-index: 4;
+    backdrop-filter: blur(5px);
+}
+
+.form-compartir {
+    position: fixed;
+    background-color: #fff;
+    top: 20dvh;
+    padding: 2rem;
+    width: 93vw;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    border-radius: 10px;
+}
+
+.form-compartir h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: rem;
+}
+
+.entrada {
+    display: flex;
+    place-items: center;
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
+    padding: .3rem;
+    outline: none;
+    color: #999;
+    margin-bottom: 1rem;
+}
+
+.entrada > span {
+    font-size: 1.5rem !important;
+    padding-right: .5rem;
+}
+
+.entrada > input {
+    outline: none;
+    color: #000;
 }

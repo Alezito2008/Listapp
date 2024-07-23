@@ -43,7 +43,7 @@ export default function LoginPage() {
             <div className="login">
                 <h1>Iniciar sesión</h1>
                 <h3>Bienvenido! Por favor ingresá los datos</h3>
-                <div className="login-form">
+                <form className="login-form" action={iniciarSesion}>
                     <div>
                         <label htmlFor="usuario">Usuario</label>
                         <div className='entrada'>
@@ -61,14 +61,13 @@ export default function LoginPage() {
                     <div className='w-full text-right text-[--secondary-color] weight-300 font-medium text-[.9rem] -mt-1'>
                         Olvidé la contraseña
                     </div>
-                    <button className='w-full bg-[--secondary-color] text-white font-semibold py-2 rounded-md'
-                    onClick={iniciarSesion}>
+                    <button className='w-full bg-[--secondary-color] text-white font-semibold py-2 rounded-md'>
                         Iniciar Sesión
                     </button>
                     <p className='text-center text-red-500'>
                         {error}
                     </p>
-                </div>
+                </form>
                 <foot className='mt-auto text-center'>
                     <p>¿No tenés cuenta?</p>
                     <Link href='/register' className='text-[--secondary-color] font-medium'>Registrarse</Link>

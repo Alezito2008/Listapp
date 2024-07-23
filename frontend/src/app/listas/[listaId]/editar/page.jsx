@@ -7,6 +7,7 @@ import '@/styles/forms.css'
 import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Cargando from '@/components/Cargando/Cargando'
+import ModalCompartir from './ModalCompartir'
 
 export default function EditarListaPage() {
 
@@ -17,6 +18,8 @@ export default function EditarListaPage() {
         const [cargando, setCargando] = useState(true)
         const [nombre, setNombre] = useState('')
         const [descripcion, setDescripcion] = useState('')
+
+        const [compartirAbierto, setCompartirAbierto] = useState(false)
 
         const obtenerLista = async () => {
             const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/listas/${listaId}`, {
@@ -71,14 +74,21 @@ export default function EditarListaPage() {
         return (
             <>
                 { cargando && <Cargando />}
+                { compartirAbierto && <ModalCompartir listaId={listaId} setCompartirAbierto={setCompartirAbierto} /> }
                 <div className="editar-lista">
+                    <div className="flex justify-end mb-3">
+                        <button className='boton-compartir' onClick={ e => setCompartirAbierto(true) }>
+                            <span className='material-symbols-outlined'>globe</span>
+                            Compartir
+                        </button>
+                    </div>
                     <h1>Editar lista</h1>
                     <form action={editarLista}>
                         <label htmlFor="nombre">Nombre<span className='text-red-500'>*</span></label>
                         <input type="text" id="nombre" placeholder='Nombre de la lista' onChange={e => setNombre(e.target.value)} value={nombre}/>
                         <label htmlFor="descripcion">Descripción</label>
                         <input id="descripcion" placeholder='Descripción de la lista' onChange={e => setDescripcion(e.target.value)} value={descripcion}/>
-                        <div className='flex justify-center mt-3'>
+                        <div className='flex justify-center mt-3 mb-3'>
                             <Boton texto='Hecho' icono='check' disabled={nombre.trim() === ''}/>
                         </div>
                     </form>
