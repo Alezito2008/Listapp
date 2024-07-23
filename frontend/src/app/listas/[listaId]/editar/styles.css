@@ -1,0 +1,31 @@
+.editar-lista {
+    padding: 2rem;
+    padding-top: 3rem;
+}
+
+.editar-lista h1 {
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 3rem;
+}
+
+.boton-eliminar {
+    position: absolute;
+    bottom: 6rem;
+    width: calc(100% - 4rem);
+    background-color: #ec1e52;
+    color: #fff;
+    font-weight: 500;
+    border-radius: 5px;
+    padding: .5rem;
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    gap: .5rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}

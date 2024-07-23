@@ -2,6 +2,7 @@
 
 import Boton from '@/components/Boton/Boton'
 import './styles.css'
+import '@/styles/forms.css'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Cargando from '@/components/Cargando/Cargando'
@@ -16,7 +17,7 @@ export default function CrearListaPage() {
     const [descripcion, setDescripcion] = useState('')
 
     const crearLista = async () => {
-        if (nombre.trim() === '') return alert('La lista debe terner un nombre')
+        if (nombre.trim() === '') return alert('La lista debe tener un nombre')
         setCargando(true)
         const response = await fetch('http://localhost:5000/listas', {
             method: 'POST',

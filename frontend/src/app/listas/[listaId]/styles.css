@@ -19,7 +19,7 @@
     display: flex;
     justify-content: center;
     place-items: center;
-    border: 2px dashed #aaa;
+    border: 2px solid #ccc;
     box-sizing: border-box;
     max-width: fit-content;
     padding: .2rem .5rem;

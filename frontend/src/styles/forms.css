@@ -1,0 +1,16 @@
+form {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+form input {
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
+    padding: .3rem 1rem;
+    outline: none;
+}
+
+form input:focus {
+    box-shadow: 0 0 5px rgba(30, 143, 255, 0.411);
+}

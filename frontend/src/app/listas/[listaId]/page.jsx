@@ -35,7 +35,7 @@ export default function Lista() {
         setAgregarAbierto(false)
     }
 
-    const obtenerListas = async () => {
+    const obtenerLista = async () => {
         const response = await fetch(`http://localhost:5000/listas/${listaId}`, {
             method: 'GET',
             headers: {
@@ -53,7 +53,7 @@ export default function Lista() {
     }
 
     useEffect(() => {
-        obtenerListas()
+        obtenerLista()
 
         socket.on('connect', () => {
             socket.emit('sala', listaId)
@@ -112,7 +112,7 @@ export default function Lista() {
                 </form>
             </div>
             <div className='contenedor-lista'>
-                <h1>{nombre}</h1>
+                <h1 onClick={e => router.push(`/listas/${listaId}/editar`)}>{nombre}  <span className="material-symbols-outlined text-gray-500">edit</span> </h1>
                 <div className="contenedor-items">
                     {
                         items.map(item => (

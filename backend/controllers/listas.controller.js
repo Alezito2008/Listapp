@@ -107,10 +107,9 @@ const actualizarLista = async (req, res) => {
 
     let info
     try {
-        jwt.verify(token, process.env.JWT_SECRET)
+        info = jwt.verify(token, process.env.JWT_SECRET)
     } catch (error) {
         return res.status(401).json({ message: 'Token inválido o expirado' });
-        
     }
 
     try {
@@ -124,7 +123,7 @@ const actualizarLista = async (req, res) => {
         })
 
         if (!usuario || usuario.Listas.length === 0) {
-            return res.sendStatus(404)
+            return res.status(404).json({ message: 'No se encontró la lista' });
         }
 
         await Lista.update({
@@ -133,9 +132,9 @@ const actualizarLista = async (req, res) => {
         }, {
             where: { id }
         })
-        res.sendStatus(204)
+        res.status(200).json({ message: 'Lista actualizada' })
     } catch (error) {
-        res.sendStatus(500);
+        res.status(500).json({ message: 'Error al actualizar la lista' });
     }
 }
 
@@ -162,15 +161,15 @@ const eliminarLista = async (req, res) => {
         })
 
         if (!usuario || usuario.Listas.length === 0) {
-            return res.sendStatus(404)
+            return res.status(404).json({ message: 'No se encontró la lista' });
         }
 
         await Lista.destroy({
             where: { id }
         })
-        res.sendStatus(204)
+        res.status(200).json({ message: 'Lista eliminada' })
     } catch (error) {
-        res.sendStatus(500);
+        res.status(500).json({ message: 'Error al eliminar la lista' });
     }
 }
 
