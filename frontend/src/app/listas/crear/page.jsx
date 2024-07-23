@@ -30,7 +30,7 @@ export default function CrearListaPage() {
         setCargando(false)
         const data = await response.json()
         if (data.message) return alert(data.message)
-        else router.push('/listas')
+        else window.location.href = '/listas'
     }
 
     return (

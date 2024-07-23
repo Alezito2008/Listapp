@@ -173,4 +173,42 @@ const eliminarLista = async (req, res) => {
     }
 }
 
-module.exports = { obtenerListas, obtenerLista, crearLista, actualizarLista, eliminarLista }
+const compartirLista = async (req, res) => {
+    const { id } = req.params
+    const { tag } = req.body
+    const { token } = req.cookies
+
+    let info
+    try {
+        info = jwt.verify(token, process.env.JWT_SECRET)
+    } catch (error) {
+        return res.status(401).json({ message: 'Token inválido o expirado' });
+    }
+
+    try {
+        const usuarioACompartir = await Usuario.findOne({
+            where: { tag }
+        })
+
+        if (!usuarioACompartir) {
+            return res.status(404).json({ message: 'No se encontró el usuario' });
+        }
+
+        const lista = await Lista.findByPk(id)
+
+        if (!lista) {
+            return res.status(404).json({ message: 'No se encontró la lista' });
+        }
+
+        if (lista.creadorId !== info.id) {
+            return res.status(403).json({ message: 'No tenés permiso para compartir esta lista' });
+        }
+
+        await usuarioACompartir.addLista(lista)
+        res.status(200).json({ message: 'Lista compartida' })
+    } catch (error) {
+        res.status(500).json({ message: 'Error al compartir la lista' });
+    }
+}
+
+module.exports = { obtenerListas, obtenerLista, crearLista, actualizarLista, eliminarLista, compartirLista }

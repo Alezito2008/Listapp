@@ -32,9 +32,9 @@ export default function LoginPage() {
             body: JSON.stringify(data)
         })
         let json = await response.json()
-        if (response.status !== (200 || 204)) setError(json.message)
+        if (response.status === 200) return router.push('/inicio')
+        setError(json.message)
         setCargando(false)
-        router.push('/inicio')
     }
 
     return (
