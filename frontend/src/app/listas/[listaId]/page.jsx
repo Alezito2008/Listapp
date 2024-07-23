@@ -6,8 +6,16 @@ import { useParams } from "next/navigation";
 import Cargando from '@/components/Cargando/Cargando';
 import Item from '@/components/Item/Item';
 import Boton from '@/components/Boton/Boton';
+import { io } from 'socket.io-client';
+import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 
 export default function Lista() {
+
+    const socket = io('http://localhost:5000')
+    const router = useRouter()
+    const token = Cookies.get('token')
+
     const { listaId } = useParams()
 
     const [nombreItem, setNombreItem] = useState('')
@@ -23,20 +31,8 @@ export default function Lista() {
     const {nombre, items} = listaInfo
 
     const agregarItem = async () => {
-        await fetch('http://localhost:5000/items/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                nombre: nombreItem,
-                cantidadConseguida: 0,
-                cantidadNecesitada: cantidadItem,
-                listaId
-            }),
-            credentials: 'include'
-        })
-        window.location.reload()
+        socket.emit('agregar-item', { nombre: nombreItem, cantidadNecesitada: parseInt(cantidadItem), listaId, token })
+        setAgregarAbierto(false)
     }
 
     const obtenerListas = async () => {
@@ -47,13 +43,54 @@ export default function Lista() {
             },
             credentials: 'include'
         })
-        setCargando(false)
-        const data = await response.json()
-        setListaInfo(data)
+
+        if (response.status === 401) router.push('/login')
+        else {
+            setCargando(false)
+            const data = await response.json()
+            setListaInfo(data)
+        }
     }
 
     useEffect(() => {
         obtenerListas()
+
+        socket.on('connect', () => {
+            socket.emit('sala', listaId)
+        })
+
+        socket.on('eliminar-item', id => {
+            setListaInfo(prev => {
+                return {
+                    ...prev,
+                    items: prev.items.filter(item => item.id !== id)
+                }
+            })
+        })
+
+        socket.on('agregar-item', item => {
+            setListaInfo(prev => {
+                return {
+                    ...prev,
+                    items: [...prev.items, item]
+                }
+            })
+        })
+
+        socket.on('actualizar-item', item => {
+            setListaInfo(prev => ({
+                ...prev,
+                items: prev.items.map(i =>
+                    i.id === item.id ? { ...i, cantidadConseguida: item.cantidadConseguida } : i
+                ),
+            }));
+        });
+
+        return () => {
+            socket.off('eliminar-item')
+            socket.off('actualizar-item')
+            socket.off('agregar-item')
+        }
     }, [])
 
     return (
@@ -79,7 +116,7 @@ export default function Lista() {
                 <div className="contenedor-items">
                     {
                         items.map(item => (
-                            <Item key={item.id} nombre={item.nombre} cantidadNecesitada={item.cantidadNecesitada} cantidadConseguida={item.cantidadConseguida} />
+                            <Item key={item.id} id={item.id} nombre={item.nombre} cantidadNecesitada={item.cantidadNecesitada} cantidadConseguida={item.cantidadConseguida} socket={socket} listaId={listaId} />
                         ))
                     }
                     <div className='flex justify-center mt-2'>

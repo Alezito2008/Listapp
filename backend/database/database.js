@@ -4,7 +4,8 @@ require('dotenv').config()
 
 const sequelize = new Sequelize('Listapp', 'root', process.env.MYSQL_PASSWORD, {
     host: 'localhost',
-    dialect: 'mysql'
+    dialect: 'mysql',
+    logging: false
 })
 
 module.exports = sequelize

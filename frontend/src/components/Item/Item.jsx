@@ -1,15 +1,31 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './Item.css'
+import Cookies from 'js-cookie'
 
 export default function Item(props) {
 
-    const { nombre, cantidadNecesitada } = props
+    const token = Cookies.get('token')
+
+    const { id, nombre, cantidadNecesitada, socket, listaId } = props
     const [cantidadConseguida, setCantidadConseguida] = useState(props.cantidadConseguida)
     const [checked, setChecked] = useState(false)
+
+    useEffect(() => {
+        setCantidadConseguida(props.cantidadConseguida)
+        if (props.cantidadConseguida === props.cantidadNecesitada) setChecked(true)
+            else setChecked(false)
+    }, [props])
 
     const aumentarCantidad = () => {
         if (cantidadConseguida + 1 === cantidadNecesitada) setChecked(true)
         if (cantidadConseguida === cantidadNecesitada) return
+        socket.emit('actualizar-item', 
+            {
+                listaId,
+                token,
+                id,
+                cantidadConseguida: cantidadConseguida + 1
+            })
         setCantidadConseguida(cantidadConseguida + 1)
     }
 
@@ -17,6 +33,23 @@ export default function Item(props) {
         if (cantidadConseguida === 0) return
         setChecked(false)
         setCantidadConseguida(cantidadConseguida - 1)
+        socket.emit('actualizar-item', 
+            {
+                listaId,
+                token,
+                id,
+                cantidadConseguida: cantidadConseguida - 1
+            })
+    }
+
+    const eliminarItem = () => {
+        socket.emit('eliminar-item', 
+            {
+                listaId,
+                token,
+                id
+            }
+        )
     }
 
     return (
@@ -30,7 +63,7 @@ export default function Item(props) {
                     <span>{cantidadConseguida}/{cantidadNecesitada}</span>
                 </div>
             </div>
-            <span className='material-symbols-outlined text-red-400 ml-2'>delete</span>
+            <span className='material-symbols-outlined text-red-400 ml-2' onClick={eliminarItem}>delete</span>
         </div>
     )
 }

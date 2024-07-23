@@ -1,5 +1,5 @@
-const { SequelizeScopeError } = require('sequelize')
 const app = require('./app')
+const http = require('./socket')
 const sequelize = require('./database/database')
 
 require('./models/Listas')
@@ -12,7 +12,7 @@ async function main() {
     try {
         sequelize.sync({ force: false })
         console.log('Conectado a la base de datos')
-        app.listen(PORT)
+        http.listen(PORT)
         console.log(`Escuchando en el puerto ${PORT}`)
     } catch (error) {
         console.log('Hubo un error ' + error)

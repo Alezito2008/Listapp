@@ -56,7 +56,8 @@ const jwt = require('jsonwebtoken')
             cantidadNecesitada,
             listaId
         })
-        res.json(item)
+
+        res.status(200).json(item)
     } catch (error) {
         res.status(500).json({ message: 'Error al crear la lista' })
     }
@@ -102,7 +103,8 @@ const jwt = require('jsonwebtoken')
         }, {
             where: { id }
         })
-        res.json(itemActualizado)
+
+        res.status(200).json({ message: 'Item actualizado' })
     } catch (error) {
         res.sendStatus(500)
     }
@@ -125,7 +127,7 @@ const jwt = require('jsonwebtoken')
         })
         
         if (!item) {
-            return res.sendStatus(404)
+            return res.status(404).json({ message: 'Item no encontrado' })
         }
 
         const usuarioConItemEnLista = await Usuario.findOne({
@@ -137,13 +139,13 @@ const jwt = require('jsonwebtoken')
         })
 
         if (!usuarioConItemEnLista) {
-            return res.sendStatus(404)
+            return res.status(404).json({ message: 'Item no encontrado' })
         }
 
         await Item.destroy({
             where: { id }
         })
-        res.sendStatus(204)
+        res.sendStatus(200)
     } catch (error) {
         res.sendStatus(500)
     }

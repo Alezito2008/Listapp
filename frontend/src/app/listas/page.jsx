@@ -3,6 +3,7 @@ import './styles.css';
 import Lista from '@/components/Lista/Lista';
 import { cookies } from 'next/headers';
 import Link from 'next/link';
+import { redirect } from 'next/navigation';
 
 export default async function ListasPage() {
 
@@ -18,6 +19,9 @@ export default async function ListasPage() {
         },
     })
     const data = await response.json()
+    if (response.status === 401) {
+        redirect('/login')
+    }
 
     return (
         <div className="listas">
