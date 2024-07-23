@@ -24,7 +24,7 @@ export default function RegisterPage() {
             contraseña
         }
         setCargando(true)
-        let response = await fetch('http://localhost:5000/register', {
+        let response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

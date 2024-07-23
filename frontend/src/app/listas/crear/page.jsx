@@ -19,7 +19,7 @@ export default function CrearListaPage() {
     const crearLista = async () => {
         if (nombre.trim() === '') return alert('La lista debe tener un nombre')
         setCargando(true)
-        const response = await fetch('http://localhost:5000/listas', {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/listas`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

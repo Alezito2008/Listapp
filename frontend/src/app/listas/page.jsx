@@ -11,7 +11,7 @@ export default async function ListasPage() {
     const allCookies = cookieStore.getAll()
     const cookieHeader = allCookies.map(cookie => `${cookie.name}=${cookie.value}`).join('; ');
 
-    const response = await fetch('http://localhost:5000/listas', {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/listas`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',

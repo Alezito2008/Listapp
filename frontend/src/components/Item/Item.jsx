@@ -55,11 +55,13 @@ export default function Item(props) {
     return (
         <div className='flex items-center'>
             <div className='item'>
+                <div className='absolute w-1/2 h-full left-0' onClick={disminuirCantidad}></div>
+                <div className='absolute w-1/2 h-full right-0' onClick={aumentarCantidad}></div>
                 <div className={`checkbox ${checked && 'checked'}`}></div>
                 <div className={`nombre ${checked && 'checked'}`}>{nombre}</div>
                 <div className='cantidad'>
-                    <span className='material-symbols-outlined' onClick={aumentarCantidad}>keyboard_arrow_up</span>
-                    <span className='material-symbols-outlined' onClick={disminuirCantidad}>keyboard_arrow_down</span>
+                    {/* <span className='material-symbols-outlined' onClick={aumentarCantidad}>keyboard_arrow_up</span> */}
+                    {/* <span className='material-symbols-outlined' onClick={disminuirCantidad}>keyboard_arrow_down</span> */}
                     <span>{cantidadConseguida}/{cantidadNecesitada}</span>
                 </div>
             </div>

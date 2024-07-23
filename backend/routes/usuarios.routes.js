@@ -3,12 +3,12 @@ const { registrarUsuario, iniciarSesion, obtenerUsuarios, obtenerUsuario, actual
 
 const router = Router()
 
-router.post('/register', registrarUsuario)
-router.post('/login', iniciarSesion)
+router.post('/api/register', registrarUsuario)
+router.post('/api/login', iniciarSesion)
 
-router.get('/usuarios', obtenerUsuarios)
-router.get('/usuarios/:tag', obtenerUsuario)
-router.put('/usuarios/:tag', actualizarUsuario)
-router.delete('/usuarios/:tag', eliminarUsuario)
+router.get('/api/usuarios', obtenerUsuarios)
+router.get('/api/usuarios/:tag', obtenerUsuario)
+router.put('/api/usuarios/:tag', actualizarUsuario)
+router.delete('/api/usuarios/:tag', eliminarUsuario)
 
 module.exports = router

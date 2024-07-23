@@ -19,7 +19,7 @@ export default function EditarListaPage() {
         const [descripcion, setDescripcion] = useState('')
 
         const obtenerLista = async () => {
-            const response = await fetch(`http://localhost:5000/listas/${listaId}`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/listas/${listaId}`, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -42,7 +42,7 @@ export default function EditarListaPage() {
 
         const editarLista = async () => {
             if (nombre.trim() === '') return alert('La lista debe tener un nombre')
-            const response = await fetch(`http://localhost:5000/listas/${listaId}`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/listas/${listaId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -56,7 +56,7 @@ export default function EditarListaPage() {
         }
 
         const eliminarLista = async () => {
-            const response = await fetch(`http://localhost:5000/listas/${listaId}`, {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/listas/${listaId}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json'

@@ -3,12 +3,12 @@ const { obtenerListas, obtenerLista, crearLista, actualizarLista, eliminarLista,
 
 const router = Router()
 
-router.get('/listas', obtenerListas)
-router.get('/listas/:id', obtenerLista)
-router.post('/listas', crearLista)
-router.put('/listas/:id', actualizarLista)
-router.delete('/listas/:id', eliminarLista)
+router.get('/api/listas', obtenerListas)
+router.get('/api/listas/:id', obtenerLista)
+router.post('/api/listas', crearLista)
+router.put('/api/listas/:id', actualizarLista)
+router.delete('/api/listas/:id', eliminarLista)
 
-router.post('/listas/:id/compartir', compartirLista)
+router.post('/api/listas/:id/compartir', compartirLista)
 
 module.exports = router

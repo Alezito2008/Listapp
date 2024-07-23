@@ -23,7 +23,7 @@ export default function LoginPage() {
             contraseña
         }
         setCargando(true)
-        let response = await fetch('http://localhost:5000/login', {
+        let response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

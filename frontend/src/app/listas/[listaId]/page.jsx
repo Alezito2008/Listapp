@@ -12,7 +12,8 @@ import Cookies from 'js-cookie';
 
 export default function Lista() {
 
-    const socket = io('http://localhost:5000')
+    const socket = io(process.env.NEXT_PUBLIC_SERVER_URL)
+
     const router = useRouter()
     const token = Cookies.get('token')
 
@@ -36,7 +37,7 @@ export default function Lista() {
     }
 
     const obtenerLista = async () => {
-        const response = await fetch(`http://localhost:5000/listas/${listaId}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/listas/${listaId}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -44,12 +45,12 @@ export default function Lista() {
             credentials: 'include'
         })
 
-        if (response.status === 401) router.push('/login')
-        else {
+        // if (response.status === 401) router.push('/login')
+        // else {
             setCargando(false)
             const data = await response.json()
             setListaInfo(data)
-        }
+        // }
     }
 
     useEffect(() => {

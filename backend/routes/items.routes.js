@@ -3,10 +3,10 @@ const { crearItem, obtenerItems, obtenerItem, actualizarItem, eliminarItem } = r
 
 const router = Router()
 
-router.get('/items', obtenerItems)
-router.get('/items/:id', obtenerItem)
-router.post('/items', crearItem)
-router.put('/items/:id', actualizarItem)
-router.delete('/items/:id', eliminarItem)
+router.get('/api/items', obtenerItems)
+router.get('/api/items/:id', obtenerItem)
+router.post('/api/items', crearItem)
+router.put('/api/items/:id', actualizarItem)
+router.delete('/api/items/:id', eliminarItem)
 
 module.exports = router
