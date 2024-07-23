@@ -1,5 +1,4 @@
 const app = require('./app')
-const http = require('./socket')
 const sequelize = require('./database/database')
 
 require('./models/Listas')
@@ -12,7 +11,7 @@ async function main() {
     try {
         sequelize.sync({ force: false })
         console.log('Conectado a la base de datos')
-        http.listen(PORT)
+        app.listen(PORT)
         console.log(`Escuchando en el puerto ${PORT}`)
     } catch (error) {
         console.log('Hubo un error ' + error)
