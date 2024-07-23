@@ -106,7 +106,7 @@
 ```
 - **Descripción**: Crea un item para una lista
 
-### /items
+### /items/:id
 - **Método**: <span style="color: cornflowerblue"> **PUT** </span>
 - **Body**:
 ```json
