@@ -13,7 +13,7 @@
 
 .boton-eliminar {
     bottom: 6rem;
-    background-color: #ec1e52;
+    background-color: var(--red);
     color: #fff;
     font-weight: 500;
     border-radius: 5px;
@@ -94,6 +94,16 @@ form {
 }
 
 .entrada > input {
+    width: 100%;
     outline: none;
     color: #000;
+}
+
+.compartidos {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-height: 30dvh;
+    overflow: auto;
+    padding-block: 1rem;
 }

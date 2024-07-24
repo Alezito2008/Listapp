@@ -87,6 +87,29 @@
 - **Método**: <span style="color: red"> **DELETE** </span>
 - **Descripción**: Elimina una lista
 
+### /listas/:id/obtenerCompartidos
+- **Método**: <span style="color: lime"> **GET** </span>
+- **Descripción**: Obtiene los usuarios con los cuales la lista fue compartida
+
+### /listas/:id/compartir
+- **Método**: <span style="color: yellow"> **POST** </span>
+- **Descripción**: Comparte una lista a un usuario según su tag
+- **Body**:
+```json
+{
+  "tag": "string"
+}
+```
+### /listas/:id/compartir
+- **Método**: <span style="color: red"> **DELETE** </span>
+- **Descripción**: Elimina a un usuario de la lista de compartidos de una lista según su tag
+- **Body**:
+```json
+{
+  "tag": "string"
+}
+```
+
 ## Items
 
 ### /items

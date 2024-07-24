@@ -25,13 +25,20 @@ const registrarUsuario = async (req, res) => {
 
         const salt = bcrypt.genSaltSync(10)
         const hash = bcrypt.hashSync(contraseña, salt)
-        await Usuario.create({
+        const usuario = await Usuario.create({
             nombre,
             tag,
             hash
         })
 
-        res.status(200).json({ nombre, tag })
+        const token = jwt.sign({
+            id: usuario.id,
+            nombre,
+            tag,
+            administrador: usuario.administrador
+        }, process.env.JWT_SECRET, { expiresIn: '1h' })
+
+        res.status(200).cookie('token', token).json({ message: 'Usuario Registrado' })
     } catch (error) {
         if (error.name === 'SequelizeUniqueConstraintError') return res.status(400).json({ message: 'Usuario ya registrado' })
         res.status(500).json({ message: 'Error Interno' })
@@ -59,7 +66,7 @@ const iniciarSesion = async (req, res) => {
                 administrador
             }, process.env.JWT_SECRET, { expiresIn: '1h' })
 
-            res.cookie('token', token).json({ message: 'Sesión Iniciada' })
+            res.cookie('token', token).cookie('id', id).json({ message: 'Sesión Iniciada' })
         } else {
             res.status(401).json({ message: 'Datos Incorrectos' })
         }

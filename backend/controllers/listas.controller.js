@@ -204,4 +204,85 @@ const compartirLista = async (req, res) => {
     }
 }
 
-module.exports = { obtenerListas, obtenerLista, crearLista, actualizarLista, eliminarLista, compartirLista }
+const obtenerCompartidos = async (req, res) => {
+    const { id } = req.params
+    const { token } = req.cookies
+
+    let info
+    try {
+        info = jwt.verify(token, process.env.JWT_SECRET)
+    } catch (error) {
+        return res.status(401).json({ message: 'Token inválido o expirado' });
+    }
+
+    try {
+        const lista = await Lista.findByPk(id)
+        if (!lista) {
+            return res.status(404).json({ message: 'No se encontró la lista' });
+        }
+
+        const usuarios = await lista.getUsuarios()
+
+        const usuario = await Usuario.findByPk(info.id)
+        const listaCompartida = await usuario.hasLista(lista)
+        if (!listaCompartida) {
+            return res.status(403).json({ message: 'No tenés permiso para ver los compartidos de esta lista' });
+        }
+
+        const usuariosInfo = usuarios.map(usuario => ({
+            id: usuario.id,
+            nombre: usuario.nombre,
+            tag: usuario.tag,
+            propietario: usuario.id === lista.creadorId
+        }))
+
+        if (lista.creadorId === info.id) res.status(200).json({propietario: true, usuarios: usuariosInfo})
+        else res.status(200).json({propietario: false, usuarios: usuariosInfo})
+    } catch (error) {
+        res.status(500).json({ message: 'Error al obtener los compartidos' });
+    }
+}
+
+const eliminarCompartido = async (req, res) => {
+    const { id } = req.params
+    const { token } = req.cookies
+    const { tag } = req.body
+
+    let info
+    try {
+        info = jwt.verify(token, process.env.JWT_SECRET)
+    } catch (error) {
+        return res.status(401).json({ message: 'Token inválido o expirado' });
+    }
+
+    try {
+        const lista = await Lista.findByPk(id)
+        if (!lista) {
+            return res.status(404).json({ message: 'No se encontró la lista' });
+        }
+
+        const usuario = await Usuario.findByPk(info.id)
+        if (lista.creadorId !== usuario.id) {
+            return res.status(403).json({ message: 'No tenés permiso para eliminar compartidos de esta lista' });
+        }
+
+        const usuarioAQuitar = await Usuario.findOne({
+            where: { tag }
+        })
+
+        if (!usuarioAQuitar) {
+            return res.status(404).json({ message: 'No se encontró el usuario' });
+        }
+
+        if (usuarioAQuitar.id === lista.creadorId) {
+            return res.status(403).json({ message: 'No podés eliminar al creador de la lista' });
+        }
+
+        await lista.removeUsuario(usuarioAQuitar)
+        res.status(200).json({ message: 'Compartido eliminado' })
+    } catch (error) {
+        res.status(500).json({ message: 'Error al eliminar el compartido' });
+    }
+}
+
+module.exports = { obtenerListas, obtenerLista, crearLista, actualizarLista, eliminarLista, compartirLista, obtenerCompartidos, eliminarCompartido }

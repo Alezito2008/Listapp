@@ -4,8 +4,11 @@ import '@/styles/cuentas.css'
 import Link from 'next/link'
 import { useState } from 'react'
 import Cargando from '@/components/Cargando/Cargando'
+import { useRouter } from 'next/navigation'
 
 export default function RegisterPage() {
+
+    const router = useRouter()
 
     let [nombre, setNombre] = useState('')
     let [usuario, setUsuario] = useState('')
@@ -33,7 +36,8 @@ export default function RegisterPage() {
             body: JSON.stringify(data)
         })
         let json = await response.json()
-        if (response.status !== (200 || 204)) setError(json.message)
+        if (response.status === 200) return router.push('/inicio')
+        setError(json.message)
         setCargando(false)
     }
 
@@ -44,13 +48,13 @@ export default function RegisterPage() {
                 <h1>Registrarse</h1>
                 <h3>Bienvenido! Por favor ingresá los datos</h3>
                 <div className="login-form">
-                <div>
+                <form action={registrarse}>
                         <label htmlFor="nombre">Nombre</label>
                         <div className='entrada'>
                             <span className='material-symbols-outlined'>person</span>
                             <input type='text' placeholder='Ingresá tu nombre' id='nombre' onChange={e => setNombre(e.target.value)} value={nombre}/>
                         </div>
-                    </div>
+                    </form>
                     <div>
                         <label htmlFor="usuario">Usuario</label>
                         <div className='entrada'>

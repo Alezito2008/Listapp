@@ -1,6 +1,6 @@
 const { DataTypes } = require('sequelize')
-const sequelize = require('../database/database')
-const Lista = require('./Listas')
+const sequelize = require('../database/database');
+const Lista = require('./Listas');
 
 const Usuario = sequelize.define('Usuarios', {
     id: {
@@ -34,7 +34,7 @@ const Usuario = sequelize.define('Usuarios', {
     }
 })
 
-Usuario.belongsToMany(Lista, { through: 'UsuarioListas', onDelete: 'CASCADE' });
-Lista.belongsToMany(Usuario, { through: 'UsuarioListas', onDelete: 'CASCADE' });
+Usuario.belongsToMany(Lista, { through: 'compartidos', onDelete: 'CASCADE' });
+Lista.belongsToMany(Usuario, { through: 'compartidos', onDelete: 'CASCADE' });
 
 module.exports = Usuario
