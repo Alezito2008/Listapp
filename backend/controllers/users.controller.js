@@ -15,6 +15,14 @@ const registrarUsuario = async (req, res) => {
     const { nombre, tag, contraseña } = req.body
 
     try {
+        if (nombre.length > 16) return res.status(400).json({ message: 'El nombre debe tener menos de 16 letras' })
+        if (nombre.length < 3) return res.status(400).json({ message: 'El nombre debe tener más de 3 letras' })
+
+        if (tag.length > 16) return res.status(400).json({ message: 'El tag debe tener menos de 16 letras' })
+        if (tag.length < 3) return res.status(400).json({ message: 'El tag debe tener más de 3 letras' })
+        
+        if (!/^[a-z0-9]+$/.test(tag)) return res.status(400).json({ message: 'El usuario sólo puede contener letras minúsculas y números' })
+
         const salt = bcrypt.genSaltSync(10)
         const hash = bcrypt.hashSync(contraseña, salt)
         await Usuario.create({

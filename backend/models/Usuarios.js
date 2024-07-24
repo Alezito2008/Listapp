@@ -9,10 +9,10 @@ const Usuario = sequelize.define('Usuarios', {
         autoIncrement: true
     },
     nombre: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(16),
         allowNull: false,
         validate: {
-            len: [3]
+            len: [3],
         }
     },
     hash: {
@@ -20,7 +20,7 @@ const Usuario = sequelize.define('Usuarios', {
         allowNull: false
     },
     tag: {
-        type: DataTypes.STRING,
+        type: DataTypes.STRING(16),
         allowNull: false,
         unique: true,
         validate: {
@@ -34,7 +34,7 @@ const Usuario = sequelize.define('Usuarios', {
     }
 })
 
-Usuario.belongsToMany(Lista, { through: 'UsuarioListas' });
-Lista.belongsToMany(Usuario, { through: 'UsuarioListas' });
+Usuario.belongsToMany(Lista, { through: 'UsuarioListas', onDelete: 'CASCADE' });
+Lista.belongsToMany(Usuario, { through: 'UsuarioListas', onDelete: 'CASCADE' });
 
 module.exports = Usuario

@@ -55,7 +55,7 @@ export default function RegisterPage() {
                         <label htmlFor="usuario">Usuario</label>
                         <div className='entrada'>
                             <span className='material-symbols-outlined'>alternate_email</span>
-                            <input type='text' placeholder='Ingresá tu usuario' id='usuario' onChange={e => setUsuario(e.target.value)} value={usuario}/>
+                            <input type='text' placeholder='Ingresá tu usuario' id='usuario' onChange={e => setUsuario(e.target.value)} value={usuario.toLowerCase().replaceAll(' ', '')}/>
                         </div>
                     </div>
                     <div>

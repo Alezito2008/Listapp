@@ -9,7 +9,7 @@ const PORT = 5000
 
 async function main() {
     try {
-        sequelize.sync({ force: false })
+        sequelize.sync({ force: true })
         console.log('Conectado a la base de datos')
         app.listen(PORT)
         console.log(`Escuchando en el puerto ${PORT}`)

@@ -151,22 +151,15 @@ const eliminarLista = async (req, res) => {
 
     try {
 
-        const usuario = await Usuario.findOne({
-            where: { id: info.id },
-            include: [{
-                model: Lista,
-                where: { id },
-                attributes: ['id']
-            }]
-        })
-
-        if (!usuario || usuario.Listas.length === 0) {
-            return res.status(404).json({ message: 'No se encontró la lista' });
+        const lista = await Lista.findByPk(id)
+        if (lista.creadorId !== info.id) {
+            return res.status(403).json({ message: 'No tenés permiso para eliminar esta lista' })
         }
 
         await Lista.destroy({
             where: { id }
         })
+        
         res.status(200).json({ message: 'Lista eliminada' })
     } catch (error) {
         res.status(500).json({ message: 'Error al eliminar la lista' });

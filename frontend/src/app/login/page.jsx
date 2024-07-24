@@ -48,7 +48,7 @@ export default function LoginPage() {
                         <label htmlFor="usuario">Usuario</label>
                         <div className='entrada'>
                             <span className='material-symbols-outlined'>person</span>
-                            <input type='text' placeholder='Ingresá tu usuario' id='usuario' onChange={e => setUsuario(e.target.value)} value={usuario}/>
+                            <input type='text' placeholder='Ingresá tu usuario' id='usuario' onChange={e => setUsuario(e.target.value)} value={usuario.toLowerCase().replaceAll(' ', '')}/>
                         </div>
                     </div>
                     <div>
