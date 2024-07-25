@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken')
+const base64url = require('base64url')
 const Lista = require('../models/Listas')
 const Usuario = require('../models/Usuarios')
 const Item = require('../models/Items')
@@ -279,10 +280,44 @@ const eliminarCompartido = async (req, res) => {
         }
 
         await lista.removeUsuario(usuarioAQuitar)
-        res.status(200).json({ message: 'Compartido eliminado' })
+        res.status(200).json({ message: 'Compartido eliminado' });
     } catch (error) {
         res.status(500).json({ message: 'Error al eliminar el compartido' });
     }
 }
 
-module.exports = { obtenerListas, obtenerLista, crearLista, actualizarLista, eliminarLista, compartirLista, obtenerCompartidos, eliminarCompartido }
+const crearInvitacion = async (req, res) => {
+    const { token } = req.cookies
+    const { id } = req.body
+
+    let info
+    try {
+        info = jwt.verify(token, process.env.JWT_SECRET)
+    } catch (error) {
+        return res.status(401).json({ message: 'Token inválido o expirado' });
+    }
+
+    try {
+
+        const lista = await Lista.findByPk(id)
+
+        if (!lista) {
+            return res.status(404).json({ message: 'No se encontró la lista' });
+        }
+
+        if (lista.creadorId !== info.id) {
+            return res.status(403).json({ message: 'No tenés permiso para compartir esta lista' });
+        }
+
+        const tokenInvitacion = jwt.sign({
+            id: lista.id
+        }, process.env.JWT_SECRET, {expiresIn: '15m'})
+
+        res.status(200).json({ invitacion: base64url.encode(tokenInvitacion) })
+        
+    } catch (error) {
+        res.status(500).json({ message: 'Error al crear invitacion' });
+    }
+}
+
+module.exports = { obtenerListas, obtenerLista, crearLista, actualizarLista, eliminarLista, compartirLista, obtenerCompartidos, eliminarCompartido, crearInvitacion }

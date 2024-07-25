@@ -57,6 +57,20 @@ export default function ModalCompartir({ listaId, setCompartirAbierto }) {
         
     }
 
+    const compartirUrl = async () => {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/crearInvitacion`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify({ id: listaId })
+        })
+        const data = await response.json()
+        if (response.status !== 200) return alert(data.message)
+        navigator.clipboard.writeText(`${process.env.NEXT_PUBLIC_URL}/invitacion/${data.invitacion}`)
+    }
+
     useEffect(() => {
         return () => {
             obtenerCompartidos()
@@ -68,7 +82,11 @@ export default function ModalCompartir({ listaId, setCompartirAbierto }) {
             { cargando && <Cargando /> }
             <div className="overlay" onClick={e => setCompartirAbierto(false)}></div>
             <form action={compartir} className='form-compartir'>
-                <h2>Compartir lista</h2>
+                <div className="flex items-center">
+                    <h2>Compartir lista</h2>
+                    {/* { navigator.share && <span className="material-symbols-outlined ml-auto"
+                    onClick={compartirUrl} >share</span> } */}
+                </div>
                 <label htmlFor="usuario">Nombre de usuario<span className='text-red-500'>*</span> </label>
                 <div className="entrada">
                     <span className='material-symbols-outlined'>alternate_email</span>
@@ -87,6 +105,13 @@ export default function ModalCompartir({ listaId, setCompartirAbierto }) {
                     }
                 </div>
                 <Boton texto='Compartir' icono='globe' disabled={usuario.trim() === ''} />
+                <div className="seccion-compartir">
+                    { navigator.clipboard && <button type='button' className='boton-copiar' onClick={compartirUrl}>
+                        <span className="material-symbols-outlined">link</span>
+                        Copiar enlace
+                    </button> }
+                    <span className='material-symbols-outlined'>qr_code_2</span>
+                </div>
             </form>
         </>
     )

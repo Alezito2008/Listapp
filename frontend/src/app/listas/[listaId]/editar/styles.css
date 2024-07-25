@@ -107,3 +107,36 @@ form {
     overflow: auto;
     padding-block: 1rem;
 }
+
+.seccion-compartir {
+    margin-top: 1rem;
+    display: flex;
+    place-items: center;
+    gap: 1rem;
+    /* TODO: CAMBIAR A FUTURO */
+    display: none;
+}
+
+.seccion-compartir > span {
+    font-size: 2rem !important;
+    color: #333;
+    font-weight: 500;
+}
+
+.boton-copiar {
+    display: flex;
+    place-items: center;
+    border: .5px solid #777;
+    gap: .5rem;
+    color: var(--secondary-color);
+    padding: .5rem 1rem;
+    border-radius: 100vw;
+    font-size: .9rem;
+    font-weight: 500;
+}
+
+.boton-copiar > span {
+    transform: translateY(10%);
+    font-weight: 500;
+    font-size: 1.3rem !important;
+}
