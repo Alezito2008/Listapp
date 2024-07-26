@@ -44,7 +44,7 @@ export default function ModalAI({ cerrarModal, setNombreItem, setCantidadItem, s
                         }
                         { !cargandoRecetas && receta && Object.entries(receta.items).map(([nombre, cantidad], index) =>
                             <Sugerencia key={index}
-                                nombre={nombre}
+                                nombre={nombre.charAt(0).toUpperCase() + nombre.slice(1)}
                                 cantidad={cantidad}
                                 cerrarModal={cerrarModal}
                                 setNombreItem={setNombreItem}

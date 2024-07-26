@@ -320,4 +320,34 @@ const crearInvitacion = async (req, res) => {
     }
 }
 
-module.exports = { obtenerListas, obtenerLista, crearLista, actualizarLista, eliminarLista, compartirLista, obtenerCompartidos, eliminarCompartido, crearInvitacion }
+const obtenerDatosInvitacion = async (req, res) => {
+    const { invitacion } = req.params
+
+    let id
+    try {
+        const token = base64url.decode(invitacion)
+        id = jwt.verify(token, process.env.JWT_SECRET).id
+    } catch (error) {
+        return res.status(401).json({ message: 'Invitación inválida o expirada' });
+    }
+
+    try {
+        const lista = await Lista.findByPk(id)
+
+        if (!lista) {
+            return res.status(404).json({ message: 'No se encontró la lista' });
+        }
+
+        const usuario = await Usuario.findByPk(lista.creadorId)
+
+        res.status(200).json({
+            lista: lista.nombre,
+            descripcion: lista.descripcion,
+            creador: usuario.nombre
+        })
+    } catch (error) {
+        res.status(500).json({ message: 'Error al obtener los datos de la invitación' });
+    }
+}
+
+module.exports = { obtenerListas, obtenerLista, crearLista, actualizarLista, eliminarLista, compartirLista, obtenerCompartidos, eliminarCompartido, obtenerDatosInvitacion, crearInvitacion }

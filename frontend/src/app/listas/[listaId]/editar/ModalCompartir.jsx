@@ -4,7 +4,7 @@ import Usuario from '@/components/Usuario/Usuario'
 import Cookies from 'js-cookie'
 import { useEffect, useState } from 'react'
 
-export default function ModalCompartir({ listaId, setCompartirAbierto }) {
+export default function ModalCompartir({ listaId, cerrarModal, abrirQR }) {
 
     const [usuario, setUsuario] = useState('')
     const [compartidos, setCompartidos] = useState([])
@@ -80,12 +80,14 @@ export default function ModalCompartir({ listaId, setCompartirAbierto }) {
     return (
         <>
             { cargando && <Cargando /> }
-            <div className="overlay" onClick={e => setCompartirAbierto(false)}></div>
+            <div className="overlay" onClick={cerrarModal}></div>
             <form action={compartir} className='form-compartir'>
                 <div className="flex items-center">
                     <h2>Compartir lista</h2>
-                    {/* { navigator.share && <span className="material-symbols-outlined ml-auto"
-                    onClick={compartirUrl} >share</span> } */}
+                    { <span className="material-symbols-outlined ml-auto" onClick={e => {
+                        abrirQR()
+                        cerrarModal()
+                    }}>qr_code_2</span> }
                 </div>
                 <label htmlFor="usuario">Nombre de usuario<span className='text-red-500'>*</span> </label>
                 <div className="entrada">
@@ -110,7 +112,8 @@ export default function ModalCompartir({ listaId, setCompartirAbierto }) {
                         <span className="material-symbols-outlined">link</span>
                         Copiar enlace
                     </button> }
-                    <span className='material-symbols-outlined'>qr_code_2</span>
+                    { navigator.share && <span className="material-symbols-outlined"
+                    onClick={compartirUrl} >share</span> }
                 </div>
             </form>
         </>

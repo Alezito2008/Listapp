@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Cargando from '@/components/Cargando/Cargando'
 import ModalCompartir from './ModalCompartir'
+import ModalQR from './ModalQR'
 
 export default function EditarListaPage() {
 
@@ -20,6 +21,7 @@ export default function EditarListaPage() {
         const [descripcion, setDescripcion] = useState('')
 
         const [compartirAbierto, setCompartirAbierto] = useState(false)
+        const [qrAbierto, setQrAbierto] = useState(false)
 
         const obtenerLista = async () => {
             const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/listas/${listaId}`, {
@@ -74,7 +76,14 @@ export default function EditarListaPage() {
         return (
             <>
                 { cargando && <Cargando />}
-                { compartirAbierto && <ModalCompartir listaId={listaId} setCompartirAbierto={setCompartirAbierto} /> }
+                { compartirAbierto && <ModalCompartir
+                    listaId={listaId}
+                    cerrarModal={() => setCompartirAbierto(false)}
+                    abrirQR={() => setQrAbierto(true)}
+                /> }
+                { qrAbierto && <ModalQR
+                    cerrarModal={() => setQrAbierto(false)}
+                /> }
                 <div className="editar-lista">
                     <div className="flex justify-end mb-3">
                         <button className='boton-compartir' onClick={ e => setCompartirAbierto(true) }>

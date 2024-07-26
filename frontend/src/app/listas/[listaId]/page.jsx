@@ -50,12 +50,13 @@ export default function Lista() {
             credentials: 'include'
         })
 
-        // if (response.status === 401) router.push('/login')
-        // else {
+        if (response.status === 200) {
             setCargando(false)
             const data = await response.json()
             setListaInfo(data)
-        // }
+            return
+        }
+        router.push('/login')
     }
 
     useEffect(() => {
