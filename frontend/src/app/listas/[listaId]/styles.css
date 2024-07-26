@@ -39,7 +39,7 @@
     backdrop-filter: blur(5px);
 }
 
-.modal-agregar {
+.modal {
     position: fixed;
     background-color: #fff;
     top: 20dvh;
@@ -51,25 +51,65 @@
     border-radius: 10px;
 }
 
-.modal-agregar h1 {
+.modal h1 {
     font-size: 1.5rem;
     font-weight: 500;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
 }
 
-.modal-agregar form {
+.modal form {
     display: flex;
     flex-direction: column;
     gap: .5rem;
 }
 
-.modal-agregar form input {
+.modal form input {
     border: 2px solid var(--secondary-color);
     border-radius: 10px;
     padding: .3rem 1rem;
     outline: none;
 }
 
-.modal-agregar form input:focus {
+.modal form input:focus {
     box-shadow: 0 0 5px rgba(30, 143, 255, 0.411);
+}
+
+.boton-ia {
+    width: 45px;
+    height: 40px;
+    position: relative;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.boton-ia::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    background: linear-gradient(-135deg, #FF77E9 0%, #57E1FF 100%);
+    border-radius: 7px !important;
+    z-index: -1;
+}
+
+.boton-ia {
+    border: 2px solid transparent !important;
+}
+
+
+.bolt {
+    background: linear-gradient(180deg, #FF77E9 0%, #50F4FF 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    font-variation-settings: 'FILL' 1;
+}
+
+.sugerencias {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    max-height: 30dvh;
+    overflow-y: auto;
 }

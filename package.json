@@ -10,6 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@google/generative-ai": "^0.16.0",
     "avvvatars-react": "^0.4.2",
     "base64url": "^3.0.1",
     "bcryptjs": "^2.4.3",

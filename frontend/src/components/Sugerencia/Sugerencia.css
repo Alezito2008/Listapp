@@ -1,0 +1,27 @@
+.sugerencia {
+    width: 100%;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    padding: .5rem 1rem;
+    display: grid;
+    grid-template-columns: 1fr 30px;
+}
+
+.sugerencia span {
+    color: var(--secondary-color);
+}
+
+.skeleton {
+    background: linear-gradient(90deg, #e6e6e6 10%, #f3f3f3 50%, #e6e6e6 90%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1s linear infinite;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-position: 100% 0;
+    }
+    100% {
+        background-position: -100% 0;
+    }
+}
