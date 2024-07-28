@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import './Lista.css'
 
-export default function Lista({ nombre, descripcion, idLista }) {
+export default function Lista({ nombre, descripcion, idLista, deshabilitado }) {
     return (
-        <Link href={'/listas/' + idLista} className='lista'>
+        <Link href={!deshabilitado ?  '/listas/' + idLista : '#'} className='lista'>
             <div>
                 <span className='material-symbols-outlined'>
                     shopping_cart

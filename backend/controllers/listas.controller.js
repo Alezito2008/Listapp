@@ -350,4 +350,33 @@ const obtenerDatosInvitacion = async (req, res) => {
     }
 }
 
-module.exports = { obtenerListas, obtenerLista, crearLista, actualizarLista, eliminarLista, compartirLista, obtenerCompartidos, eliminarCompartido, obtenerDatosInvitacion, crearInvitacion }
+const unirse = async (req, res) => {
+    const tokenB64 = req.body.token
+    const { token } = req.cookies
+
+    let idUsuario
+    try {
+        idUsuario = jwt.verify(token, process.env.JWT_SECRET).id
+    } catch (error) {
+        return res.status(401).json({ message: 'Token inválido o expirado' });
+    }
+
+    try {
+        const tokenLista = base64url.decode(tokenB64)
+        const { id } = jwt.verify(tokenLista, process.env.JWT_SECRET)
+
+        const lista = await Lista.findByPk(id)
+        if (!lista) {
+            return res.status(404).json({ message: 'No se encontró la lista' });
+        }
+
+        const usuario = await Usuario.findByPk(idUsuario)
+        await usuario.addLista(lista)
+
+        res.status(200).json({ message: 'Unido a la lista' })
+    } catch (error) {
+        res.status(500).json({ message: 'Error al unirse a la lista' });
+    }
+}
+
+module.exports = { obtenerListas, obtenerLista, crearLista, actualizarLista, eliminarLista, compartirLista, obtenerCompartidos, eliminarCompartido, obtenerDatosInvitacion, crearInvitacion, unirse }

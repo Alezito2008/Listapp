@@ -1,0 +1,10 @@
+.invitacion-page {
+    padding: 2rem;
+    padding-top: 3rem;
+}
+
+.invitacion-page h1 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    font-weight: 500;
+}

@@ -1,5 +1,5 @@
 const { Router } = require('express')
-const { obtenerListas, obtenerLista, crearLista, actualizarLista, eliminarLista, compartirLista, obtenerCompartidos, eliminarCompartido, obtenerDatosInvitacion, crearInvitacion } = require('../controllers/listas.controller')
+const { obtenerListas, obtenerLista, crearLista, actualizarLista, eliminarLista, compartirLista, obtenerCompartidos, eliminarCompartido, obtenerDatosInvitacion, crearInvitacion, unirse } = require('../controllers/listas.controller')
 
 const router = Router()
 
@@ -13,6 +13,7 @@ router.get('/api/listas/:id/obtenerCompartidos', obtenerCompartidos)
 router.post('/api/listas/:id/compartir', compartirLista)
 router.delete('/api/listas/:id/compartir', eliminarCompartido)
 
+router.post('/api/listas/unirse', unirse)
 router.get('/api/invitacion/:invitacion', obtenerDatosInvitacion)
 router.post('/api/crearInvitacion', crearInvitacion )
 
