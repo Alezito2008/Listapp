@@ -49,6 +49,7 @@ io.on('connection', (socket) => {
                 nombre: info.nombre,
                 marcado: false,
                 cantidadNecesitada: info.cantidadNecesitada,
+                medida: info.medida,
                 listaId: info.listaId
             }),
         })

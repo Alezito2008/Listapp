@@ -22,9 +22,11 @@ export default function Lista() {
 
     const [nombreItem, setNombreItem] = useState('')
     const [cantidadItem, setCantidadItem] = useState(1)
+    const [medida, setMedida] = useState('')
 
     const [agregarAbierto, setAgregarAbierto] = useState(false)
     const [AIAbierto, setAIAbierto] = useState(false)
+
 
     const [receta, setReceta] = useState(null)
 
@@ -37,7 +39,7 @@ export default function Lista() {
     const {nombre, items} = listaInfo
 
     const agregarItem = async () => {
-        socket.emit('agregar-item', { nombre: nombreItem, cantidadNecesitada: parseInt(cantidadItem), listaId, token })
+        socket.emit('agregar-item', { nombre: nombreItem, cantidadNecesitada: parseInt(cantidadItem), medida, listaId, token })
         setAgregarAbierto(false)
     }
 
@@ -121,6 +123,8 @@ export default function Lista() {
                 cantidadItem={cantidadItem}
                 setCantidadItem={setCantidadItem}
                 agregarItem={agregarItem}
+                medida={medida}
+                setMedida={setMedida}
             />}
             
             <div className='contenedor-lista'>
@@ -132,12 +136,22 @@ export default function Lista() {
                     </div>
                     {
                         items.map(item => (
-                            <Item key={item.id} id={item.id} nombre={item.nombre} cantidadNecesitada={item.cantidadNecesitada} marcado={item.marcado} socket={socket} listaId={listaId} />
+                            <Item
+                                key={item.id}
+                                id={item.id}
+                                nombre={item.nombre}
+                                cantidadNecesitada={item.cantidadNecesitada}
+                                marcado={item.marcado}
+                                medida={item.medida}
+                                socket={socket}
+                                listaId={listaId}
+                            />
                         ))
                     }
                     <div className='flex justify-center mt-2 gap-3'>
                         <button onClick={e => {
                             setNombreItem('')
+                            setMedida('u')
                             setAgregarAbierto(true)
                         }}>
                             <span className="material-symbols-outlined">add</span>Agregar

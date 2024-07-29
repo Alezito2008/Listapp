@@ -1,6 +1,6 @@
 import Boton from "@/components/Boton/Boton";
 
-export default function ModalAgregar({ cerrarModal, agregarItem, nombreItem, setNombreItem, cantidadItem, setCantidadItem }) {
+export default function ModalAgregar({ cerrarModal, agregarItem, nombreItem, setNombreItem, cantidadItem, setCantidadItem, medida, setMedida }) {
     return (
         <>
             <div className="overlay !z-[6]" onClick={cerrarModal}></div>
@@ -8,9 +8,25 @@ export default function ModalAgregar({ cerrarModal, agregarItem, nombreItem, set
                 <h1 className='mb-4'>Agregar Item</h1>
                 <form action={agregarItem}>
                     <label htmlFor="nombre">Nombre<span className='text-red-500'>*</span></label>
-                    <input type="text" id="nombre" placeholder='Nombre del item' onChange={e => setNombreItem(e.target.value)} value={nombreItem}/>
-                    <label htmlFor="cantidad">Cantidad<span className='text-red-500'>*</span></label>
-                    <input type="number" id="cantidad" placeholder='123' onChange={e => setCantidadItem(e.target.value)} value={cantidadItem}/>
+                    <input type="text" id="nombre" placeholder='Nombre del item' onChange={e => setNombreItem(e.target.value)} value={nombreItem} required/>
+                    <div className="flex gap-4 mt-2">
+                        <div className="flex flex-col">
+                            <label htmlFor="cantidad">Cantidad<span className='text-red-500'>*</span></label>
+                            <input type="number" id="cantidad" placeholder='123' onChange={e => setCantidadItem(e.target.value)} value={cantidadItem} required/>
+                        </div>
+                        <div className="flex flex-col">
+                            <label htmlFor="medida">Medida<span className='text-red-500'>*</span></label>
+                            <div className="select">
+                                <select value={medida} onChange={e => setMedida(e.target.value)}>
+                                    <option value="u">u</option>
+                                    <option value="g">g</option>
+                                    <option value="kg">kg</option>
+                                    <option value="ml">ml</option>
+                                    <option value="l">l</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                     <div className='flex justify-center mt-4'>
                         <Boton texto={'Hecho'} icono={'check'} disabled={
                             !(nombreItem.trim() !== '' && cantidadItem !== null && cantidadItem > 0)

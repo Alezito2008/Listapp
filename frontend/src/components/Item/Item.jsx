@@ -37,7 +37,10 @@ export default function Item(props) {
                 <div className={`checkbox ${props.marcado && 'checked'}`}></div>
                 <div className={`nombre ${props.marcado && 'checked'}`}>{nombre}</div>
                 <div className='cantidad'>
-                    <span>{cantidadNecesitada}</span>
+                    <span>
+                        {cantidadNecesitada}
+                        <span className='text-gray-500 text-sm'>{props.medida !== 'u' && props.medida}</span>
+                    </span>
                 </div>
             </div>
             <span className='material-symbols-outlined text-red-400 ml-2' onClick={eliminarItem}>delete</span>

@@ -68,10 +68,23 @@
     border-radius: 10px;
     padding: .3rem 1rem;
     outline: none;
+    width: 100%;
 }
 
 .modal form input:focus {
     box-shadow: 0 0 5px rgba(30, 143, 255, 0.411);
+}
+
+.select {
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
+    padding: .3rem 1rem;
+    outline: none;
+    width: 100%;
+}
+
+.select select {
+    outline: none;
 }
 
 .boton-ia {
