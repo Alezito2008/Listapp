@@ -4,7 +4,6 @@
 
 import Lista from '@/components/Lista/Lista'
 import './styles.css'
-import Boton from '@/components/Boton/Boton'
 import BotonUnirse from './BotonUnirse'
 
 export default async function InvitacionPage({ params }) {

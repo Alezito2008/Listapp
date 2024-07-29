@@ -26,7 +26,7 @@ const jwt = require('jsonwebtoken')
  }
 
  const crearItem = async (req, res) => {
-    const { nombre, cantidadConseguida, cantidadNecesitada, listaId } = req.body
+    const { nombre, cantidadNecesitada, listaId } = req.body
     const { token } = req.cookies
 
     let id
@@ -52,7 +52,6 @@ const jwt = require('jsonwebtoken')
 
         const item = await Item.create({
             nombre,
-            cantidadConseguida,
             cantidadNecesitada,
             listaId
         })
@@ -66,7 +65,7 @@ const jwt = require('jsonwebtoken')
  const actualizarItem = async (req, res) => {
     const { token } = req.cookies
     const { id } = req.params
-    const { nombre, cantidadNecesitada, cantidadConseguida } = req.body
+    const { nombre, cantidadNecesitada, marcado } = req.body
 
     let info
     try {
@@ -96,10 +95,10 @@ const jwt = require('jsonwebtoken')
             return res.sendStatus(404)
         }
 
-        const itemActualizado = await Item.update({
+        await Item.update({
             nombre,
             cantidadNecesitada,
-            cantidadConseguida
+            marcado
         }, {
             where: { id }
         })

@@ -47,7 +47,7 @@ io.on('connection', (socket) => {
             },
             body: JSON.stringify({
                 nombre: info.nombre,
-                cantidadConseguida: 0,
+                marcado: false,
                 cantidadNecesitada: info.cantidadNecesitada,
                 listaId: info.listaId
             }),
@@ -64,10 +64,11 @@ io.on('connection', (socket) => {
                 'Cookie': `token=${info.token};`
             },
             body: JSON.stringify({
-                cantidadConseguida: info.cantidadConseguida
+                marcado: info.marcado
             }),
         })
-        if (response.status === 200) io.to('sala-'+info.listaId).emit('actualizar-item', {id: info.id, cantidadConseguida: info.cantidadConseguida})
+        
+        if (response.status === 200) io.to('sala-'+info.listaId).emit('actualizar-item', {id: info.id, marcado: info.marcado})
     })
 });
 

@@ -113,3 +113,12 @@
     max-height: 30dvh;
     overflow-y: auto;
 }
+
+.informacion {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 2.5rem;
+    margin-bottom: 1rem;
+}

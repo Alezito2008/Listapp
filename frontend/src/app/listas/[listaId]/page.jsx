@@ -88,7 +88,7 @@ export default function Lista() {
             setListaInfo(prev => ({
                 ...prev,
                 items: prev.items.map(i =>
-                    i.id === item.id ? { ...i, cantidadConseguida: item.cantidadConseguida } : i
+                    i.id === item.id ? { ...i, marcado: item.marcado } : i
                 ),
             }));
         });
@@ -126,9 +126,13 @@ export default function Lista() {
             <div className='contenedor-lista'>
                 <h1 onClick={e => router.push(`/listas/${listaId}/editar`)}>{nombre}  <span className="material-symbols-outlined text-gray-500">edit</span> </h1>
                 <div className="contenedor-items">
+                    <div className="informacion">
+                        <span>Nombre</span>
+                        <span>Cantidad</span>
+                    </div>
                     {
                         items.map(item => (
-                            <Item key={item.id} id={item.id} nombre={item.nombre} cantidadNecesitada={item.cantidadNecesitada} cantidadConseguida={item.cantidadConseguida} socket={socket} listaId={listaId} />
+                            <Item key={item.id} id={item.id} nombre={item.nombre} cantidadNecesitada={item.cantidadNecesitada} marcado={item.marcado} socket={socket} listaId={listaId} />
                         ))
                     }
                     <div className='flex justify-center mt-2 gap-3'>

@@ -11,9 +11,9 @@ const Item = sequelize.define('Items', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    cantidadConseguida: {
-        type: DataTypes.INTEGER,
-        defaultValue: 0,
+    marcado: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
         allowNull: false
     },
     cantidadNecesitada: {
