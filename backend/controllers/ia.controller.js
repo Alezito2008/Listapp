@@ -21,32 +21,15 @@ const generarReceta = async(req, res) => {
         res.status(401).json({ message: 'Token inválido o expirado' })
     }
 
-    if (!comida) return res.status(400).json({ message: 'Específicar comida' })
-    if (comida.length >= 25) return res.status(400).json({ message: 'La comida debe tener menos de 25 letras' })
-    
-    
-    const result = await model.generateContent(prompt.replace('[receta]', comida))
-
-    const response = result.response.text().replace(/^\s*\"|\"\s*$/g, '')
-
-    // const response = {
-    //     "items": {
-    //         "carne picada": 500,
-    //         "pan de hamburguesa": 4,
-    //         "lechuga": 1,
-    //         "tomate": 2,
-    //         "cebolla": 1,
-    //         "queso": 2,
-    //         "salsa de tomate": 1,
-    //         "mostaza": 1,
-    //         "mayonesa": 1
-    //     }
-    // }
-
-
     try {
+        if (!comida) return res.status(400).json({ message: 'Específicar comida' })
+        if (comida.length >= 25) return res.status(400).json({ message: 'La comida debe tener menos de 25 letras' })
+        
+        const result = await model.generateContent(prompt.replace('[receta]', comida))
+
+        const response = result.response.text().replace(/^\s*\"|\"\s*$/g, '')
+
         res.json(JSON.parse(response))
-        // res.json(response)
     } catch (error) {
         res.status(500).json({ message: 'Error al generar la receta' })
     }

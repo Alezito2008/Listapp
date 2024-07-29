@@ -26,7 +26,7 @@ const jwt = require('jsonwebtoken')
  }
 
  const crearItem = async (req, res) => {
-    const { nombre, cantidadNecesitada, listaId } = req.body
+    const { nombre, cantidadNecesitada, medida, listaId } = req.body
     const { token } = req.cookies
 
     let id
@@ -37,6 +37,10 @@ const jwt = require('jsonwebtoken')
     }
 
     try {
+        if (medida.length >= 3) {
+            return res.status(400).json({ message: 'La medida debe ser menor o igual a 3' })
+        }
+
         const lista = await Usuario.findOne({
             where: { id },
             include: {
@@ -53,6 +57,7 @@ const jwt = require('jsonwebtoken')
         const item = await Item.create({
             nombre,
             cantidadNecesitada,
+            medida,
             listaId
         })
 
@@ -65,9 +70,10 @@ const jwt = require('jsonwebtoken')
  const actualizarItem = async (req, res) => {
     const { token } = req.cookies
     const { id } = req.params
-    const { nombre, cantidadNecesitada, marcado } = req.body
+    const { nombre, cantidadNecesitada, medida, marcado } = req.body
 
     let info
+
     try {
         info = jwt.verify(token, process.env.JWT_SECRET)
     } catch (error) {
@@ -75,6 +81,10 @@ const jwt = require('jsonwebtoken')
     }
 
     try {
+        if (medida && medida.length >= 3) {
+            return res.status(400).json({ message: 'La medida debe ser menor o igual a 3' })
+        }
+
         const item = await Item.findOne({
             where: { id }
         })
@@ -98,6 +108,7 @@ const jwt = require('jsonwebtoken')
         await Item.update({
             nombre,
             cantidadNecesitada,
+            medida,
             marcado
         }, {
             where: { id }
@@ -105,7 +116,7 @@ const jwt = require('jsonwebtoken')
 
         res.status(200).json({ message: 'Item actualizado' })
     } catch (error) {
-        res.sendStatus(500)
+        res.status(500).json({ message: 'Error al actualizar el item' })
     }
  }
 

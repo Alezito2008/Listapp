@@ -21,6 +21,9 @@ const Item = sequelize.define('Items', {
         defaultValue: 1,
         allowNull: false
     },
+    medida: {
+        type: DataTypes.STRING(3)
+    },
     listaId: {
         type: DataTypes.INTEGER,
         allowNull: false
