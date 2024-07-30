@@ -2,7 +2,7 @@ import Boton from "@/components/Boton/Boton";
 import Sugerencia from "@/components/Sugerencia/Sugerencia";
 import { useState } from "react";
 
-export default function ModalAI({ cerrarModal, setNombreItem, setCantidadItem, setAgregarAbierto, receta, setReceta }) {
+export default function ModalAI({ cerrarModal, setAgregarAbierto, receta, setReceta, setItemInfo }) {
 
     const [comida, setComida] = useState('')
     const [cargandoRecetas, setCargandoRecetas] = useState(false)
@@ -19,7 +19,7 @@ export default function ModalAI({ cerrarModal, setNombreItem, setCantidadItem, s
             credentials: 'include'
         })
         const data = await response.json()
-        console.log(data)
+
         if (response.status === 200)  { 
             setReceta(data)
             setCargandoRecetas(false)
@@ -47,9 +47,11 @@ export default function ModalAI({ cerrarModal, setNombreItem, setCantidadItem, s
                                 nombre={nombre.charAt(0).toUpperCase() + nombre.slice(1)}
                                 cantidad={cantidad}
                                 cerrarModal={cerrarModal}
-                                setNombreItem={setNombreItem}
-                                setCantidadItem={setCantidadItem}
-                                setAgregarAbierto={setAgregarAbierto}
+                                onClick={() => {
+                                    setItemInfo({ nombre, cantidad: 1, medida: 'un' })
+                                    setAgregarAbierto(true)
+                                    cerrarModal()
+                                }}
                             />
                         ) }
                     </div>

@@ -20,13 +20,8 @@ export default function Lista() {
 
     const { listaId } = useParams()
 
-    const [nombreItem, setNombreItem] = useState('')
-    const [cantidadItem, setCantidadItem] = useState(1)
-    const [medida, setMedida] = useState('')
-
     const [agregarAbierto, setAgregarAbierto] = useState(false)
     const [AIAbierto, setAIAbierto] = useState(false)
-
 
     const [receta, setReceta] = useState(null)
 
@@ -36,10 +31,16 @@ export default function Lista() {
         items: []
     })
 
+    const [itemInfo, setItemInfo] = useState({
+        nombre: '',
+        cantidad: null,
+        medida: 'un'
+    });
+
     const {nombre, items} = listaInfo
 
-    const agregarItem = async () => {
-        socket.emit('agregar-item', { nombre: nombreItem, cantidadNecesitada: parseInt(cantidadItem), medida, listaId, token })
+    const agregarItem = async (nombre, cantidadNecesitada, medida) => {
+        socket.emit('agregar-item', { nombre, cantidadNecesitada, medida, listaId, token })
         setAgregarAbierto(false)
     }
 
@@ -108,23 +109,17 @@ export default function Lista() {
 
             { AIAbierto && <ModalAI
                 cerrarModal={() => setAIAbierto(false)}
-                setNombreItem={setNombreItem}
-                setCantidadItem={setCantidadItem}
                 setAgregarAbierto={setAgregarAbierto}
                 receta={receta}
                 setReceta={setReceta}
+                setItemInfo={setItemInfo}
             /> }
 
             {agregarAbierto && <ModalAgregar
                 cerrarModal={ () => {setAgregarAbierto(false)} }
-                agregarAbierto={agregarAbierto}
-                nombreItem={nombreItem}
-                setNombreItem={setNombreItem}
-                cantidadItem={cantidadItem}
-                setCantidadItem={setCantidadItem}
                 agregarItem={agregarItem}
-                medida={medida}
-                setMedida={setMedida}
+                itemInfo={itemInfo}
+                setItemInfo={setItemInfo}
             />}
             
             <div className='contenedor-lista'>
@@ -150,10 +145,9 @@ export default function Lista() {
                     }
                     <div className='flex justify-center mt-2 gap-3'>
                         <button onClick={e => {
-                            setNombreItem('')
-                            setMedida('u')
                             setAgregarAbierto(true)
-                        }}>
+                            setItemInfo({ nombre: '', cantidad: null, medida: 'un' })
+                            }}>
                             <span className="material-symbols-outlined">add</span>Agregar
                         </button>
                         <button className='boton-ia' onClick={e => { setAIAbierto(true) } }>

@@ -122,7 +122,7 @@
 ```json
 {
   "nombre": "string",
-  "cantidadConseguida": 0,
+  "marcado": false,
   "cantidadNecesitada": 1,
   "listaId": 123
 }
@@ -135,7 +135,7 @@
 ```json
 {
   "nombre": "string",
-  "cantidadConseguida": 0,
+  "marcado": true,
   "cantidadNecesitada": 1,
   "listaId": 123
 }

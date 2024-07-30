@@ -39,7 +39,7 @@ export default function Item(props) {
                 <div className='cantidad'>
                     <span>
                         {cantidadNecesitada}
-                        <span className='text-gray-500 text-sm'>{props.medida !== 'u' && props.medida}</span>
+                        <span className='text-gray-500 text-sm'>{props.medida}</span>
                     </span>
                 </div>
             </div>
