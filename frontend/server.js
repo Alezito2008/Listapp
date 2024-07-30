@@ -58,6 +58,9 @@ io.on('connection', (socket) => {
     })
 
     socket.on('actualizar-item', async (info) => {
+
+        const { nombre, marcado, cantidadNecesitada, medida } = info
+
         const response = await fetch('http://localhost:5000/api/items/' + info.id, {
             method: 'PUT',
             headers: {
@@ -65,11 +68,16 @@ io.on('connection', (socket) => {
                 'Cookie': `token=${info.token};`
             },
             body: JSON.stringify({
-                marcado: info.marcado
+                nombre,
+                marcado,
+                cantidadNecesitada,
+                medida
             }),
         })
-        
-        if (response.status === 200) io.to('sala-'+info.listaId).emit('actualizar-item', {id: info.id, marcado: info.marcado})
+
+        if (response.status === 200) io.to('sala-'+info.listaId).emit('actualizar-item', {
+            id: info.id, nombre, marcado, cantidadNecesitada, medida
+        })
     })
 });
 
