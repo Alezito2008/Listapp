@@ -15,7 +15,7 @@ export default function ModalAgregar({ cerrarModal, itemInfo, setItemInfo, edita
         cerrarModal()
     }
 
-    const editarItem = async (nombre, cantidadNecesitada, medida) => {
+    const editarItem = (nombre, cantidadNecesitada, medida) => {
         const id = seleccionado
 
         socket.emit('actualizar-item', {
@@ -25,6 +25,15 @@ export default function ModalAgregar({ cerrarModal, itemInfo, setItemInfo, edita
             nombre,
             cantidadNecesitada,
             medida
+        })
+        cerrarModal()
+    }
+
+    const eliminarItem = (id) => {
+        socket.emit('eliminar-item', {
+            listaId,
+            token,
+            id
         })
         cerrarModal()
     }
@@ -60,10 +69,17 @@ export default function ModalAgregar({ cerrarModal, itemInfo, setItemInfo, edita
                             </div>
                         </div>
                     </div>
-                    <div className='flex justify-center mt-4'>
+                    <div className='flex justify-center mt-4 gap-3'>
                         <Boton texto={'Hecho'} icono={'check'} disabled={
                             !(nombre.trim() !== '' && cantidad && cantidad > 0)
                         }/>
+                        { editando && <Boton
+                            nosubmit={true}
+                            texto={'Eliminar'}
+                            icono={'delete'}
+                            color='var(--red)'
+                            accion={e => {eliminarItem(seleccionado)}
+                        }/> }
                     </div>
                 </form>
             </div>

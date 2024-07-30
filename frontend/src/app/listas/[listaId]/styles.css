@@ -141,6 +141,6 @@
     gap: 1rem;
     align-items: center;
     justify-content: space-between;
-    padding-right: 2.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
+    padding-inline: .5rem;
 }

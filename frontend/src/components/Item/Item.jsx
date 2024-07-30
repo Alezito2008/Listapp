@@ -59,7 +59,6 @@ export default function Item(props) {
                     <span className="material-symbols-outlined" onClick={editar}>edit</span>
                 </div>
             </div>
-            <span className='material-symbols-outlined text-red-400 ml-2' onClick={eliminarItem}>delete</span>
         </div>
     )
 }

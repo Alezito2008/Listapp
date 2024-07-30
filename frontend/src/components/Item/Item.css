@@ -3,7 +3,7 @@
     background-color: #f2f2f2;
     border-radius: 10px;
     display: grid;
-    grid-template-columns: 50px 1fr 50px 20px;
+    grid-template-columns: 50px 1fr 50px 30px;
     place-items: center;
     padding: .5rem 0;
     padding-right: .5rem;
