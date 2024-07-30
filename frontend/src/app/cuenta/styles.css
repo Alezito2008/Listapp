@@ -30,6 +30,7 @@
 }
 
 .cerrar-sesion {
+    position: relative;
     margin-top: auto;
     display: flex;
     color: rgb(255, 68, 68);

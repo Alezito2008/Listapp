@@ -28,7 +28,7 @@ export default async function ListasPage() {
             <div className='flex justify-between items-center'>
                 <h1>Listas</h1>
                 <Link href='/listas/crear'>
-                    <Boton icono='add' texto='Nueva' />
+                    <Boton icono='add' texto='Crear' />
                 </Link>
             </div>
             <div className='contenedor-listas'>

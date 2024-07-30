@@ -56,7 +56,7 @@ export default function ModalAI({ cerrarModal, setAgregarAbierto, receta, setRec
                         ) }
                     </div>
                     <div className="flex justify-center mt-4">
-                        <Boton texto="Hecho" icono="check" disabled={comida.trim() === ''} />
+                        <Boton texto="Generar" icono="bolt" disabled={comida.trim() === ''} />
                     </div>
                 </form>
             </div>
