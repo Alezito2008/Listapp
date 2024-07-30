@@ -58,6 +58,9 @@ io.on('connection', (socket) => {
     })
 
     socket.on('actualizar-item', async (info) => {
+
+        const { nombre, marcado, cantidadNecesitada } = info
+
         const response = await fetch('http://localhost:5000/api/items/' + info.id, {
             method: 'PUT',
             headers: {
@@ -65,7 +68,9 @@ io.on('connection', (socket) => {
                 'Cookie': `token=${info.token};`
             },
             body: JSON.stringify({
-                marcado: info.marcado
+                nombre,
+                marcado,
+                cantidadNecesitada
             }),
         })
         

@@ -31,18 +31,16 @@ export default function Lista() {
         items: []
     })
 
+    const [editando, setEditando] = useState(false)
+
     const [itemInfo, setItemInfo] = useState({
+        seleccionado: null,
         nombre: '',
-        cantidad: null,
+        cantidad: 1,
         medida: 'un'
     });
 
     const {nombre, items} = listaInfo
-
-    const agregarItem = async (nombre, cantidadNecesitada, medida) => {
-        socket.emit('agregar-item', { nombre, cantidadNecesitada, medida, listaId, token })
-        setAgregarAbierto(false)
-    }
 
     const obtenerLista = async () => {
         const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/listas/${listaId}`, {
@@ -116,10 +114,11 @@ export default function Lista() {
             /> }
 
             {agregarAbierto && <ModalAgregar
-                cerrarModal={ () => {setAgregarAbierto(false)} }
-                agregarItem={agregarItem}
+                cerrarModal={ () => {setAgregarAbierto(false); setEditando(false)} }
                 itemInfo={itemInfo}
                 setItemInfo={setItemInfo}
+                socket={socket}
+                editando={editando}
             />}
             
             <div className='contenedor-lista'>
@@ -140,6 +139,8 @@ export default function Lista() {
                                 medida={item.medida}
                                 socket={socket}
                                 listaId={listaId}
+                                setItemInfo={setItemInfo}
+                                abrirEditar={() => {setAgregarAbierto(true); setEditando(true)}}
                             />
                         ))
                     }
