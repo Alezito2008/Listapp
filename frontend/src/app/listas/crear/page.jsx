@@ -4,12 +4,12 @@ import Boton from '@/components/Boton/Boton'
 import './styles.css'
 import '@/styles/forms.css'
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 import Cargando from '@/components/Cargando/Cargando'
+import { useSearchParams } from 'next/navigation'
 
 export default function CrearListaPage() {
 
-    const router = useRouter()
+    const tipoLista = useSearchParams().get('tipo')
 
     const [cargando, setCargando] = useState(false)
 
@@ -25,7 +25,7 @@ export default function CrearListaPage() {
                 'Content-Type': 'application/json'
             },
             credentials: 'include',
-            body: JSON.stringify({ nombre, descripcion })
+            body: JSON.stringify({ nombre, descripcion, tipoLista })
         })
         setCargando(false)
         const data = await response.json()
