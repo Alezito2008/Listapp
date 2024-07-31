@@ -14,3 +14,22 @@
     flex-direction: column;
     gap: .5rem;
 }
+
+.opciones {
+    margin-block: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+}
+
+.opcion {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-weight: 500;
+}
+    
+.opcion .material-symbols-outlined {
+    color: #555;
+    font-size: 5rem !important;
+}

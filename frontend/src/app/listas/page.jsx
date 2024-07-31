@@ -1,42 +1,58 @@
+'use client'
+
 import Boton from '@/components/Boton/Boton';
 import './styles.css';
 import Lista from '@/components/Lista/Lista';
-import { cookies } from 'next/headers';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
+import ModalSeleccion from './ModalSeleccion';
+import { useEffect, useState } from 'react';
 
 export default async function ListasPage() {
 
-    const cookieStore = cookies()
-    const allCookies = cookieStore.getAll()
-    const cookieHeader = allCookies.map(cookie => `${cookie.name}=${cookie.value}`).join('; ');
+    const [listas, setListas] = useState({})
+    const [mensajeError, setMensajeError] = useState('')
+    const [seleccionAbierto, setSeleccionAbierto] = useState(false)
 
-    const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/listas`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Cookie': cookieHeader
-        },
-    })
-    const data = await response.json()
-    if (response.status === 401) {
-        redirect('/login')
+    const obtenerListas = async () => {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/listas`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include'
+        })
+        const data = await response.json()
+        setListas(data)
+        if (data.message) setMensajeError(data.message)
+        if (response.status === 401) {
+            redirect('/login')
+        }
     }
 
+    useEffect(() => {
+        return () => {
+            obtenerListas()
+        }
+    }, [])
+
     return (
+        <>
+        { seleccionAbierto && <ModalSeleccion
+            cerrarModal={() => setSeleccionAbierto(false)}
+        /> }
         <div className="listas">
             <div className='flex justify-between items-center'>
                 <h1>Listas</h1>
-                <Link href='/listas/crear'>
-                    <Boton icono='add' texto='Crear' />
-                </Link>
+                <Boton icono='add' texto='Crear' accion={e => setSeleccionAbierto(true)} />
             </div>
             <div className='contenedor-listas'>
-                {!data.message && data.map(lista => (
+                {listas.map && listas.map(lista => (
                     <Lista key={lista.id} nombre={lista.nombre} descripcion={lista.descripcion} idLista={lista.id} />
                 ))}
-                {data.message && <p>{data.message}</p>}
+                <p>{mensajeError}</p>
             </div>
         </div>
+        </>
     )
 }
