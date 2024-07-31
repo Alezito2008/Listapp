@@ -2,9 +2,6 @@
 import { usePathname } from 'next/navigation';
 import './Navbar.css';
 import Link from 'next/link';
-import { Inter } from 'next/font/google';
-
-const inter = Inter({ subsets: ['latin'] })
 
 export default function Navbar() {
     const pathname = usePathname()
@@ -15,7 +12,7 @@ export default function Navbar() {
     if (pathname.split('/')[3] === 'editar') return null;
 
     return (
-        <div className={'navbar ' + inter.className}>
+        <div className='navbar'>
             <div className={path === 'inicio' ? 'activo' : ''}>
                 <Link href="/inicio">
                 <span className="material-symbols-outlined">home</span>

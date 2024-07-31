@@ -1,0 +1,38 @@
+.sidebar {
+    position: fixed;
+    display: flex;
+    width: 20rem;
+    height: 100dvh;
+    flex-direction: column;
+    font-size: 1rem;
+    box-shadow: 3px 0px 5px lightslategrey;
+    transform: translateX(-110%);
+    transition: transform .5s ease;
+}
+
+.abierto {
+    transform: translateX(0);
+}
+
+.sidebar > div{
+    width: 100%;
+    margin-top: 2rem;
+    margin-left: 1rem;
+}
+
+.sidebar a {
+    flex-direction: row !important;
+}
+
+.sidebar span {
+    font-size: 2rem !important;
+}
+
+.sidebar .back {
+    margin-left: 15rem;
+}
+
+.sidebar .logout {
+    margin-top: auto;
+    margin-bottom: 2rem;
+}

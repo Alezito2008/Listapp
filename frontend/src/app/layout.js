@@ -1,8 +1,6 @@
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar/Navbar";
-
-const inter = Inter({ subsets: ["latin"] });
+import Sidebar from "@/components/Sidebar/Sidebar";
 
 export const metadata = {
   title: "Listapp",
@@ -16,9 +14,9 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
       </head>
-      <body className={inter.className}>
+      <body>
+        <Sidebar />
         <div className="main-content">{children}</div>
-        <Navbar />
       </body>
     </html>
   );
