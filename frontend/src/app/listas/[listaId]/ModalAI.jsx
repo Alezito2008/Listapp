@@ -42,13 +42,14 @@ export default function ModalAI({ cerrarModal, setAgregarAbierto, receta, setRec
                         { cargandoRecetas && 
                             Array.from({length: 5}).map((_, index) => <Sugerencia key={index} nombre='&nbsp;' skeleton={true} />)
                         }
-                        { !cargandoRecetas && receta && Object.entries(receta.items).map(([nombre, cantidad], index) =>
+                        { !cargandoRecetas && receta && receta.map(({ nombre, cantidad, medida }, index) =>
                             <Sugerencia key={index}
                                 nombre={nombre.charAt(0).toUpperCase() + nombre.slice(1)}
                                 cantidad={cantidad}
+                                medida={medida}
                                 cerrarModal={cerrarModal}
                                 onClick={() => {
-                                    setItemInfo({ nombre, cantidad: 1, medida: 'un' })
+                                    setItemInfo({ nombre, cantidad, medida })
                                     setAgregarAbierto(true)
                                     cerrarModal()
                                 }}

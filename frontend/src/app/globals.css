@@ -9,4 +9,12 @@
 
 body {
   margin: 0;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.main-content {
+  height: 100dvh;
+  overflow-y: auto;
+  padding-bottom: 5rem;
 }

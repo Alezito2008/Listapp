@@ -5,10 +5,10 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
 
 const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' })
 
-const prompt = `
-Proporciona un JSON con los ingredientes de la receta en el formato siguiente:
-{"items": {"ingrediente": cantidad}}.Ejemplo para sushi: {"items": {"arroz": 500,"salmon": 2,"alga": 3,"salsa de soja": 1}}.SOLO responder con el JSON. Receta: [receta].
-`
+const prompt = `Proporciona un JSON con los ingredientes para hacer una receta en el formato siguiente:
+[{nombre:(nombre del ingrediente),cantidad:{cantidad del ingrediente (int)},medida:(medida del ingrediente)].
+SOLO escribir el JSON en TEXTO PLANO. EN MEDIDAS SOLO PONER (un(unidad)/g(gramo)/kg(kilogramo)/ml(mililitro)/l(litro)) Y NADA MAS SIENDO COHERENTE. Comprobar formato del JSON
+Receta:[receta]`
 
 const generarReceta = async(req, res) => {
     const { comida } = req.body
