@@ -27,6 +27,7 @@ export default function Lista() {
 
     const [cargando, setCargando] = useState(true)
     const [listaInfo, setListaInfo] = useState({
+        tipo: '',
         nombre: '',
         items: []
     })
@@ -120,6 +121,7 @@ export default function Lista() {
                 cerrarModal={ () => {setAgregarAbierto(false); setEditando(false)} }
                 itemInfo={itemInfo}
                 setItemInfo={setItemInfo}
+                listaInfo={listaInfo}
                 socket={socket}
                 editando={editando}
             />}
@@ -127,19 +129,22 @@ export default function Lista() {
             <div className='contenedor-lista'>
                 <h1 onClick={e => router.push(`/listas/${listaId}/editar`)}>{nombre}  <span className="material-symbols-outlined text-gray-500">edit</span> </h1>
                 <div className="contenedor-items">
-                    <div className="informacion">
-                        <span>Nombre</span>
-                        <span>Cantidad</span>
-                    </div>
+                    { listaInfo.tipo === 'c' &&
+                        <div className="informacion">
+                            <span>Nombre</span>
+                            <span>Cantidad</span>
+                        </div>
+                    }
                     {
-                        items.map(item => (
+                        items.map(({id, nombre, cantidadNecesitada, marcado, medida}) => (
                             <Item
-                                key={item.id}
-                                id={item.id}
-                                nombre={item.nombre}
-                                cantidadNecesitada={item.cantidadNecesitada}
-                                marcado={item.marcado}
-                                medida={item.medida}
+                                key={id}
+                                id={id}
+                                nombre={nombre}
+                                cantidadNecesitada={cantidadNecesitada}
+                                marcado={marcado}
+                                medida={medida}
+                                listaInfo={listaInfo}
                                 socket={socket}
                                 listaId={listaId}
                                 setItemInfo={setItemInfo}
@@ -154,9 +159,13 @@ export default function Lista() {
                             }}>
                             <span className="material-symbols-outlined">add</span>Agregar
                         </button>
-                        <button className='boton-ia' onClick={e => { setAIAbierto(true) } }>
-                            <span className="material-symbols-outlined bolt">bolt</span>
-                        </button>
+
+                        { listaInfo.tipo === 'c' && 
+                            <button className='boton-ia' onClick={e => { setAIAbierto(true) } }>
+                                <span className="material-symbols-outlined bolt">bolt</span>
+                            </button>
+                        }
+
                     </div>
                 </div>
             </div>

@@ -20,7 +20,6 @@ export default function ModalQR({ cerrarModal }) {
             body: JSON.stringify({ id: listaId })
         })
         const data = await response.json()
-        console.log(data)
         if (response.status === 200) return setQrUrl(data.invitacion)
         return alert(data.message)
     }

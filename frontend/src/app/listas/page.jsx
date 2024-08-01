@@ -3,7 +3,6 @@
 import Boton from '@/components/Boton/Boton';
 import './styles.css';
 import Lista from '@/components/Lista/Lista';
-import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import ModalSeleccion from './ModalSeleccion';
 import { useEffect, useState } from 'react';
@@ -48,7 +47,13 @@ export default async function ListasPage() {
             </div>
             <div className='contenedor-listas'>
                 {listas.map && listas.map(lista => (
-                    <Lista key={lista.id} nombre={lista.nombre} descripcion={lista.descripcion} idLista={lista.id} />
+                    <Lista
+                        key={lista.id}
+                        nombre={lista.nombre}
+                        descripcion={lista.descripcion}
+                        tipo={lista.tipo}    
+                        idLista={lista.id}
+                    />
                 ))}
                 <p>{mensajeError}</p>
             </div>

@@ -1,12 +1,12 @@
 import Link from 'next/link'
 import './Lista.css'
 
-export default function Lista({ nombre, descripcion, idLista, deshabilitado }) {
+export default function Lista({ nombre, descripcion, idLista, deshabilitado, tipo }) {
     return (
         <Link href={!deshabilitado ?  '/listas/' + idLista : '#'} className='lista'>
             <div>
                 <span className='material-symbols-outlined'>
-                    shopping_cart
+                    {tipo === 'c' ? 'shopping_cart' : 'checklist'}
                 </span>
             </div>
             <div className='w-full pl-2'>
