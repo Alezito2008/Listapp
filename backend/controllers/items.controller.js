@@ -3,18 +3,20 @@ const Lista = require('../models/Listas')
 const Usuario = require('../models/Usuarios')
 const jwt = require('jsonwebtoken')
 
- const obtenerItems = async (req, res) => {
+const medidas = ['un', 'g', 'kg', 'ml', 'l']
+
+const obtenerItems = async (req, res) => {
     try {
         const items = await Item.findAll()
         res.json(items)
     } catch (error) {
         res.sendStatus(500)
     }
- }
+}
 
- const obtenerItem = async (req, res) => {
+const obtenerItem = async (req, res) => {
     const { id } = req.params
-    
+
     try {
         const item = await Item.findOne({
             where: {id}
@@ -23,9 +25,9 @@ const jwt = require('jsonwebtoken')
     } catch (error) {
         res.sendStatus(500)
     }
- }
+}
 
- const crearItem = async (req, res) => {
+const crearItem = async (req, res) => {
     const { nombre, cantidadNecesitada, medida, listaId } = req.body
     const { token } = req.cookies
 
@@ -39,6 +41,10 @@ const jwt = require('jsonwebtoken')
     try {
         if (medida.length >= 3) {
             return res.status(400).json({ message: 'La medida debe ser menor o igual a 3' })
+        }
+
+        if (!medidas.includes(medida)) {
+            return res.status(400).json({ message: 'Medida inválida' })
         }
 
         const lista = await Usuario.findOne({
@@ -63,11 +69,11 @@ const jwt = require('jsonwebtoken')
 
         res.status(200).json(item)
     } catch (error) {
-        res.status(500).json({ message: 'Error al crear la lista' })
+        res.status(500).json({ message: 'Error al agregar el item' })
     }
- }
+}
 
- const actualizarItem = async (req, res) => {
+const actualizarItem = async (req, res) => {
     const { token } = req.cookies
     const { id } = req.params
     const { nombre, cantidadNecesitada, medida, marcado } = req.body
@@ -118,9 +124,9 @@ const jwt = require('jsonwebtoken')
     } catch (error) {
         res.status(500).json({ message: 'Error al actualizar el item' })
     }
- }
+}
 
- const eliminarItem = async (req, res) => {
+const eliminarItem = async (req, res) => {
     const { token } = req.cookies
     const { id } = req.params
 
@@ -159,6 +165,6 @@ const jwt = require('jsonwebtoken')
     } catch (error) {
         res.sendStatus(500)
     }
- }
+}
 
- module.exports = { obtenerItems, obtenerItem, crearItem, actualizarItem, eliminarItem }
+module.exports = { obtenerItems, obtenerItem, crearItem, actualizarItem, eliminarItem }

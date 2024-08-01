@@ -18,6 +18,10 @@ const Lista = sequelize.define('Listas', {
     descripcion: {
         type: DataTypes.STRING
     },
+    tipo: {
+        type: DataTypes.STRING(1),
+        allowNull: false
+    },
     creadorId: {
         type: DataTypes.INTEGER,
         allowNull: false

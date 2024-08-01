@@ -27,7 +27,8 @@ const obtenerListas = async (req, res) => {
         const listas = result.Listas.map(lista => ({
             id: lista.id,
             nombre: lista.nombre,
-            descripcion: lista.descripcion
+            descripcion: lista.descripcion,
+            tipo: lista.tipo
         }));
 
         res.json(listas)
@@ -66,7 +67,8 @@ const obtenerLista = async (req, res) => {
         const listaInfo = {
             id: usuario.Listas[0].id,
             nombre: usuario.Listas[0].nombre,
-            descripcion: usuario.Listas[0].descripcion
+            descripcion: usuario.Listas[0].descripcion,
+            tipo: usuario.Listas[0].tipo
         }
         const listaItems = JSON.parse(JSON.stringify(items))
 
@@ -77,7 +79,7 @@ const obtenerLista = async (req, res) => {
 }
 
 const crearLista = async (req, res) => {
-    const { nombre, descripcion } = req.body
+    const { nombre, descripcion, tipoLista } = req.body
     const { token } = req.cookies
 
     let id
@@ -88,9 +90,17 @@ const crearLista = async (req, res) => {
     }
 
     try {
+        let tipo
+        if (tipoLista === 'compras' || tipoLista === 'objetivos') {
+            tipo = tipoLista.charAt(0)
+        } else {
+            res.status(400).json({ message: 'Tipo inválido' })
+        }
+
         const lista = await Lista.create({
             nombre,
             descripcion,
+            tipo,
             creadorId: id
         })
         const usuario = await Usuario.findByPk(id)

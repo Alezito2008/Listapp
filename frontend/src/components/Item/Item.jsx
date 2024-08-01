@@ -6,7 +6,7 @@ export default function Item(props) {
 
     const token = Cookies.get('token')
 
-    const { id, nombre, cantidadNecesitada, socket, listaId, setItemInfo, abrirEditar, medida } = props
+    const { id, nombre, cantidadNecesitada, socket, listaId, setItemInfo, abrirEditar, medida, listaInfo } = props
     const [marcado, setMarcado] = useState(props.marcado)
 
 
@@ -50,10 +50,12 @@ export default function Item(props) {
                 <div className={`checkbox ${props.marcado && 'checked'}`} onClick={marcarItem}></div>
                 <div className={`nombre ${props.marcado && 'checked'}`} onClick={marcarItem}>{nombre}</div>
                 <div className='cantidad'>
-                    <span>
-                        {cantidadNecesitada}
-                        <span className='text-gray-500 text-sm'>{props.medida}</span>
-                    </span>
+                    { listaInfo.tipo === 'c' &&
+                        <span>
+                            {cantidadNecesitada}
+                            <span className='text-gray-500 text-sm'>{props.medida}</span>
+                        </span>
+                    }
                 </div>
                 <div className="editar">
                     <span className="material-symbols-outlined" onClick={editar}>edit</span>

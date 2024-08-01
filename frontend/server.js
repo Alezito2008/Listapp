@@ -34,24 +34,37 @@ io.on('connection', (socket) => {
             }
         })
         const data = await response.text()
-        console.log(data)
         if (response.status === 200) io.to('sala-'+info.listaId).emit('eliminar-item', info.id)
     })
 
     socket.on('agregar-item', async (info) => {
+
+        let body
+        if (info.tipo === 'c') {
+            body = {
+                nombre: info.nombre,
+                marcado: false,
+                cantidadNecesitada: info.cantidadNecesitada,
+                medida: info.medida,
+                listaId: info.listaId
+            }
+        } else {
+            body = {
+                nombre: info.nombre,
+                marcado: false,
+                cantidadNecesitada: '1',
+                medida: 'un',
+                listaId: info.listaId
+            }
+        }
+
         const response = await fetch('http://localhost:5000/api/items/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Cookie': `token=${info.token};`
             },
-            body: JSON.stringify({
-                nombre: info.nombre,
-                marcado: false,
-                cantidadNecesitada: info.cantidadNecesitada,
-                medida: info.medida,
-                listaId: info.listaId
-            }),
+            body: JSON.stringify(body),
         })
         const data = await response.json()
         if (response.status === 200) io.to('sala-'+info.listaId).emit('agregar-item', data)

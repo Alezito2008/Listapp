@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 
-export default function ModalAgregar({ cerrarModal, itemInfo, setItemInfo, editando, socket }) {
+export default function ModalAgregar({ cerrarModal, itemInfo, setItemInfo, editando, socket, listaInfo }) {
 
     const { seleccionado, nombre, cantidad, medida } = itemInfo
 
@@ -11,7 +11,7 @@ export default function ModalAgregar({ cerrarModal, itemInfo, setItemInfo, edita
     const token = Cookies.get('token')
 
     const agregarItem = async (nombre, cantidadNecesitada, medida) => {
-        socket.emit('agregar-item', { nombre, cantidadNecesitada, medida, listaId, token })
+        socket.emit('agregar-item', { nombre, cantidadNecesitada, medida, listaId, token, tipo: listaInfo.tipo })
         cerrarModal()
     }
 
@@ -51,6 +51,7 @@ export default function ModalAgregar({ cerrarModal, itemInfo, setItemInfo, edita
                 }}>
                     <label htmlFor="nombre">Nombre<span className='text-red-500'>*</span></label>
                     <input type="text" id="nombre" placeholder='Nombre del item' onChange={e => setItemInfo({ ...itemInfo, nombre: e.target.value})} value={nombre} required/>
+                    { listaInfo.tipo === 'c' &&
                     <div className="segunda-fila">
                         <div className="flex flex-col">
                             <label htmlFor="cantidad">Cantidad<span className='text-red-500'>*</span></label>
@@ -69,9 +70,10 @@ export default function ModalAgregar({ cerrarModal, itemInfo, setItemInfo, edita
                             </div>
                         </div>
                     </div>
+                    }
                     <div className='flex justify-center mt-4 gap-3'>
                         <Boton texto={'Hecho'} icono={'check'} disabled={
-                            !(nombre.trim() !== '' && cantidad && cantidad > 0)
+                            !(nombre.trim() !== '' && cantidad && cantidad > 0 || nombre.trim() !== '' && listaInfo.tipo === 'o')
                         }/>
                         { editando && <Boton
                             nosubmit={true}
