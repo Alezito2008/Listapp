@@ -1,0 +1,13 @@
+.novedades {
+    position: fixed;
+    display: flex;
+    margin-top: auto;
+    width: 100 dwh;
+    height: 17.5rem;
+    background-color: blue;
+}
+
+.novedades .items {
+    justify-content: center;
+    align-items: center;
+}

@@ -7,35 +7,36 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
 import jwt from "jsonwebtoken";
+import Usuario from '../Usuario/Usuario';
 
 export default function Navbar() {
     const [info, setInfo] = useState(null);
     const router = useRouter();
 
-    useEffect(() => {
-            const checkAuth = async () => {
-                try {
-                    const token = Cookies.get("token");
-                    if(!token) throw new Error("No token found");
-                    const decoded = jwt.verify(token, process.env.NEXT_PUBLIC_JWT_SECRET);
-                    setInfo(decoded);
-                }
-                catch(error){
-                    if(router.pathname != "/login")
-                        router.push("/login");
-                }
-            }
+    // useEffect(() => {
+    //         const checkAuth = async () => {
+    //             try {
+    //                 const token = Cookies.get("token");
+    //                 if(!token) throw new Error("No token found");
+    //                 const decoded = jwt.verify(token, process.env.NEXT_PUBLIC_JWT_SECRET);
+    //                 setInfo(decoded);
+    //             }
+    //             catch(error){
+    //                 if(router.pathname != "/login")
+    //                     router.push("/login");
+    //             }
+    //         }
 
-            if(typeof window !== "undefined") checkAuth();
+    //         if(typeof window !== "undefined") checkAuth();
 
-    }, [router]);
+    // }, [router]);
 
     return (
         <div className='navbar'>
             <div>
             <Logo />
             </div>
-            <div className="activo">
+            <div>
                 <Link href="/cuenta">
                     <img src="/perfil.svg" alt="Avatar" />
                 </Link>
