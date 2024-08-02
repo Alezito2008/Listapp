@@ -1,3 +1,18 @@
+.sidebar-parent{
+    z-index: 1;
+    position: fixed; 
+}
+
+.menu-logo{
+    margin-top: 1rem;
+    margin-left: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.menu-logo > span{
+    font-size: 3rem !important;
+}
+
 .sidebar {
     position: fixed;
     display: flex;
@@ -8,6 +23,7 @@
     box-shadow: 3px 0px 5px lightslategrey;
     transform: translateX(-110%);
     transition: transform .5s ease;
+    background-color: white;
 }
 
 .abierto {
@@ -28,11 +44,7 @@
     font-size: 2rem !important;
 }
 
-.sidebar .back {
-    margin-left: 15rem;
-}
-
 .sidebar .logout {
     margin-top: auto;
-    margin-bottom: 2rem;
+    margin-bottom: 6rem;
 }

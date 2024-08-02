@@ -6,22 +6,17 @@ import CerrarSesion from "./CerrarSesion";
 import { useState } from "react";
 
 export default function Sidebar(){
-    const [abierto, setAbierto] = useState(true);
+    const [abierto, setAbierto] = useState(false);
 
     function abrirMenu() {
         setAbierto(!abierto);
     }
     return(
-        <>
-            <div className="menu-logo">
-                <button onClick={abrirMenu}>
+        <div className="sidebar-parent">
+                <button className="menu-logo" onClick={abrirMenu}>
                 <span className="material-symbols-outlined">menu</span>
                 </button>
-            </div>
         <div className={`sidebar ${abierto ? 'abierto' : ''}`}>
-            <button className="back" onClick={abrirMenu}>
-                <span className="material-symbols-outlined">undo</span>
-            </button>
             <div className="inicio">
                 <Link href="/inicio">
                 <span className="material-symbols-outlined">home</span>
@@ -50,6 +45,6 @@ export default function Sidebar(){
                 <CerrarSesion />
             </div>
         </div>
-        </>
+        </div>
     )
 }

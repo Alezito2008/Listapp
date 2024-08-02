@@ -4,3 +4,4 @@ MySQL.session.sql
 /node_modules
 /.vscode
 /backend/.env
+/.VSCodeCounter

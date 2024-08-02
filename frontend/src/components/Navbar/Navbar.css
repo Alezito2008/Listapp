@@ -1,13 +1,13 @@
 .navbar {
     position: fixed;
     width: 100%;
-    bottom: 0;
+    top: 0;
     height: 5rem;
     padding-top: 1.2rem;
     padding-bottom: 1.2rem;
     min-height: fit-content;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     place-items: center;
     background-color: #E8EFF6;
     font-weight: 500;
@@ -19,6 +19,8 @@
     place-items: center;
     color: #777;
     font-size: .7rem;
+    margin-right: 4rem;
+    margin-left: 7rem;
 }
 
 .material-symbols-outlined {

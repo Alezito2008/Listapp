@@ -1,0 +1,17 @@
+.logo {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+}
+
+.logo img {
+    width: 3rem;
+    height: auto;
+    margin-right: 1rem;
+}
+
+.logo h1{
+    font-size: 2rem;
+    font-weight: 400;
+    right: auto;
+}

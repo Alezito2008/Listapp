@@ -1,4 +1,33 @@
-# Rutas
+# Instalar y Correr el código
+
+## Configurando las variables de entorno
+
+### En la carpeta de Frontend, crear un archivo llamado ".env.local":
+```.env
+JWT_SECRET = [string aleatorio]
+NEXT_PUBLIC_SERVER_URL = "http://localhost:3000/"
+```
+
+### En la carpeta de Backend, crear un ".env":
+
+```.env
+JWT_SECRET = [mismo string aleatorio]
+NEXT_PUBLIC_SERVER_URL = "http://localhost:3000/"
+MYSQL_PASSWORD = [contraseña de la DB]
+GEMINI_API_KEY = [private key de Gemini]
+```
+
+### Para conseguir una llave de Gemini, dirigirse a https://aistudio.google.com/app
+
+## Descargando las dependencias requeridas
+### Utilizando una terminal, correr "npm i" en @/
+### Luego, correr "cd .\frontend\" y "npm i" nuevamente.
+
+## Correr el programa
+### Para correr el backend, ir a @/backend y correr "npx nodemon"
+### Para correr el frontend, ir a @/frontend y correr "npx nodemon .\server.js"
+
+# Rutas de Back-end
 
 ## Usuarios
 
