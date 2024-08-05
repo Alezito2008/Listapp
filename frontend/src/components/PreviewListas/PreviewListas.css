@@ -1,0 +1,7 @@
+.preview-listas{
+    position: relative;
+    background-color: #E2E2E2;
+    height: calc(100% - 17rem);
+    width: 100%;
+    overflow: hidden;
+}

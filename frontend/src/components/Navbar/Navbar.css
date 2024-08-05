@@ -11,6 +11,7 @@
     place-items: center;
     background-color: #E8EFF6;
     font-weight: 500;
+    z-index: 1;
 }
 
 .navbar > div {

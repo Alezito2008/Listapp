@@ -7,7 +7,7 @@ export default function Novedades() {
             <h1>Novedades</h1>
             <div className="items">
                 {items.map(item => (
-                    <div key={item}>{item}</div>
+                    <div key={item} className="square"></div>
                 ))}
             </div>
         </div>

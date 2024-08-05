@@ -11,12 +11,15 @@ body {
   margin: 0;
   height: 100dvh;
   overflow: hidden;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 .main-content {
   height: 100dvh;
   overflow-y: auto;
-  padding-bottom: 5rem;
+  padding-top: 5rem;
 }
 
 .overlay {

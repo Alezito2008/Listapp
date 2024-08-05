@@ -4,9 +4,9 @@
 }
 
 .menu-logo{
-    margin-top: 1rem;
-    margin-left: 2rem;
-    margin-bottom: 0.5rem;
+    padding-top: 1rem;
+    padding-left: 2rem;
+    padding-bottom: 0.75rem;
 }
 
 .menu-logo > span{
