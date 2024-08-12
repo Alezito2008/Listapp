@@ -107,6 +107,7 @@ const crearLista = async (req, res) => {
         await usuario.addLista(lista)
         res.json(lista)
     } catch (error) {
+        console.log(error)
         res.status(500).json({ message: 'Error al crear la lista' });
     }
 }

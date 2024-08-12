@@ -4,4 +4,19 @@
     height: calc(100% - 17rem);
     width: 100%;
     overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.mensaje{
+   font-size: 1.5rem;
+    opacity: 75%;
+}
+
+.mensaje a{
+    color:blue;
+    text-decoration: underline blue;
 }
