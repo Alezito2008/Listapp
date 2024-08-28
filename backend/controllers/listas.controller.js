@@ -323,7 +323,7 @@ const crearInvitacion = async (req, res) => {
             id: lista.id
         }, process.env.JWT_SECRET, {expiresIn: '15m'})
 
-        res.status(200).json({ invitacion: base64url.encode(tokenInvitacion) })
+        res.status(200).json({ invitacion: base64url.encode(tokenInvitacion) });
         
     } catch (error) {
         res.status(500).json({ message: 'Error al crear invitacion' });
