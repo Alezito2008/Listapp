@@ -2,16 +2,18 @@
 import './Navbar.css';
 import Link from 'next/link';
 import Logo from '../Logo/Logo';
-import Avatar from '../Avatar/Avatar';
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Cookies from 'js-cookie';
-import jwt from "jsonwebtoken";
-import Usuario from '../Usuario/Usuario';
+import Sidebar from '../Sidebar/Sidebar';
+// import { useState } from 'react';
+// import { useRouter } from 'next/navigation';
+// import { useEffect } from 'react';
+// import Avatar from '../Avatar/Avatar';
+// import Cookies from 'js-cookie';
+// import jwt from "jsonwebtoken";
+// import Usuario from '../Usuario/Usuario';
 
 export default function Navbar() {
-    const [info, setInfo] = useState(null);
-    const router = useRouter();
+    // const [info, setInfo] = useState(null);
+    // const router = useRouter();
 
     // useEffect(() => {
     //         const checkAuth = async () => {
@@ -33,8 +35,13 @@ export default function Navbar() {
 
     return (
         <div className='navbar'>
-            <div>
-            <Logo />
+            <div className='sidelogo'>
+                <div>   
+                    <Sidebar />
+                </div>
+                <div>
+                    <Logo />
+                </div>
             </div>
             <div>
                 <Link href="/cuenta">

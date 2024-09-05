@@ -5,23 +5,26 @@
     height: 5rem;
     padding-top: 1.2rem;
     padding-bottom: 1.2rem;
-    min-height: fit-content;
     display: flex;
     justify-content: space-between;
     place-items: center;
     background-color: #E8EFF6;
     font-weight: 500;
-    z-index: 1;
+    z-index: 11;
 }
 
 .navbar > div {
     display: flex;
-    flex-direction: column;
     place-items: center;
     color: #777;
     font-size: .7rem;
     margin-right: 4rem;
-    margin-left: 7rem;
+    margin-left: 2rem;
+    z-index: 11;
+}
+
+.navbar div {
+    gap: 2rem;
 }
 
 .material-symbols-outlined {
@@ -55,7 +58,6 @@ a {
     text-decoration: none;
     color: inherit;
     display: flex;
-    flex-direction: column;
     place-items: center;
     gap: .4rem;
     -webkit-tap-highlight-color: transparent;

@@ -1,0 +1,23 @@
+.lista {
+    display: flex;
+    padding: .5rem 1rem;
+    width: 80%;
+    gap: 0.5rem;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: thin solid gray;
+}
+
+.izquierda{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    width: 50%;
+}
+
+.derecha{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;    
+    width: 50%;
+}

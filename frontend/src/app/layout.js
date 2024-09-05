@@ -19,7 +19,6 @@ export default function RootLayout({ children }) {
       </head>
       <body>
         <Navbar />
-        <Sidebar />
         <div className="main-content">{children}</div>
       </body>
     </html>

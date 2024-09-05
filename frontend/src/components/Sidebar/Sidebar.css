@@ -1,6 +1,5 @@
 .sidebar-parent{
-    z-index: 2;
-    position: fixed; 
+    z-index: 11;
 }
 
 .menu-logo{
@@ -26,8 +25,14 @@
     background-color: white;
 }
 
+.sidebar:not(.abierto) {
+    box-shadow: none;
+}
+
 .abierto {
     transform: translateX(0);
+    position: absolute;
+    left: 0;
 }
 
 .sidebar > div{

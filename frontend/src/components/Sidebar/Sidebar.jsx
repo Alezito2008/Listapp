@@ -16,7 +16,7 @@ export default function Sidebar(){
                 <button className="menu-logo" onClick={abrirMenu}>
                 <span className="material-symbols-outlined">menu</span>
                 </button>
-            <div className="overlay"></div>
+           {/* <div className={abierto ? "overlay" : ""}></div> */}
         <div className={`sidebar ${abierto ? 'abierto' : ''}`}>
             <div className="inicio">
                 <Link href="/inicio">
