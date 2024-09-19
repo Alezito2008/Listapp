@@ -1,7 +1,6 @@
 import Boton from "@/components/Boton/Boton";
 import Cookies from "js-cookie";
 import { useParams } from "next/navigation";
-import { useState } from "react";
 
 export default function ModalAgregar({ cerrarModal, itemInfo, setItemInfo, editando, socket, listaInfo }) {
 

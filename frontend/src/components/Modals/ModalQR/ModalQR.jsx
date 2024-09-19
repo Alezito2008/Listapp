@@ -1,3 +1,4 @@
+import "./ModalQR.css"
 import { useQRCode } from "next-qrcode"
 import { useParams } from "next/navigation"
 import { useEffect, useState } from "react"

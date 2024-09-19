@@ -8,8 +8,8 @@ import Item from '@/components/Item/Item';
 import { io } from 'socket.io-client';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
-import ModalAI from './ModalAI';
-import ModalAgregar from './ModalAgregar';
+import ModalAI from '../../../components/Modals/ModalAI/ModalAI';
+import ModalAgregar from '../../../components/Modals/ModalAgregar/ModalAgregar';
 
 export default function Lista() {
 

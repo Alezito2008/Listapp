@@ -1,3 +1,4 @@
+import "@/styles/forms.css";
 import Boton from "@/components/Boton/Boton";
 import Sugerencia from "@/components/Sugerencia/Sugerencia";
 import { useState } from "react";

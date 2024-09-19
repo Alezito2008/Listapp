@@ -1,3 +1,4 @@
+import "./ModalCompartir.css"
 import Boton from '@/components/Boton/Boton'
 import Cargando from '@/components/Cargando/Cargando'
 import Usuario from '@/components/Usuario/Usuario'

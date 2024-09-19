@@ -4,7 +4,7 @@ import Boton from '@/components/Boton/Boton';
 import './styles.css';
 import Lista from '@/components/Lista/Lista';
 import { redirect } from 'next/navigation';
-import ModalSeleccion from './ModalSeleccion';
+import ModalSeleccion from '../../components/Modals/ModalSeleccion/ModalSeleccion';
 import { useEffect, useState } from 'react';
 
 export default async function ListasPage() {
