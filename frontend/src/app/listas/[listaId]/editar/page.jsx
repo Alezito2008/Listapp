@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 import Cargando from '@/components/Cargando/Cargando'
 import ModalCompartir from '../../../../components/Modals/ModalCompartir/ModalCompartir'
-import ModalQR from './ModalQR'
+import ModalQR from '../../../../components/Modals/ModalQR/ModalQR'
 
 export default function EditarListaPage() {
 

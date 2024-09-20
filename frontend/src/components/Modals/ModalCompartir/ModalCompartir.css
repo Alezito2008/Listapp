@@ -24,3 +24,39 @@
     overflow: auto;
     padding-block: 1rem;
 }
+
+.seccion-compartir {
+    margin-top: 1rem;
+    display: flex;
+    place-items: center;
+    gap: 1rem;
+    display: none;
+}
+
+.seccion-compartir > span {
+    font-size: 2rem !important;
+    color: #333;
+    font-weight: 500;
+}
+
+.entrada {
+    display: flex;
+    place-items: center;
+    border: 2px solid var(--secondary-color);
+    border-radius: 10px;
+    padding: .3rem;
+    outline: none;
+    color: #999;
+    margin-bottom: 1rem;
+}
+
+.entrada > span {
+    font-size: 1.5rem !important;
+    padding-right: .5rem;
+}
+
+.entrada > input {
+    width: 100%;
+    outline: none;
+    color: #000;
+}

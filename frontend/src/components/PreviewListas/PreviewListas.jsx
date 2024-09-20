@@ -3,10 +3,13 @@ import "./PreviewListas.css";
 import { useEffect, useState } from "react";
 import Lista from "./ListaResumen/ListaResumen";
 import Link from "next/link";
+import ModalSeleccion from "@/components/Modals/ModalSeleccion/ModalSeleccion";
+import ModalCompartir from "@/components/Modals/ModalCompartir/ModalCompartir";
 
 export default function PreviewListas(){
 
     const [listas, setListas] = useState({})
+    const [seleccionAbierto, setSeleccionAbierto] = useState(false);
 
     const obtenerListas = async () => {
         const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/listas`, {
@@ -27,8 +30,15 @@ export default function PreviewListas(){
         }
     }, [])
 
+    function crearLista(){
+        setSeleccionAbierto(true);
+    }
+
     return(
         <div className="preview-listas">
+            { seleccionAbierto && <ModalSeleccion
+            cerrarModal={() => setSeleccionAbierto(false)} /> 
+            }
 
             {listas && listas.length > 0 ? 
             <div className="arriba">
@@ -36,8 +46,11 @@ export default function PreviewListas(){
                 <span>Listas recientes</span>
                 </div>
                 <div>
-                <span>Fecha</span>
+                <span style={{marginLeft: "4rem"}}>Fecha</span>
                 </div>
+                <button className="crearLista" onClick={crearLista}>
+                    +
+                </button>
             </div>
             : ""}
 
