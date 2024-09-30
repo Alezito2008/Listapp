@@ -2,7 +2,7 @@
 import './Navbar.css';
 import Link from 'next/link';
 import Logo from '../Logo/Logo';
-import Sidebar from '../Sidebar/Sidebar';
+import SidebarBoton from './Sidebar/SidebarBoton';
 // import { useState } from 'react';
 // import { useRouter } from 'next/navigation';
 // import { useEffect } from 'react';
@@ -11,7 +11,7 @@ import Sidebar from '../Sidebar/Sidebar';
 // import jwt from "jsonwebtoken";
 // import Usuario from '../Usuario/Usuario';
 
-export default function Navbar() {
+export default function Navbar({ children, abrirSide }) {
     // const [info, setInfo] = useState(null);
     // const router = useRouter();
 
@@ -37,7 +37,8 @@ export default function Navbar() {
         <div className='navbar'>
             <div className='sidelogo'>
                 <div>   
-                    <Sidebar />
+                    <SidebarBoton abrirSide={abrirSide} />
+                    { children }
                 </div>
                 <div>
                     <Logo />
