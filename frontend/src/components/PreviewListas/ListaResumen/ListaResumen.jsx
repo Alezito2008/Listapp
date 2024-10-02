@@ -5,38 +5,32 @@ import ModalQR from "@/components/Modals/ModalQR/ModalQR";
 import Link from "next/link";
 import { useRef } from "react";
 import useClickOutside from "@/hooks/useClickOutside/useClickOutside";
+import ModalEliminar from "@/components/Modals/ModalEliminar/ModalEliminar";
 
-//falta click afuera de menuOpciones = cerrar menu //arreglar hook custom
 //falta popup de confirmación de eliminación de listas
 
-export default function Lista({ grupal, nombreLista, fecha, id}){
+export default function Lista({ grupal = false, nombreLista, fecha = "11/11/1111", id}){
     const [opcionesAbiertas, setOpcionesAbiertas] = useState(false);
     const [compartirAbierto, setCompartirAbierto] = useState(false);
     const [listaBorrada, setListaBorrada] = useState(false);
     const [QrAbierto, setQrAbierto] = useState(false);
+    const [eliminarAbierto, setEliminarAbierto] = useState(false);
 
-    function OpcionesApretadas(){
-        setOpcionesAbiertas(!opcionesAbiertas);
+    function OpcionesApretadas(e) {
+        e.stopPropagation();
+        setOpcionesAbiertas((prev) => !prev);
     }
 
     const opcionesRef = useRef(null);
 
-    useClickOutside(opcionesRef, () => setOpcionesAbiertas(!opcionesAbiertas));
+    useClickOutside(opcionesRef, () => setOpcionesAbiertas(false));
+
+    function abrirEliminar(){
+        setEliminarAbierto(!eliminarAbierto);
+    }
 
     function borrarLista(){
         setListaBorrada(true);
-    }
-
-    const eliminarLista = async () => {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/listas/${id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            credentials: 'include'
-        })
-        const data = await response.json()
-        if (response.status === 200) borrarLista();
     }
 
     function compartirLista(){
@@ -52,9 +46,15 @@ export default function Lista({ grupal, nombreLista, fecha, id}){
                     abrirQR={() => setQrAbierto(true)}
                 /> }
 
-                {  QrAbierto &&
-                <ModalQR cerrarModal={() => setQrAbierto(false)} />
-                }
+                {  QrAbierto && <ModalQR 
+                    cerrarModal={() => setQrAbierto(false)} 
+                /> }
+
+                {   eliminarAbierto && <ModalEliminar
+                    cerrarModal={() => setEliminarAbierto(false)}
+                    borrarLista={borrarLista}
+                    listaId={id}
+                /> }
 
                 <Link href={"/listas/" + id} className="izquierda">
                     <img src={grupal ? "/personas.svg" : "/persona.svg"} alt="Ícono personas" />
@@ -64,10 +64,10 @@ export default function Lista({ grupal, nombreLista, fecha, id}){
                 <div className="derecha">
                     <span>{fecha}</span>
 
-                    <div className="opciones">
-                        <div className={opcionesAbiertas ? "menuOpciones" : "hidden"} ref={opcionesRef}>
+                    <div className="opciones" ref={opcionesRef}>
+                        <div className={opcionesAbiertas ? "menuOpciones" : "hidden"}>
 
-                            <button onClick={eliminarLista}>
+                            <button onClick={abrirEliminar}>
                                 <span className="material-symbols-outlined">delete</span>
                                 <span>Eliminar</span>
                             </button>

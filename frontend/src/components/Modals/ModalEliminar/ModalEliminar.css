@@ -1,0 +1,23 @@
+.fondo {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    flex-direction: column;
+    background-color: #fff;
+    transform:  translateX(-50%);
+    z-index: 5;
+    border-radius: 15px;
+    gap: 5rem;
+    top: 30dvh;
+    padding: 2rem;
+    width: 26vw;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #0C0563;
+}
+
+.fondo h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: rem;
+}

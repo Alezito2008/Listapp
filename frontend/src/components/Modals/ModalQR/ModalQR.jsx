@@ -22,7 +22,6 @@ export default function ModalQR({ cerrarModal }) {
         })
         const data = await response.json()
         if (response.status === 200) return setQrUrl(data.invitacion)
-        return alert(data.message)
     }
 
     useEffect(() => {

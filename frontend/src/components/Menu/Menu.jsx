@@ -30,7 +30,7 @@ export default function Menu() {
         <div>
             <div className={overlayAbierto ? "overlay" : "hidden"}  onClick={cerrarOverlay}></div>
             <Navbar abrirSide={abrirSide}>
-                <Sidebar ref={sidebarRef} abierto = {abierto} />
+                <Sidebar ref={sidebarRef} abierto = {abierto} cerrarSide={abrirSide} />
             </Navbar>
         </div>
     );
