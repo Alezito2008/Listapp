@@ -1,39 +1,31 @@
-.cuenta {
-    background: linear-gradient(180deg, #E6E9F3 0%, #FFF 23%, #FFF 52%, #FFF 74%, #E7E9F3 100%);
-    padding: 2rem;
-    padding-top: 8dvh;
+.cuenta{
     display: flex;
+    size: 100%;
+    color: #0C0563;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
-    place-items: center;
-    min-height: calc(100dvh - 5rem);
-}
-
-.cuenta h1 {
-    font-size: 1.7rem;
-    font-weight: 500;
+    gap: 2rem;
     text-align: center;
-    padding-bottom: 2rem;
+    padding-top: 5rem;
 }
 
-.cuenta h2 {
-    margin-top: 2rem;
-    width: 100%;
-    color: #777;
-    font-size: clamp(1rem, 5vw, 1.2rem);
+.elementoCuenta{
+    display: flex;
+    justify-content: space-between;
+    width: 8rem;
+    gap: 0.5rem;
 }
 
-.cuenta img {
-    margin-top: 2rem;
-    border-radius: 50%;
-    width: 10rem;
-    height: 10rem;
-}
-
-.cerrar-sesion {
+.cerrarSesion {
     position: relative;
-    margin-top: auto;
+    margin-top: 2rem;
     display: flex;
     color: rgb(255, 68, 68);
     gap: .5rem;
     font-weight: 500;
+}
+
+.editar{
+    font-size: 1.5rem !important;
 }

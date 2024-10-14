@@ -39,7 +39,7 @@
     font-weight: 500;
 }
 
-.entrada {
+.entradaCompartir {
     display: flex;
     place-items: center;
     border: 2px solid var(--secondary-color);
@@ -50,12 +50,12 @@
     margin-bottom: 1rem;
 }
 
-.entrada > span {
+.entradaCompartir > span {
     font-size: 1.5rem !important;
     padding-right: .5rem;
 }
 
-.entrada > input {
+.entradaCompartir > input {
     width: 100%;
     outline: none;
     color: #000;

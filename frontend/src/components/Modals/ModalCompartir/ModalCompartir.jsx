@@ -92,7 +92,7 @@ export default function ModalCompartir({ listaId, cerrarModal, abrirQR }) {
                     }}>qr_code_2</span> }
                 </div>
                 <label htmlFor="usuario">Nombre de usuario<span className='text-red-500'>*</span> </label>
-                <div className="entrada">
+                <div className="entradaCompartir">
                     <span className='material-symbols-outlined'>alternate_email</span>
                     <input type="usuario" id="usuario" placeholder='usuario' required value={usuario} onChange={e => setUsuario(e.target.value)} />
                 </div>

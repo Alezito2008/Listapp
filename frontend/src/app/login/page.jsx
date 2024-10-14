@@ -1,13 +1,10 @@
 "use client"
 
 import "@/styles/cuentas.css";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Cargando from "@/components/Cargando/Cargando";
 
 export default function LoginPage(){
-
-    const router = useRouter()
 
     let [visibilidadPassword, setVisibilidadPassword] = useState(false)
     let [usuario, setUsuario] = useState('')
@@ -57,7 +54,7 @@ export default function LoginPage(){
                     <span className='material-symbols-outlined'>person</span>
                     <div>
                         <input 
-                            type="text" placeholder="Ingresá tu usuario" id='usuario' 
+                            type="text" placeholder="Ingresá tu usuario" id='usuario' className="outline-none"
                             onChange={e => setUsuario(e.target.value)} value={usuario.toLowerCase().replaceAll(' ', '')}
                         />
                     </div>
@@ -67,11 +64,11 @@ export default function LoginPage(){
                     <div>
                         <input 
                             type={visibilidadPassword ? 'text' : "password"} placeholder='Ingresar contraseña' id='contraseña'
-                            onChange={e => setContraseña(e.target.value)} value={contraseña}
+                            onChange={e => setContraseña(e.target.value)} value={contraseña} className="outline-none"
                         />
                     </div>
 
-                    <button onClick={mostrarPassword}>
+                    <button type="button" onClick={mostrarPassword}>
                         <span className="material-symbols-outlined">{visibilidadPassword ? "visibility" : "visibility_off"}</span>
                     </button>
 
@@ -90,7 +87,7 @@ export default function LoginPage(){
 
 
             <div>
-                <p className="flex items-center gap-2"> ¿Ya tenés una cuenta? <a href="/login"><span className="text-blue-900"> Iniciar Sesión</span></a></p>
+                <p className="flex items-center gap-2"> ¿No tenés una cuenta? <a href="/register"><span className="text-blue-900"> Registrarse</span></a></p>
             </div>
         </div>
         </>

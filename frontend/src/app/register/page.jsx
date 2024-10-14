@@ -2,12 +2,9 @@
 
 import "@/styles/cuentas.css";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import Cargando from "@/components/Cargando/Cargando";
 
 export default function RegisterPage(){
-
-    const router = useRouter();
 
     const [visibilidadPassword, setVisibilidadPassword] = useState(false);
     const [visibilidadPassword2, setVisibilidadPassword2] = useState(false);
@@ -65,7 +62,7 @@ export default function RegisterPage(){
                             <span className='material-symbols-outlined'>person</span>
 
                             <input 
-                                type='text' placeholder='Ingresar usuario' id='usuario' 
+                                type='text' placeholder='Ingresar usuario' id='usuario' className="outline-none"
                                 onChange={e => setUsuario(e.target.value)} value={usuario.toLowerCase().replaceAll(' ', '')} 
                             />
                     </div>
@@ -76,11 +73,11 @@ export default function RegisterPage(){
                         <div>
                             <input 
                                 type={visibilidadPassword ? 'text' : "password"} placeholder='Ingresar contraseña' id='contraseña'
-                                onChange={e => setContraseña(e.target.value)} value={contraseña}
+                                onChange={e => setContraseña(e.target.value)} value={contraseña} className="outline-none"
                             />
                         </div>
 
-                        <button onClick={mostrarPassword}>
+                        <button type="button" onClick={mostrarPassword}>
                             <span className="material-symbols-outlined">{visibilidadPassword ? "visibility" : "visibility_off"}</span>
                         </button>
                     </div>
@@ -91,10 +88,10 @@ export default function RegisterPage(){
                         <div>
                             <input 
                                 type={visibilidadPassword2 ? 'text' : "password"} placeholder='Repetir contraseña' id='confirmar-contraseña'
-                                onChange={e => setConfirmarContraseña(e.target.value)} value={confirmarContraseña}
+                                onChange={e => setConfirmarContraseña(e.target.value)} value={confirmarContraseña} className="outline-none"
                             />
                             </div>
-                        <button onClick={mostrarPassword2}>
+                        <button type="button" onClick={mostrarPassword2}>
                             <span className="material-symbols-outlined">{visibilidadPassword2 ? "visibility" : "visibility_off"}</span>
                         </button>
                     </div>
