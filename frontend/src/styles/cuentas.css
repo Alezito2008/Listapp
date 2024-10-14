@@ -1,64 +1,40 @@
-.login {
-    background: linear-gradient(180deg, #E6E9F3 0%, #FFF 23%, #FFF 52%, #FFF 74%, #E7E9F3 100%);
-    min-height: 100dvh;
-    padding: 2rem;
-    padding-top: 3rem;
+.main-content{
+    padding-top: 0;
+}
+
+.bg{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background-color: #E3E2E2;
+    background-image: url("/fondo register.png");
+    color: #0C0563;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.interfaz{
     display: flex;
     flex-direction: column;
-}
-
-h1 {
-    font-weight: 500;
-    font-size: 2rem;
-}
-
-h3 {
-    font-weight: 400;
-    color: #a0a0a0;
-    font-size: 1rem;
-}
-
-label {
-    color: #454545;
-    font-weight: 500;
-}
-
-.login-form {
-    margin-top: 5dvh;
-    display: flex;
-    flex-direction: column;
+    background-color: white;
+    width: 20rem;
+    height: 22.5rem;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px 5px rgb(156, 148, 148);
+    padding: 1rem;
     gap: 1rem;
 }
 
 .entrada {
-    margin-top: .7rem;
-    display: grid;
-    grid-template-columns: 2rem 1fr;
-    border: 2px solid #ccc;
-    border-radius: .5rem;
-    padding: .2rem .5rem;
+    margin: 0.5rem;
+    display: flex;
+    flex-direction: row;
+    border-bottom: 0.15rem solid gray;
+    gap: 0.5rem;
 }
 
-.entrada > input {
-    border: none;
-    outline: none;
-}
-
-.entrada > input::placeholder {
-    color: #aaa;
-    font-size: .9rem;
-}
-
-.entrada > input[type='password']::placeholder {
-    letter-spacing: .1rem;
-    font-size: 1.3rem;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    padding-left: .2rem;
-}
-
-.entrada > span {
-    font-size: 1.8rem !important;
-    color: #ccc;
+input{
+    width: 12.5rem;
 }

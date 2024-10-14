@@ -1,15 +1,15 @@
-'use client'
+"use client"
 
-import '@/styles/cuentas.css'
-import Link from 'next/link'
-import { useState } from 'react'
-import Cargando from '@/components/Cargando/Cargando'
-import { useRouter } from 'next/navigation'
+import "@/styles/cuentas.css";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import Cargando from "@/components/Cargando/Cargando";
 
-export default function LoginPage() {
+export default function LoginPage(){
 
     const router = useRouter()
 
+    let [visibilidadPassword, setVisibilidadPassword] = useState(false)
     let [usuario, setUsuario] = useState('')
     let [contraseña, setContraseña] = useState('')
     let [error, setError] = useState('')
@@ -32,48 +32,67 @@ export default function LoginPage() {
             body: JSON.stringify(data)
         })
         let json = await response.json()
-        if (response.status === 200) return router.push('/inicio')
+        if (response.status === 200) window.location.href = '/inicio';
         setError(json.message)
         setCargando(false)
     }
 
-    return (
+    function mostrarPassword(){
+        setVisibilidadPassword(!visibilidadPassword);
+    }
+
+    return(
         <>
-            {cargando && <Cargando />}
-            <div className="login">
-                <h1>Iniciar sesión</h1>
-                <h3>Bienvenido! Por favor ingresá los datos</h3>
-                <form className="login-form" action={iniciarSesion}>
-                    <div>
-                        <label htmlFor="usuario">Usuario</label>
-                        <div className='entrada'>
-                            <span className='material-symbols-outlined'>person</span>
-                            <input type='text' placeholder='Ingresá tu usuario' id='usuario' onChange={e => setUsuario(e.target.value)} value={usuario.toLowerCase().replaceAll(' ', '')}/>
-                        </div>
-                    </div>
-                    <div>
-                        <label htmlFor="contraseña">Contraseña</label>
-                        <div className='entrada'>
-                            <span className='material-symbols-outlined'>lock</span>
-                            <input type='password' placeholder='•••••••••••••' id='contraseña' onChange={e => setContraseña(e.target.value)} value={contraseña}/>
-                        </div>
-                    </div>
-                    <div className='w-full text-right text-[--secondary-color] weight-300 font-medium text-[.9rem] -mt-1'>
-                        Olvidé la contraseña
-                    </div>
-                    <button className='w-full bg-[--secondary-color] text-white font-semibold py-2 rounded-md'>
-                        Iniciar Sesión
-                    </button>
-                    <p className='text-center text-red-500'>
-                        {error}
-                    </p>
-                </form>
-                <foot className='mt-auto text-center'>
-                    <p>¿No tenés cuenta?</p>
-                    <Link href='/register' className='text-[--secondary-color] font-medium'>Registrarse</Link>
-                </foot>
+        {cargando && <Cargando />}
+        <div className="bg">
+            <div>
+                <img src="/logoCuentas.svg" alt="Logo" className="w-20"/>
             </div>
+
+            <div className="interfaz">
+            <div><p className="text-4xl text-center">Bienvenido de vuelta</p></div>
+
+            <form action={iniciarSesion} className="mt-4">
+                <div className="entrada">
+                    <span className='material-symbols-outlined'>person</span>
+                    <div>
+                        <input 
+                            type="text" placeholder="Ingresá tu usuario" id='usuario' 
+                            onChange={e => setUsuario(e.target.value)} value={usuario.toLowerCase().replaceAll(' ', '')}
+                        />
+                    </div>
+                </div>
+                <div className="entrada">
+                    <div className="w-20 ml-1"><img src="/password.svg" alt="contraseña" /></div>
+                    <div>
+                        <input 
+                            type={visibilidadPassword ? 'text' : "password"} placeholder='Ingresar contraseña' id='contraseña'
+                            onChange={e => setContraseña(e.target.value)} value={contraseña}
+                        />
+                    </div>
+
+                    <button onClick={mostrarPassword}>
+                        <span className="material-symbols-outlined">{visibilidadPassword ? "visibility" : "visibility_off"}</span>
+                    </button>
+
+                </div>
+            </form>
+            <button className="bg-[#0C0563] text-white rounded-3xl w-72 h-14 text-lg mt-4" onClick={iniciarSesion}>
+                    Iniciar Sesión
+                </button>
+            </div>
+
+            <div>
+                <p className="text-center text-red-500">
+                    {error}
+                    </p>
+            </div>
+
+
+            <div>
+                <p className="flex items-center gap-2"> ¿Ya tenés una cuenta? <a href="/login"><span className="text-blue-900"> Iniciar Sesión</span></a></p>
+            </div>
+        </div>
         </>
     )
 }
- 

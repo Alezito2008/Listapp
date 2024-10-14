@@ -61,7 +61,7 @@ export default function PreviewListas(){
                         <Lista key={index} nombreLista={item.nombre} id={item.id}/>
                     )) :
                 <div className="mensaje">
-                    <h2>No hay nada acá. Probá <Link href="/listas">Haciendo una lista</Link>.</h2>    
+                    <h2>No hay nada acá. Probá <Link href="/listas">Haciendo una lista.</Link></h2>    
                 </div> 
                 }        
 
