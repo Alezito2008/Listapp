@@ -7,8 +7,6 @@ import { useRef } from "react";
 import useClickOutside from "@/hooks/useClickOutside/useClickOutside";
 import ModalEliminar from "@/components/Modals/ModalEliminar/ModalEliminar";
 
-//falta popup de confirmación de eliminación de listas
-
 export default function Lista({ grupal = false, nombreLista, fecha = "11/11/1111", id}){
     const [opcionesAbiertas, setOpcionesAbiertas] = useState(false);
     const [compartirAbierto, setCompartirAbierto] = useState(false);

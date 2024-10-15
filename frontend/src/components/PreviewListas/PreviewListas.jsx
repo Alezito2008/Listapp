@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Lista from "./ListaResumen/ListaResumen";
 import Link from "next/link";
 import ModalSeleccion from "@/components/Modals/ModalSeleccion/ModalSeleccion";
-import ModalCompartir from "@/components/Modals/ModalCompartir/ModalCompartir";
 
 export default function PreviewListas(){
 

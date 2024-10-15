@@ -33,7 +33,7 @@
 
 .sidebar > div{
     width: 100%;
-    margin-top: 2rem;
+    margin-top: 0.75rem;
     margin-left: 1rem;
 }
 
@@ -47,5 +47,5 @@
 
 .sidebar .logout {
     margin-top: auto;
-    margin-bottom: 6rem;
+    margin-bottom: 7rem;
 }

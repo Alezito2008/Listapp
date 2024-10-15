@@ -9,7 +9,7 @@ export default function Sidebar( { abierto, cerrarSide } ){
 
     return(
         <div className={`sidebar ${abierto ? "abierto" : ""}`} >
-            <div className="inicio" onClick={cerrarSide}>
+            <div className="inicio pt-4" onClick={cerrarSide}>
                 <Link href="/inicio">
                 <span className="material-symbols-outlined">home</span>
                 Inicio
@@ -31,6 +31,18 @@ export default function Sidebar( { abierto, cerrarSide } ){
                 <Link href="/ajustes" onClick={cerrarSide}>
                 <span className="material-symbols-outlined">settings</span>
                 Ajustes
+                </Link>
+            </div>
+            <div>
+                <Link href="/amigos" onClick={cerrarSide}>
+                    <span className="material-symbols-outlined">group</span>
+                    Amigos
+                </Link>
+            </div>
+            <div>
+                <Link href="/grupos" onClick={cerrarSide}>
+                    <span className="material-symbols-outlined">extension</span>
+                    Grupos
                 </Link>
             </div>
             <div className="logout" onClick={cerrarSide}>
