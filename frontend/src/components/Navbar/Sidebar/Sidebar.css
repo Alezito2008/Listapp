@@ -14,7 +14,7 @@
     width: 20rem;
     height: 100dvh;
     flex-direction: column;
-    font-size: 1rem;
+    font-size: 1.25rem;
     box-shadow: 3px 0px 5px lightslategrey;
     transform: translateX(-110%);
     transition: transform .5s ease;
@@ -32,20 +32,22 @@
 }
 
 .sidebar > div{
-    width: 100%;
-    margin-top: 0.75rem;
+    width: 42.5%;
+    margin-top: 1.5rem;
     margin-left: 1rem;
 }
 
 .sidebar a {
-    flex-direction: row !important;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 .sidebar span {
-    font-size: 2rem !important;
+    font-size: 2.5rem !important;
 }
 
 .sidebar .logout {
+    width: 100%;
     margin-top: auto;
     margin-bottom: 7rem;
 }

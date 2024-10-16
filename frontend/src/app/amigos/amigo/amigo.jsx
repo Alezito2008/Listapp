@@ -8,6 +8,7 @@ export default function Amigo({callback}){
     const [opcionesAbiertas, setOpcionesAbiertas] = useState(false)
 
     const opcionesRef = useRef(null)
+    useClickOutside(opcionesRef, () => setOpcionesAbiertas(false));
     return(
         <div className="flex flex-row w-4/5 bg-white rounded-xl m-2 ml-0 h-12 items-center justify-between p-2">
             <div className="flex flex-row items-center gap-12">
@@ -15,7 +16,7 @@ export default function Amigo({callback}){
                 <span>Amigo</span>
             </div>
             <span>@usuario</span>
-            <div>
+            <div ref={opcionesRef}>
                 <button type="button" onClick={() => setOpcionesAbiertas(!opcionesAbiertas)}><img src="/options.svg" alt="opciones" /></button>
                 { opcionesAbiertas && 
                         <div className="menuOpciones">
@@ -25,9 +26,9 @@ export default function Amigo({callback}){
                             <span>Eliminar</span>
                         </button>
 
-                        <button style={{marginLeft: "0.65rem"}}>
-                            <img src="/person_add.svg" alt="compartir" />
-                            <span>Compartir</span>
+                        <button>
+                            <span className="material-symbols-outlined">block</span>
+                            <span>Bloquear</span>
                         </button>
 
                     </div>

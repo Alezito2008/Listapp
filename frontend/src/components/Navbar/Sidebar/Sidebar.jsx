@@ -1,49 +1,28 @@
 "use client"
 
 import "@/styles/forms.css";
-import Link from "next/link";
 import "./Sidebar.css";
 import CerrarSesion from "./CerrarSesion";
+import ItemSidebar from "./ItemSidebar/ItemSidebar";
 
 export default function Sidebar( { abierto, cerrarSide } ){
 
     return(
         <div className={`sidebar ${abierto ? "abierto" : ""}`} >
-            <div className="inicio pt-4" onClick={cerrarSide}>
-                <Link href="/inicio">
-                <span className="material-symbols-outlined">home</span>
-                Inicio
-                </Link>
+            <div className="pt-4" onClick={cerrarSide}>
+                <ItemSidebar href="/inicio" icon="home" text="Inicio" callback={cerrarSide}/>
             </div>
             <div>
-                <Link href="/listas" onClick={cerrarSide}>
-                <span className="material-symbols-outlined">format_list_bulleted</span>
-                Listas
-                </Link>
+                <ItemSidebar href="/listas" icon="format_list_bulleted" text="Listas" callback={cerrarSide}/>
             </div>
             <div>
-                <Link href="/cuenta" onClick={cerrarSide}>
-                <span className="material-symbols-outlined">person</span>
-                Cuenta
-                </Link>
+                <ItemSidebar href="/cuenta" icon="person" text="Cuenta" callback={cerrarSide}/>
             </div>
             <div>
-                <Link href="/ajustes" onClick={cerrarSide}>
-                <span className="material-symbols-outlined">settings</span>
-                Ajustes
-                </Link>
+                <ItemSidebar href="/amigos" icon="group" text="Amigos" callback={cerrarSide}/>
             </div>
             <div>
-                <Link href="/amigos" onClick={cerrarSide}>
-                    <span className="material-symbols-outlined">group</span>
-                    Amigos
-                </Link>
-            </div>
-            <div>
-                <Link href="/grupos" onClick={cerrarSide}>
-                    <span className="material-symbols-outlined">extension</span>
-                    Grupos
-                </Link>
+                <ItemSidebar href="/grupos" icon="extension" text="Grupos" callback={cerrarSide}/>
             </div>
             <div className="logout" onClick={cerrarSide}>
                 <CerrarSesion />
