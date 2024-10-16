@@ -1,20 +1,3 @@
-.lista {
-    display: grid;
-    grid-template-columns: 1fr 9fr;
-    background-color: #f2f2f2;
-    padding: .5rem 1rem;
-    align-items: center;
-    border-radius: 10px;
-}
-
-.lista h2 {
-    color: #333;
-}
-
-.lista span {
-    color: #777;
-}
-
-.lista p {
-    color: #888;
+.icon{
+    font-size: 3rem !important;
 }

@@ -1,12 +1,17 @@
-"use client"
-import ModalSeleccion from "@/components/Modals/ModalSeleccion/ModalSeleccion"
-import { useState } from "react"
-import { useEffect } from "react"
-import Lista from "@/components/Lista/Lista"
+'use client'
 
-export default function ListasPage(){
-    const [seleccionAbierto, setSeleccionAbierto] = useState(false)
+import Boton from '@/components/Boton/Boton';
+import './styles.css';
+import Lista from '@/components/Lista/Lista';
+import { redirect } from 'next/navigation';
+import ModalSeleccion from '../../components/Modals/ModalSeleccion/ModalSeleccion';
+import { useEffect, useState } from 'react';
+
+export default async function ListasPage() {
+
     const [listas, setListas] = useState({})
+    const [mensajeError, setMensajeError] = useState('')
+    const [seleccionAbierto, setSeleccionAbierto] = useState(false)
 
     const obtenerListas = async () => {
         const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/listas`, {
@@ -30,25 +35,17 @@ export default function ListasPage(){
         }
     }, [])
 
-    return(
+    return (
         <>
-        {   seleccionAbierto && <ModalSeleccion
+        { seleccionAbierto && <ModalSeleccion
             cerrarModal={() => setSeleccionAbierto(false)}
         /> }
-
-        <div className="flex flex-col text-[#0C0563] justify-start items-center gap-8 p-2 size-full bg-gray-100">
-            <p className="text-6xl">Listas</p>
-            <div className="flex flex-row gap-10 justify-around items-center w-full pt-12">
-                <span className="text-2xl">Más recientes</span>
-                <span className="text-xl">Tipo de lista</span>
-                <span className="text-xl">Última vez</span>
-
-                <button type="button" className="flex justify-center items-center text-center bg-[#0C0563] text-white w-32 h-10 text-4xl rounded-2xl pb-2" 
-                    onClick={() => setSeleccionAbierto(true)}>
-                    +
-                </button>
+        <div className="listas">
+            <div className='flex justify-between items-center'>
+                <h1>Listas</h1>
+                <Boton icono='add' texto='Crear' accion={e => setSeleccionAbierto(true)} />
             </div>
-            <div className="flex flex-col p-2 px-20 justify-start items-start w-full">
+            <div className='contenedor-listas'>
                 {listas.map && listas.map(lista => (
                     <Lista
                         key={lista.id}
@@ -58,6 +55,7 @@ export default function ListasPage(){
                         idLista={lista.id}
                     />
                 ))}
+                <p>{mensajeError}</p>
             </div>
         </div>
         </>

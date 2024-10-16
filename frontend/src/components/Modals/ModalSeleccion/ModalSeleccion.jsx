@@ -6,7 +6,7 @@ export default function ModalSeleccion({ cerrarModal }) {
         <>
         <div className="overlay" onClick={cerrarModal}></div>
         <div className="modal">
-            <form action="">
+            <form>
                 <h1>Tipo de lista</h1>
                 <div className="opciones">
                     <Link href='/listas/crear/?tipo=compras'>
