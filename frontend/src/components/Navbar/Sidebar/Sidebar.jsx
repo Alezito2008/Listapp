@@ -9,20 +9,20 @@ export default function Sidebar( { abierto, cerrarSide } ){
 
     return(
         <div className={`sidebar ${abierto ? "abierto" : ""}`} >
-            <div className="pt-4" onClick={cerrarSide}>
-                <ItemSidebar href="/inicio" icon="home" text="Inicio" callback={cerrarSide}/>
+            <div onClick={cerrarSide}>
+                <ItemSidebar href="/inicio" icon="home" text="Inicio" />
             </div>
-            <div>
-                <ItemSidebar href="/listas" icon="format_list_bulleted" text="Listas" callback={cerrarSide}/>
+            <div onClick={cerrarSide}>
+                <ItemSidebar href="/listas" icon="format_list_bulleted" text="Listas" />
             </div>
-            <div>
-                <ItemSidebar href="/cuenta" icon="person" text="Cuenta" callback={cerrarSide}/>
+            <div onClick={cerrarSide}>
+                <ItemSidebar href="/cuenta" icon="person" text="Cuenta" />
             </div>
-            <div>
-                <ItemSidebar href="/amigos" icon="group" text="Amigos" callback={cerrarSide}/>
+            <div onClick={cerrarSide}>
+                <ItemSidebar href="/amigos" icon="group" text="Amigos" />
             </div>
-            <div>
-                <ItemSidebar href="/grupos" icon="extension" text="Grupos" callback={cerrarSide}/>
+            <div onClick={cerrarSide}>
+                <ItemSidebar href="/grupos" icon="extension" text="Grupos" />
             </div>
             <div className="logout" onClick={cerrarSide}>
                 <CerrarSesion />

@@ -6,6 +6,10 @@
     font-size: 3rem !important;
 }
 
+.symbolPerfil{
+    font-size: 8rem !important;
+}
+
 .menuOpciones{
     display: flex;
     height: 5rem;
