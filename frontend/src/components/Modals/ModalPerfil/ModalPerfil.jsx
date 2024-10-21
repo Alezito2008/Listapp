@@ -7,7 +7,7 @@ export default function ModalPerfil({callback}){
                 <div className="flex justify-around items-center bg-white flex-col z-10 rounded-2xl w-96 h-72 gap-12">
                     <div className="flex flex-row gap-10 justify-center items-start">
                         <div className="rounded-xl border-solid border-4 border-[#0C0563] size-32 flex justify-center items-center">
-                            <span className="material-symbols-outlined symbolPerfil">person</span>
+                            <span className="material-symbols-outlined material-8rem">person</span>
                         </div>
                         <div className="flex flex-col justify-between gap-4">
                             <div>

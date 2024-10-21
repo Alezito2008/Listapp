@@ -33,7 +33,7 @@ export default function ModalEliminar({ cerrarModal, borrarLista, listaId }){
 
                 <div className="flex flex-row justify-end gap-5">
                     <button onClick={cerrarModal} className="rounded-3xl bg-[#E3E2E2] h-10 w-24">Atrás</button>
-                    <button onClick={eliminarLista} className="rounded-3xl bg-[#0C0563] text-[#E3E2E2] h-10 w-24">Borrar</button>
+                    <button onClick={() => {eliminarLista(); cerrarModal()}} className="rounded-3xl bg-[#0C0563] text-[#E3E2E2] h-10 w-24">Borrar</button>
                 </div>
             </div>
         </>

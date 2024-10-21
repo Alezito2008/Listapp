@@ -1,4 +1,5 @@
 import "./globals.css";
+import "@/styles/iconSize.css"
 import Menu from "@/components/Menu/Menu";
 
 export default function RootLayout({ children }) {

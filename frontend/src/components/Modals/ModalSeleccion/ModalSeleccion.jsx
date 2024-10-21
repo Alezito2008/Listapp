@@ -1,4 +1,5 @@
 import '@/styles/forms.css'
+import "./ModalSeleccion.css"
 import Link from 'next/link'
 
 export default function ModalSeleccion({ cerrarModal }) {

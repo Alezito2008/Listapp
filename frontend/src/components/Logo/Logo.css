@@ -2,12 +2,16 @@
     position: relative;
     display: flex;
     flex-direction: row;
+    gap: 0;
+    height: 5rem;
+    align-items: center;
 }
 
 .logo img {
-    width: 3rem;
+    width: 4rem;
     height: auto;
     margin-right: 1rem;
+    padding-top: 0.25rem;
 }
 
 .logo h1{

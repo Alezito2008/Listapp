@@ -1,6 +1,5 @@
 "use client"
 
-import "./styles.css"
 import Amigo from "./amigo/amigo"
 import { useState } from "react"
 import ModalPerfil from "@/components/Modals/ModalPerfil/ModalPerfil"
@@ -32,7 +31,7 @@ export default function AmigosPage(){
         <div className="flex flex-col text-[#0C0563] justify-start items-center gap-8 pl-40 size-full bg-gray-100">
             <div className="flex flex-row gap-10 justify-start w-full pt-12">
                 <div className="rounded-xl border-solid border-8 border-[#0C0563] size-40 flex justify-center items-center">
-                    <span className="material-symbols-outlined grande">person</span>
+                    <span className="material-symbols-outlined material-10rem">person</span>
                 </div>
                 <div>
                     <p className="text-2xl">Placeholder</p>
