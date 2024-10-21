@@ -1,6 +1,6 @@
 "use client"
 
-import Amigo from "./amigo/amigo"
+import Amigo from "./Amigo/Amigo"
 import { useState } from "react"
 import ModalPerfil from "@/components/Modals/ModalPerfil/ModalPerfil"
 import ModalEliminarAmigo from "./ModalEliminarAmigo/ModalEliminarAmigo"

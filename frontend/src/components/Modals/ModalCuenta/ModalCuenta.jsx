@@ -13,7 +13,7 @@ export default function ModalCuenta({ callback, tipoDato } ){
                                 <input type="password" placeholder="Contraseña actual" className="h-8 outline-none size-2/3" />
                             </div>
                         }
-                        <div className="flex justify-start border-b-2 border-solid border-gray width-full">
+                        <div className="flex justify-start border-b-2 border-solid border-gray w-full">
                             <input type={tipoDato == "contraseña" ? "password" : "text"} placeholder={(tipoDato == "descripción" || tipoDato == "contraseña" ? "Nueva " : "Nuevo ") + tipoDato} className="h-8 outline-none size-2/3"/>
                         </div>
                         {tipoDato == "contraseña" && 
