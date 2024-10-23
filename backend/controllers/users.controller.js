@@ -171,4 +171,33 @@ const eliminarUsuario = async (req, res) => {
     }
 }
 
-module.exports = { registrarUsuario, iniciarSesion, obtenerUsuarios, obtenerUsuario, actualizarUsuario, eliminarUsuario }
+const infoCuenta = async (req, res) => {
+    const { token } = req.cookies
+
+    let info
+    try {
+        info = jwt.verify(token, process.env.JWT_SECRET)
+    } catch (error) {
+        return res.status(401).json({ message: 'Token inválido o expirado' })
+    }
+
+    try {
+        const usuario = await Usuario.findByPk(info.id, {
+            attributes: { exclude: ['hash'] }
+        })
+        console.log(usuario)
+        return res.json(usuario)
+    } catch (error) {
+        res.sendStatus(500)
+    }
+}
+
+module.exports = {
+    registrarUsuario,
+    iniciarSesion,
+    obtenerUsuarios,
+    obtenerUsuario,
+    actualizarUsuario,
+    eliminarUsuario,
+    infoCuenta
+}
