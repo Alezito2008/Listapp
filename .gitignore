@@ -5,3 +5,4 @@ MySQL.session.sql
 /.vscode
 /backend/.env
 /.VSCodeCounter
+*.session.sql
