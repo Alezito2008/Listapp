@@ -8,7 +8,7 @@ const esAdmin = (token) => {
         return administrador
     } catch (error) {
         console.log('Error: ' + error)
-    }x
+    }
 }
 
 const registrarUsuario = async (req, res) => {
@@ -185,7 +185,6 @@ const infoCuenta = async (req, res) => {
         const usuario = await Usuario.findByPk(info.id, {
             attributes: { exclude: ['hash'] }
         })
-        console.log(usuario)
         return res.json(usuario)
     } catch (error) {
         res.sendStatus(500)
