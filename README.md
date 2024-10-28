@@ -13,19 +13,18 @@ NEXT_PUBLIC_SERVER_URL = "http://localhost:3000/"
 ```.env
 JWT_SECRET = [mismo string aleatorio]
 NEXT_PUBLIC_SERVER_URL = "http://localhost:3000/"
-MYSQL_PASSWORD = [contraseña de la DB]
-GEMINI_API_KEY = [private key de Gemini]
+MYSQL_PASSWORD = [contraseña de la DB MySQL]
+GEMINI_API_KEY = [api key de Gemini]
 ```
 
 ### Para conseguir una llave de Gemini, dirigirse a https://aistudio.google.com/app
 
 ## Descargando las dependencias requeridas
-### Utilizando una terminal, correr "npm i" en @/
+### Utilizando una terminal, correr "npm i" 
 ### Luego, correr "cd .\frontend\" y "npm i" nuevamente.
 
 ## Correr el programa
-### Para correr el backend, ir a @/backend y correr "npx nodemon"
-### Para correr el frontend, ir a @/frontend y correr "npx nodemon .\server.js"
+### Correr el comando `npm start`
 
 # Rutas de Back-end
 
@@ -79,6 +78,10 @@ GEMINI_API_KEY = [private key de Gemini]
 ### /usuarios/:tag
 - **Método**: <span style="color: red"> **DELETE** </span>
 - **Descripción**: Elimina un usuario según su tag
+
+### /account
+- **Método**: <span style="color: lime"> **GET** </span>
+- **Descripción**: Obtiene información del usuario
 
 ## Listas
 
