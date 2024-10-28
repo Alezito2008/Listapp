@@ -31,7 +31,7 @@ export default function ListasPage(){
         return () => {
             obtenerListas()
         }
-    }, [])
+    }, [crearAbierto])
 
     return(
         <>
@@ -60,10 +60,10 @@ export default function ListasPage(){
                     +
                 </button>
             </div>
+            
             <div className="flex flex-col p-2 px-20 justify-start items-start w-full gap-4">
                 {listas.map && listas.map(lista => (
                     <Lista
-                        key={lista.id}
                         nombre={lista.nombre}
                         descripcion={lista.descripcion}
                         tipo={lista.tipo}    

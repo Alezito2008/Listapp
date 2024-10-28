@@ -8,7 +8,7 @@ const esAdmin = (token) => {
         return administrador
     } catch (error) {
         console.log('Error: ' + error)
-    }x
+    }
 }
 
 const registrarUsuario = async (req, res) => {
