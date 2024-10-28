@@ -83,11 +83,87 @@ const aceptarSolicitud = async (req, res) => {
 }
 
 const obtenerSolicitudes = async (req, res) => {
+    const { token } = req.cookies
 
+    let info
+    try {
+        info = jwt.verify(token, process.env.JWT_SECRET)
+    } catch (error) {
+        return res.status(401).json({ error: 'Token invalido' })
+    }
+
+    const { id } = info
+
+    try {
+        const amigos = await Amigos.findAll({
+            where: {
+                [Op.or]: [
+                    { userId: id },
+                    { amigoId: id }
+                ],
+                aceptado: false
+            }
+        })
+
+        const usuarioDeAmigos = await Promise.all(amigos.map(async amigo => {
+            if (amigo.userId === id) {
+                return await Usuario.findByPk(amigo.amigoId, {
+                    attributes: ['id', 'nombre', 'tag']
+                });
+            } else {
+                return await Usuario.findByPk(amigo.userId, {
+                    attributes: ['id', 'nombre', 'tag']
+                });
+            }
+        }));
+
+        res.json(usuarioDeAmigos)
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ error: 'Hubo un error' })
+    }
 }
 
 const obtenerAmigos = async (req, res) => {
+    const { token } = req.cookies
 
+    let info
+    try {
+        info = jwt.verify(token, process.env.JWT_SECRET)
+    } catch (error) {
+        return res.status(401).json({ error: 'Token invalido' })
+    }
+
+    const { id } = info
+
+    try {
+        const amigos = await Amigos.findAll({
+            where: {
+                [Op.or]: [
+                    { userId: id },
+                    { amigoId: id }
+                ],
+                aceptado: true
+            }
+        })
+
+        const usuarioDeAmigos = await Promise.all(amigos.map(async amigo => {
+            if (amigo.userId === id) {
+                return await Usuario.findByPk(amigo.amigoId, {
+                    attributes: ['id', 'nombre', 'tag']
+                });
+            } else {
+                return await Usuario.findByPk(amigo.userId, {
+                    attributes: ['id', 'nombre', 'tag']
+                });
+            }
+        }));
+
+        res.json(usuarioDeAmigos)
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({ error: 'Hubo un error' })
+    }
 }
 
 module.exports = {
