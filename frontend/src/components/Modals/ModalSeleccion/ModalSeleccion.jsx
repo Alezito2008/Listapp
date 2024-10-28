@@ -1,8 +1,7 @@
 import '@/styles/forms.css'
 import "./ModalSeleccion.css"
-import Link from 'next/link'
 
-export default function ModalSeleccion({ cerrarModal }) {
+export default function ModalSeleccion({ cerrarModal, abrirCrear, setTipoLista }) {
     return (
         <>
         <div className="overlay" onClick={cerrarModal}></div>
@@ -10,18 +9,14 @@ export default function ModalSeleccion({ cerrarModal }) {
             <form>
                 <h1>Tipo de lista</h1>
                 <div className="opciones">
-                    <Link href='/listas/crear/?tipo=compras'>
-                        <div className='opcion'>
+                        <button className='opcion' onClick={() => {abrirCrear(); setTipoLista("compras"); cerrarModal()}}>
                             <span className="material-symbols-outlined">shopping_cart</span>
                             <p>Compras</p>
-                        </div>
-                    </Link>
-                    <Link href='/listas/crear/?tipo=objetivos'>
-                        <div className='opcion'>
+                        </button>
+                        <button className='opcion' onClick={() => {abrirCrear(); setTipoLista("objetivos"); cerrarModal()}}>
                             <span className="material-symbols-outlined">checklist</span>
                             <p>Objetivos</p>
-                        </div>
-                    </Link>
+                        </button>
                 </div>
             </form>
         </div>

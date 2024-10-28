@@ -3,9 +3,12 @@ import ModalSeleccion from "@/components/Modals/ModalSeleccion/ModalSeleccion"
 import { useState } from "react"
 import { useEffect } from "react"
 import Lista from "@/components/Lista/Lista"
+import ModalCrear from "@/components/Modals/ModalCrear/ModalCrear"
 
 export default function ListasPage(){
     const [seleccionAbierto, setSeleccionAbierto] = useState(false)
+    const [crearAbierto, setCrearAbierto] = useState(false)
+    const [tipoListaCreada, setTipoListaCreada] = useState("")
     const [listas, setListas] = useState({})
 
     const obtenerListas = async () => {
@@ -34,11 +37,20 @@ export default function ListasPage(){
         <>
         {   seleccionAbierto && <ModalSeleccion
             cerrarModal={() => setSeleccionAbierto(false)}
+            abrirCrear={() => setCrearAbierto(true)}
+            setTipoLista={(tipo) => setTipoListaCreada(tipo)}
         /> }
 
-        <div className="flex flex-col text-[#0C0563] justify-start items-center gap-8 p-2 size-full bg-gray-100">
-            <p className="text-6xl">Listas</p>
-            <div className="flex flex-row gap-10 justify-around items-center w-full pt-12">
+        {   crearAbierto && <ModalCrear
+                cerrarModal={() => setCrearAbierto(false)}
+                tipoLista={tipoListaCreada}
+        /> }
+
+        <div className="flex flex-col text-[#0C0563] justify-start items-center gap-8 size-full bg-gray-100">
+            <div className="flex flex-row w-full justify-start pl-20 pt-16">
+                <p className="text-start text-5xl">Listas</p>
+            </div>
+            <div className="flex flex-row gap-10 justify-around items-center w-full pt-8">
                 <span className="text-2xl">Más recientes</span>
                 <span className="text-xl">Tipo de lista</span>
                 <span className="text-xl">Última vez</span>
