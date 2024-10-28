@@ -15,6 +15,10 @@ const Usuario = sequelize.define('Usuarios', {
             len: [3],
         }
     },
+    descripcion: {
+        type: DataTypes.STRING(100),
+        allowNull: true
+    },
     hash: {
         type: DataTypes.STRING,
         allowNull: false

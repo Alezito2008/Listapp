@@ -113,7 +113,7 @@ const obtenerUsuario = async (req, res) => {
 const actualizarUsuario = async (req, res) => {
     const { token } = req.cookies
     const etiqueta = req.params.tag
-    const { tag, nombre } = req.body
+    const { tag, nombre, descripcion } = req.body
 
     let info
     try {
@@ -129,7 +129,8 @@ const actualizarUsuario = async (req, res) => {
         }
         await Usuario.update({
             tag,
-            nombre
+            nombre,
+            descripcion
         }, {
             where: { tag: etiqueta }
         })
