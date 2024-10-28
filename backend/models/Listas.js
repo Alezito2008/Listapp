@@ -27,7 +27,7 @@ const Lista = sequelize.define('Listas', {
         allowNull: false
     }
 }, {
-    timestamps: false
+    timestamps: true
 })
 
 Lista.hasMany(Item, {

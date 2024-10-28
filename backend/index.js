@@ -1,9 +1,14 @@
 const app = require('./app')
 const sequelize = require('./database/database')
+const Amigos = require('./models/Amigos')
+const Usuario = require('./models/Usuarios')
 
 require('./models/Listas')
 require('./models/Items')
 require('./models/Usuarios')
+require('./models/Amigos')
+
+require('./models/relations')
 
 const PORT = 5000
 

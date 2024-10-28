@@ -19,16 +19,18 @@ const obtenerListas = async (req, res) => {
             where: { id },
             include: Lista
         })
-  
+
         if (!result) {
             return res.status(404).json({ message: 'No tenés listas' });
         }
+
 
         const listas = result.Listas.map(lista => ({
             id: lista.id,
             nombre: lista.nombre,
             descripcion: lista.descripcion,
-            tipo: lista.tipo
+            tipo: lista.tipo,
+            modificada: lista.updatedAt
         }));
 
         res.json(listas)
