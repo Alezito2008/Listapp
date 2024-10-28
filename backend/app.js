@@ -5,6 +5,7 @@ const listasRoutes = require('./routes/listas.routes')
 const itemsRoutes = require('./routes/items.routes')
 const usuariosRoutes = require('./routes/usuarios.routes')
 const iaRoutes = require('./routes/ia.routes')
+const amigosRoutes = require('./routes/amigos.routes')
 
 const app = express()
 app.use(cors({ origin: true, credentials: true }))
@@ -15,5 +16,6 @@ app.use(listasRoutes)
 app.use(itemsRoutes)
 app.use(usuariosRoutes)
 app.use(iaRoutes)
+app.use(amigosRoutes)
 
 module.exports = app
