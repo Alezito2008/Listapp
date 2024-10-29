@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useRef } from "react";
 import useClickOutside from "@/hooks/useClickOutside/useClickOutside";
 import ModalEliminar from "@/components/Modals/ModalEliminar/ModalEliminar";
+import Opciones from "@/components/Opciones/Opciones";
 
 export default function Lista({ grupal = false, nombreLista, fecha = "11/11/1111", id}){
     const [opcionesAbiertas, setOpcionesAbiertas] = useState(false);
@@ -14,10 +15,10 @@ export default function Lista({ grupal = false, nombreLista, fecha = "11/11/1111
     const [QrAbierto, setQrAbierto] = useState(false);
     const [eliminarAbierto, setEliminarAbierto] = useState(false);
 
-    function OpcionesApretadas(e) {
-        e.stopPropagation();
-        setOpcionesAbiertas((prev) => !prev);
-    }
+    // function OpcionesApretadas(e) {
+    //     e.stopPropagation();
+    //     setOpcionesAbiertas((prev) => !prev);
+    // }
 
     const opcionesRef = useRef(null);
 
@@ -61,26 +62,12 @@ export default function Lista({ grupal = false, nombreLista, fecha = "11/11/1111
 
                 <div className="derecha">
                     <span>{fecha}</span>
-
-                    <div className="opciones" ref={opcionesRef}>
-                        <div className={opcionesAbiertas ? "menuOpciones" : "hidden"}>
-
-                            <button onClick={abrirEliminar}>
-                                <span className="material-symbols-outlined">delete</span>
-                                <span>Eliminar</span>
-                            </button>
-
-                            <button style={{marginLeft: "0.65rem"}} onClick={compartirLista}>
-                                <img src="/person_add.svg" alt="compartir" />
-                                <span>Compartir</span>
-                            </button>
-
-                        </div>
-
-                        <button type="button" onClick={OpcionesApretadas} style={{height: "100%"}}>
-                            <img src="options.svg" alt="opciones" />
-                        </button>
-                    </div>
+                    <Opciones 
+                        opcionesAbiertas={opcionesAbiertas} opcionesRef={opcionesRef}
+                        abrirOpciones={() => setOpcionesAbiertas(!opcionesAbiertas)}
+                        callback1={abrirEliminar} text1="Eliminar" icon1="delete"
+                        callback2={compartirLista} text2="Compartir" icon2="person_add"
+                    />
                 </div>
         </div>
     )

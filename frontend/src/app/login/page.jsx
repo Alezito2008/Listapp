@@ -29,7 +29,10 @@ export default function LoginPage(){
             body: JSON.stringify(data)
         })
         let json = await response.json()
-        if (response.status === 200) window.location.href = '/inicio';
+        if (response.status === 200) {
+            window.location.href = '/inicio';
+            return
+        }
         setError(json.message)
         setCargando(false)
     }

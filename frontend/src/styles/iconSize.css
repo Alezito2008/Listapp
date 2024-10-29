@@ -2,10 +2,18 @@
     font-size: 10rem !important;
 }
 
+.material-2rem{
+    font-size: 2rem !important;
+}
+
 .material-3rem{
     font-size: 3rem !important;
 }
 
 .material-8rem{
     font-size: 8rem !important;
+}
+
+.material-6rem{
+    font-size: 6rem !important;
 }

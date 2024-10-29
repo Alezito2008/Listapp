@@ -31,34 +31,35 @@ export default function ModalCrear({ tipoLista, cerrarModal }){
             {cargando && <Cargando /> }
             <div className="overlay" onClick={cerrarModal}></div>
             <div className="flex justify-center items-center size-full text-[#0C0563]">
-                <div className="flex justify-around items-center bg-white flex-col z-10 rounded-2xl w-80 h-96">
+                <div className="flex justify-around items-center bg-white flex-col z-10 rounded-2xl w-80 h-80">
                     <div>
                         <p className="text-3xl text-center">Crear una lista</p>
                         <p className="text-lg text-center">Ponele un nombre <br />y una descripción a tu lista</p>
                     </div>
                     <div className="flex flex-col items-start justify-start gap-6">
-                        <div className="flex flex-col justify-start border-b-2 border-solid border-gray w-full">
+                        <div className="flex flex-row justify-start border-b-2 border-solid border-gray w-full gap-2">
+                            <span className="text-red-500">*</span>
                             <input type="text" placeholder='Nombre' 
                                 onChange={e => setNombre(e.target.value)} value={nombre}
                                 className="h-8 outline-none size-2/3"
                             />
                         </div>
-                        <div className="flex flex-col justify-start border-b-2 border-solid border-gray w-full">
+                        <div className="flex flex-col justify-start border-b-2 border-solid border-gray w-full pl-4">
                             <input placeholder='Descripción' 
                                 onChange={e => setDescripcion(e.target.value)} value={descripcion}
                                 className="h-8 outline-none size-2/3"
                             />
                         </div>
                     </div>
-                    <div className="flex flex-row justify-around w-full">
+                    <div className="flex flex-row justify-center w-full gap-6">
                         <button type="button" 
                             onClick={cerrarModal} 
-                            className="flex justify-center items-center rounded-xl bg-gray-200 h-10 px-6 py-4">
+                            className="flex justify-center items-center rounded-2xl bg-gray-200 h-10 px-6 py-4">
                                 Atrás
                         </button>
                         <button type="button" 
                             onClick={crearLista} 
-                            className="flex justify-center items-center rounded-xl bg-[#0C0563] text-white h-10 px-6 py-4">
+                            className="flex justify-center items-center rounded-2xl bg-[#0C0563] text-white h-10 px-6 py-4">
                                 Crear
                         </button>
                     </div>

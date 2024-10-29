@@ -23,23 +23,3 @@
     align-items: center;
     width: 50%;
 }
-
-.menuOpciones{
-    display: flex;
-    height: 5rem;
-    width:  8rem;
-    background-color: white;
-    border-radius: 15px;
-    transform: translateX(-100%);
-    position: absolute;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-around;
-}
-.menuOpciones > button{
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: row;
-    gap: 0.5rem;
-    margin-left: 0.3rem;
-}

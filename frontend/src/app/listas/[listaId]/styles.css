@@ -1,4 +1,10 @@
 .contenedor-lista {
+    height: 100%;
+    width: 100%;
+    background-color: #E3E2E2;
+    background-image: url("/fondo register.png");
+    color: #0C0563;
+    gap: 1.5rem;
     padding: 2rem;
     padding-top: 3rem;
 }

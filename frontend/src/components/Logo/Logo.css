@@ -19,3 +19,11 @@
     font-weight: 400;
     right: auto;
 }
+
+.logo div{
+    gap: 0;
+}
+
+.logo p{
+    font-size: 0.75rem;
+}

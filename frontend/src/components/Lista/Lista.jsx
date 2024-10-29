@@ -60,7 +60,7 @@ export default function Lista({ nombre, idLista, tipo, grupal=false }) {
                 <div>
                     <p>dd/mm/aa</p>
                 </div>
-                <Opciones opcionesAbiertas={opcionesAbiertas} abrirOpciones={() => setOpcionesAbiertas(true)} opcionesRef={opcionesRef}
+                <Opciones opcionesAbiertas={opcionesAbiertas} abrirOpciones={() => setOpcionesAbiertas(!opcionesAbiertas)} opcionesRef={opcionesRef}
                     callback1={() => setEliminarAbierto(true)} text1="Eliminar" icon1="delete"
                     callback2={() => setCompartirAbierto(true)} text2="Compartir" icon2="person_add"
                 />

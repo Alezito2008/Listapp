@@ -3,35 +3,31 @@ import './Navbar.css';
 import Link from 'next/link';
 import Logo from '../Logo/Logo';
 import SidebarBoton from './Sidebar/SidebarBoton';
-// import { useState } from 'react';
-// import { useRouter } from 'next/navigation';
-// import { useEffect } from 'react';
-// import Avatar from '../Avatar/Avatar';
-// import Cookies from 'js-cookie';
-// import jwt from "jsonwebtoken";
-// import Usuario from '../Usuario/Usuario';
+import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 
 export default function Navbar({ children, abrirSide }) {
-    // const [info, setInfo] = useState(null);
-    // const router = useRouter();
+    const [infoLista, setInfoLista] = useState({})
 
-    // useEffect(() => {
-    //         const checkAuth = async () => {
-    //             try {
-    //                 const token = Cookies.get("token");
-    //                 if(!token) throw new Error("No token found");
-    //                 const decoded = jwt.verify(token, process.env.NEXT_PUBLIC_JWT_SECRET);
-    //                 setInfo(decoded);
-    //             }
-    //             catch(error){
-    //                 if(router.pathname != "/login")
-    //                     router.push("/login");
-    //             }
-    //         }
+    const path = usePathname()
 
-    //         if(typeof window !== "undefined") checkAuth();
+    const obtenerLista = async (id) => {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/listas/${id}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        credentials: 'include'
+        })
+        const data = await response.json()
+        setInfoLista(data)
+    }
 
-    // }, [router]);
+    const esLista = path.slice(0,8) == "/listas/"
+    const id = path.slice(8)
+    if(esLista){
+        obtenerLista(id)
+    }
 
     return (
         <div className='navbar'>
@@ -44,6 +40,11 @@ export default function Navbar({ children, abrirSide }) {
                     <Logo />
                 </div>
             </div>
+            {   esLista &&
+                <div>
+                    <p>{infoLista.nombre}</p>
+                </div>
+            }
             <div>
                 <Link href="/cuenta">
                     <img src="/perfil.svg" alt="Avatar" />
