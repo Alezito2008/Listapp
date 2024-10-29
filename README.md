@@ -70,7 +70,8 @@ GEMINI_API_KEY = [api key de Gemini]
 ```json
 {
   "tag": "string",
-  "nombre": "string"
+  "nombre": "string",
+  "descripcion": "string"
 }
 ```
 - **Descripción**: Actualiza un usuario según los datos proporcionados
@@ -181,3 +182,34 @@ GEMINI_API_KEY = [api key de Gemini]
 ### /items/:id
 - **Método**: <span style="color: red"> **DELETE** </span>
 - **Descripción**: Elimina un item
+
+## Amigos
+
+### /enviarsolicitud
+- **Método**: <span style="color: yellow"> **POST** </span>
+- **Body**:
+```json
+{
+  "tagAmigo": "string"
+}
+```
+- **Descripción**: Envía una solicitud de amistad según el tag del usuario
+
+### /aceptarsolicitud
+- **Método**: <span style="color: yellow"> **POST** </span>
+- **Método**: <span style="color: yellow"> **POST** </span>
+- **Body**:
+```json
+{
+  "tagAmigo": "string"
+}
+```
+- **Descripción**: Acepta una solicitud de amistad según el tag del usuario
+
+### /amigos
+- **Método**: <span style="color: lime"> **GET** </span>
+- **Descripción**: Obtiene una lista de todos los amigos
+
+### /solicitudes
+- **Método**: <span style="color: lime"> **GET** </span>
+- **Descripción**: Obtiene una lista de todas las solicitudes
