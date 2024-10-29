@@ -2,7 +2,7 @@
 import Avatar from "@/components/Avatar/Avatar"
 import "./styles.css"
 import CerrarSesion from "./BotonCerrarSesion"
-import BotonEditar from "./BotonEditar"
+import BotonEditar from "../../components/BotonEditar/BotonEditar"
 import { useState } from "react"
 import ModalCuenta from "@/components/Modals/ModalCuenta/ModalCuenta"
 import ModalOpciones from "@/components/Modals/ModalOpciones/ModalOpciones"

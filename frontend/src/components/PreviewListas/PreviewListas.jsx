@@ -1,7 +1,7 @@
 "use client"
 import "./PreviewListas.css";
 import { useEffect, useState } from "react";
-import Lista from "./ListaResumen/ListaResumen";
+import ListaResumen from "./ListaResumen/ListaResumen";
 import Link from "next/link";
 
 export default function PreviewListas(){
@@ -48,7 +48,7 @@ export default function PreviewListas(){
 
                 {listas && listas.length > 0 ?  listas.map((item, index) => (
                     index < 3 &&
-                        <Lista key={index} nombreLista={item.nombre} id={item.id}/>
+                        <ListaResumen key={index} nombreLista={item.nombre} id={item.id}/>
                     )) :
                 <div className="mensaje">
                     <h2>No hay nada acá. Probá <Link href="/listas">Haciendo una lista.</Link></h2>    

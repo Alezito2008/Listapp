@@ -8,17 +8,12 @@ import useClickOutside from "@/hooks/useClickOutside/useClickOutside";
 import ModalEliminar from "@/components/Modals/ModalEliminar/ModalEliminar";
 import Opciones from "@/components/Opciones/Opciones";
 
-export default function Lista({ grupal = false, nombreLista, fecha = "11/11/1111", id}){
+export default function ListaResumen({ grupal = false, nombreLista, fecha = "11/11/1111", id}){
     const [opcionesAbiertas, setOpcionesAbiertas] = useState(false);
     const [compartirAbierto, setCompartirAbierto] = useState(false);
     const [listaBorrada, setListaBorrada] = useState(false);
     const [QrAbierto, setQrAbierto] = useState(false);
     const [eliminarAbierto, setEliminarAbierto] = useState(false);
-
-    // function OpcionesApretadas(e) {
-    //     e.stopPropagation();
-    //     setOpcionesAbiertas((prev) => !prev);
-    // }
 
     const opcionesRef = useRef(null);
 

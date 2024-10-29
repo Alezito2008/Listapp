@@ -5,6 +5,8 @@
     height: 5rem;
     padding-top: 1.2rem;
     padding-bottom: 1.2rem;
+    padding-left: 2rem;
+    padding-right: 4rem;
     display: flex;
     justify-content: space-between;
     place-items: center;
@@ -13,22 +15,14 @@
     z-index: 11;
 }
 
+.sidelogo{
+    gap: 2rem;
+    color: #777;
+}
+
 .navbar > div {
     display: flex;
     place-items: center;
-    color: #777;
-    font-size: .7rem;
-    margin-right: 4rem;
-    margin-left: 2rem;
-    z-index: 11;
-}
-
-.navbar div {
-    gap: 2rem;
-}
-
-.material-symbols-outlined {
-    font-size: 1.8rem !important;
 }
 
 .activo {
