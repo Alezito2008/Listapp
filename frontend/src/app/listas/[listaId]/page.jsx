@@ -16,7 +16,6 @@ export default function Lista() {
     const socket = io(process.env.NEXT_PUBLIC_SERVER_URL)
 
     const router = useRouter()
-    const token = Cookies.get('token')
 
     const { listaId } = useParams()
 
@@ -41,7 +40,7 @@ export default function Lista() {
         medida: 'un'
     });
 
-    const {nombre, items} = listaInfo
+    const {items} = listaInfo
 
     const obtenerLista = async () => {
         const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/listas/${listaId}`, {
@@ -123,18 +122,27 @@ export default function Lista() {
                 setItemInfo={setItemInfo}
                 listaInfo={listaInfo}
                 socket={socket}
-                editando={editando}
+                editando={editando} 
             />}
             
             <div className='contenedor-lista'>
-                <h1 onClick={e => router.push(`/listas/${listaId}/editar`)}>{nombre}  <span className="material-symbols-outlined text-gray-500">edit</span> </h1>
-                <div className="contenedor-items">
-                    { listaInfo.tipo === 'c' &&
-                        <div className="informacion">
-                            <span>Nombre</span>
-                            <span>Cantidad</span>
-                        </div>
-                    }
+                    <div className='flex justify-end mt-2 gap-3'>
+
+                        { listaInfo.tipo === 'c' && 
+                            <button className='' onClick={() => { setAIAbierto(true) } }>
+                                <img src="/ia.svg" alt="IA" />
+                            </button>
+                        }
+
+                        <button 
+                            className='flex justify-center items-center text-center bg-[#0C0563] text-white w-32 h-10 text-4xl rounded-2xl pb-2' 
+                            onClick={() => {
+                                setAgregarAbierto(true)
+                                setItemInfo({ nombre: '', cantidad: null, medida: 'un' })
+                                }}>
+                                +
+                        </button>
+                    </div>
                     {
                         items.map(({id, nombre, cantidadNecesitada, marcado, medida}) => (
                             <Item
@@ -152,22 +160,6 @@ export default function Lista() {
                             />
                         ))
                     }
-                    <div className='flex justify-center mt-2 gap-3'>
-                        <button onClick={e => {
-                            setAgregarAbierto(true)
-                            setItemInfo({ nombre: '', cantidad: null, medida: 'un' })
-                            }}>
-                            <span className="material-symbols-outlined">add</span>Agregar
-                        </button>
-
-                        { listaInfo.tipo === 'c' && 
-                            <button className='boton-ia' onClick={e => { setAIAbierto(true) } }>
-                                <span className="material-symbols-outlined bolt">bolt</span>
-                            </button>
-                        }
-
-                    </div>
-                </div>
             </div>
         </>
     )

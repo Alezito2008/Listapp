@@ -1,5 +1,6 @@
 import "./ModalCompartir.css"
 import "@/styles/forms.css"
+import "@/styles/iconSize.css"
 import Boton from '@/components/Boton/Boton'
 import Cargando from '@/components/Cargando/Cargando'
 import Usuario from '@/components/Usuario/Usuario'
@@ -86,10 +87,12 @@ export default function ModalCompartir({ listaId, cerrarModal, abrirQR }) {
             <form action={compartir} className='form-compartir'>
                 <div className="flex items-center">
                     <h2>Compartir lista</h2>
-                    { <span className="material-symbols-outlined ml-auto" onClick={e => {
-                        abrirQR()
-                        cerrarModal()
-                    }}>qr_code_2</span> }
+                    { <button className="ml-auto">                        
+                        <span className="material-symbols-outlined material-3rem" onClick={() => {
+                            abrirQR()
+                            cerrarModal()
+                        }}>qr_code_2</span> 
+                    </button> }
                 </div>
                 <label htmlFor="usuario">Nombre de usuario<span className='text-red-500'>*</span> </label>
                 <div className="entradaCompartir">

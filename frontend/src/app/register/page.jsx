@@ -1,6 +1,7 @@
 "use client"
 
 import "@/styles/cuentas.css";
+import "@/styles/iconSize.css"
 import { useState } from "react";
 import Cargando from "@/components/Cargando/Cargando";
 
@@ -62,7 +63,7 @@ export default function RegisterPage(){
 
                 <form action={registrarse}>
                     <div className='entrada'>
-                            <span className='material-symbols-outlined'>person</span>
+                            <span className='material-symbols-outlined material-2rem'>person</span>
 
                             <input 
                                 type='text' placeholder='Ingresar usuario' id='usuario' className="outline-none"
@@ -71,7 +72,7 @@ export default function RegisterPage(){
                     </div>
 
                     <div className='entrada'>
-                        <div className="w-20 ml-1"><img src="/password.svg" alt="contraseña" /></div>
+                        <div className="w-20 pl-1"><img src="/password.svg" alt="contraseña" /></div>
 
                         <div>
                             <input 

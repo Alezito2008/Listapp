@@ -1,8 +1,8 @@
 'use client'
 import './Navbar.css';
+import "@/styles/iconSize.css"
 import Link from 'next/link';
 import Logo from '../Logo/Logo';
-import BotonEditar from '../BotonEditar/BotonEditar';
 import SidebarBoton from './Sidebar/SidebarBoton';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
@@ -46,9 +46,11 @@ export default function Navbar({ children, abrirSide }) {
                 </div>
             </div>
             {   esLista &&
-                <div className='text-3xl text-[#0C0563]'>
+                <div className='text-4xl text-[#0C0563] flex flex-row gap-4 items-center pr-40'>
                     <p>{infoLista.nombre}</p>
-                    <BotonEditar callback={() => window.location.href = "/listas/" + id + "/editar"} />
+                    <Link href={"/listas/" + id + "/editar"}>
+                        <span className='material-symbols-outlined material-2rem'>edit</span>
+                    </Link>
                 </div>
             }
             <div>

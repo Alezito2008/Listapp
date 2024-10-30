@@ -5,16 +5,16 @@
     display: grid;
     grid-template-columns: 50px 1fr 50px 30px;
     place-items: center;
-    padding: .5rem 0;
-    padding-right: .5rem;
+    padding: 1rem;
     width: 100%;
+    font-size: 1.2rem;
 }
 
 .checkbox {
-    width: 1rem;
-    height: 1rem;
+    width: 1.25rem;
+    height: 1.25rem;
     background-color: #ddd;
-    border-radius: 5px;
+    border-radius: 20px;
     border: 2px solid var(--secondary-color);
     box-sizing: border-box;
     transition: background-color .1s;
@@ -40,6 +40,6 @@
 }
 
 .editar > span {
-    font-size: 1.3rem !important;
+    font-size: 1.75rem !important;
     color: #777;
 }

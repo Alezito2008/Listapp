@@ -1,12 +1,13 @@
 .contenedor-lista {
+    display: flex;
+    flex-direction: column;
     height: 100%;
     width: 100%;
     background-color: #E3E2E2;
     background-image: url("/fondo register.png");
     color: #0C0563;
-    gap: 1.5rem;
-    padding: 2rem;
-    padding-top: 3rem;
+    gap: 1rem;
+    padding: 6rem;
 }
 
 .contenedor-lista h1 {
@@ -19,19 +20,6 @@
     display: flex;
     flex-direction: column;
     gap: .5rem;
-}
-
-.contenedor-items button {
-    display: flex;
-    justify-content: center;
-    place-items: center;
-    border: 2px solid #ccc;
-    box-sizing: border-box;
-    max-width: fit-content;
-    padding: .2rem .5rem;
-    color: #aaa;
-    border-radius: 5px;
-    font-weight: 500;
 }
 
 .segunda-fila {
@@ -54,29 +42,6 @@
 .select select {
     outline: none;
 }
-
-.boton-ia {
-    width: 45px;
-    height: 40px;
-    position: relative;
-    background-color: #fff;
-    border-radius: 5px;
-    padding: 5px;
-}
-
-.boton-ia::before {
-    content: "";
-    position: absolute;
-    inset: -4px;
-    background: linear-gradient(-135deg, #FF77E9 0%, #57E1FF 100%);
-    border-radius: 7px !important;
-    z-index: -1;
-}
-
-.boton-ia {
-    border: 2px solid transparent !important;
-}
-
 
 .bolt {
     background: linear-gradient(180deg, #FF77E9 0%, #50F4FF 100%);

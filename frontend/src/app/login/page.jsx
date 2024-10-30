@@ -1,5 +1,6 @@
 "use client"
 
+import "@/styles/iconSize.css"
 import "@/styles/cuentas.css";
 import { useState } from "react";
 import Cargando from "@/components/Cargando/Cargando";
@@ -54,7 +55,7 @@ export default function LoginPage(){
 
             <form action={iniciarSesion} className="mt-4">
                 <div className="entrada">
-                    <span className='material-symbols-outlined'>person</span>
+                    <span className='material-symbols-outlined material-2rem'>person</span>
                     <div>
                         <input 
                             type="text" placeholder="Ingresá tu usuario" id='usuario' className="outline-none"

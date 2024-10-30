@@ -19,6 +19,7 @@
     transform: translateX(-110%);
     transition: transform .5s ease;
     background-color: white;
+    gap: 0.5rem;
 }
 
 .sidebar:not(.abierto) {
@@ -32,9 +33,15 @@
 }
 
 .sidebar > div{
-    width: 42.5%;
-    margin-top: 1.5rem;
-    margin-left: 1rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    padding-left: 1rem;
+    width: 100%;
+}
+
+.sidebar > div:hover{
+    background-color: whitesmoke;
+
 }
 
 .sidebar a {
@@ -47,7 +54,7 @@
 }
 
 .sidebar .logout {
-    width: 100%;
+    width: 80%;
     margin-top: auto;
     margin-bottom: 7rem;
 }

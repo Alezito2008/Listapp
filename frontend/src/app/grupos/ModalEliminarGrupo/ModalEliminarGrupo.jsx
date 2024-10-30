@@ -7,7 +7,7 @@ export default function ModalEliminarGrupo({callback}){
             <div className="flex justify-around items-center bg-white flex-col z-10 rounded-2xl w-96 h-60 gap-12">
                     <div className="text-center">
                         <p className="text-xl">¿Seguro que querés eliminar a <span className="">Placeholder</span> de tus grupos?</p>
-                        <p>No será notificado de esta acción</p>
+                        <p>Los integrantes no serán notificados</p>
                     </div>
                     <div className="flex flex-row gap-10">    
                         <button type="button" onClick={callback} className="flex justify-center items-center rounded-xl bg-gray-200 h-6 px-6 py-4">Cerrar</button>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './Item.css'
 import Cookies from 'js-cookie'
 
@@ -21,17 +21,7 @@ export default function Item(props) {
         setMarcado(!marcado)
     }
 
-    const eliminarItem = () => {
-        socket.emit('eliminar-item', 
-            {
-                listaId,
-                token,
-                id
-            }
-        )
-    }
-
-    const editar = (e) => {
+    const editar = () => {
         setItemInfo(prev => {
             return {
                 ...prev,
@@ -48,12 +38,12 @@ export default function Item(props) {
         <div className='flex items-center'>
             <div className='item'>
                 <div className={`checkbox ${props.marcado && 'checked'}`} onClick={marcarItem}></div>
-                <div className={`nombre ${props.marcado && 'checked'}`} onClick={marcarItem}>{nombre}</div>
+                <div className={`nombre ${props.marcado && 'checked'} text-2xl`} onClick={marcarItem}>{nombre}</div>
                 <div className='cantidad'>
                     { listaInfo.tipo === 'c' &&
-                        <span>
+                        <span className='text-xl'>
                             {cantidadNecesitada}
-                            <span className='text-gray-500 text-sm'>{props.medida}</span>
+                            <span className='text-gray-500 text-base'>{props.medida}</span>
                         </span>
                     }
                 </div>

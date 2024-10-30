@@ -41,7 +41,6 @@ form > input:focus {
 .modal h1 {
     font-size: 1.5rem;
     font-weight: 500;
-    /* margin-bottom: 1rem; */
 }
 
 .modal form {

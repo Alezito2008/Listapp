@@ -39,7 +39,7 @@ export default function PreviewListas(){
                 <span style={{marginLeft: "4rem"}}>Fecha</span>
                 </div>
                 <Link href="/listas" className="crearLista">
-                    Listas
+                    Crear
                 </Link>
             </div>
             : ""}
