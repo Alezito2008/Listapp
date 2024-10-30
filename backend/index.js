@@ -7,6 +7,7 @@ require('./models/Listas')
 require('./models/Items')
 require('./models/Usuarios')
 require('./models/Amigos')
+require('./models/Grupos')
 
 require('./models/relations')
 
