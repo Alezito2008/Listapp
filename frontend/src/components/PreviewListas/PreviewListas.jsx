@@ -48,7 +48,7 @@ export default function PreviewListas(){
 
                 {listas && listas.length > 0 ?  listas.map((item, index) => (
                     index < 3 &&
-                        <ListaResumen key={index} nombreLista={item.nombre} id={item.id}/>
+                        <ListaResumen key={index} nombreLista={item.nombre} id={item.id} fecha={item.modificada.substring(0, 10)} />
                     )) :
                 <div className="mensaje">
                     <h2>No hay nada acá. Probá <Link href="/listas">Haciendo una lista.</Link></h2>    

@@ -31,6 +31,10 @@ export default function ListaResumen({ grupal = false, nombreLista, fecha = "11/
         setCompartirAbierto(true);
     }
 
+    let x = fecha.substring(8) + fecha.substring(4, 8) + fecha.substring(0, 4)
+
+    fecha = x;
+
     return(
         <div className={listaBorrada ? "hidden" : "listaResumen"}>
 
