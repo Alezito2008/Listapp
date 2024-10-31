@@ -15,3 +15,13 @@ Grupos.belongsTo(Usuario, {
     sourceKey: 'id',
     onDelete: 'CASCADE'
 })
+
+Grupos.belongsToMany(Usuario, {
+    through: 'miembros',
+    onDelete: 'CASCADE'
+})
+
+Usuario.belongsToMany(Grupos, {
+    through: 'miembros',
+    onDelete: 'CASCADE'
+})

@@ -5,7 +5,7 @@ const router = Router()
 
 router.get('/api/grupos', obtenerGrupos)
 router.post('/api/grupos/crear', crearGrupo)
-router.post('/api/grupos/añadir', añadirMiembro)
+router.post('/api/grupos/agregar', añadirMiembro)
 router.post('/api/grupos/expulsar', expulsarMiembro)
 
 module.exports = router
