@@ -41,7 +41,7 @@ export default function ModalAgregar({ cerrarModal, itemInfo, setItemInfo, edita
         <>
             <div className="overlay" onClick={cerrarModal}></div>
             <div className="flex size-full justify-center items-center ">
-                <div className='bg-white p-4 w-1/3 rounded-xl z-10'>
+                <div className='bg-white p-4 w-1/4 rounded-xl z-10'>
                     <h1 className='mb-4'>
                         { editando ? 'Editar' : 'Agregar' } item
                     </h1>
@@ -55,7 +55,10 @@ export default function ModalAgregar({ cerrarModal, itemInfo, setItemInfo, edita
                         <div className="segunda-fila">
                             <div className="flex flex-col">
                                 <label htmlFor="cantidad">Cantidad<span className='text-red-500'>*</span></label>
-                                <input type="number" id="cantidad" placeholder='123' onChange={e => setItemInfo({...itemInfo, cantidad: e.target.value})} value={cantidad} required/>
+                                <input type="number" id="cantidad" placeholder='123' 
+                                    onChange={e => setItemInfo({...itemInfo, cantidad: e.target.value})} 
+                                    className="border-2 border-solid border-[#3b8fda] rounded-xl px-2 py-1 outline-none w-52"
+                                    value={cantidad} required/>
                             </div>
                             <div className="flex flex-col w-full">
                                 <label htmlFor="medida">Medida<span className='text-red-500'>*</span></label>

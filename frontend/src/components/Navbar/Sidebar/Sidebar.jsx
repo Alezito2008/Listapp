@@ -2,8 +2,8 @@
 
 import "@/styles/forms.css";
 import "./Sidebar.css";
-import CerrarSesion from "./CerrarSesion";
 import ItemSidebar from "./ItemSidebar/ItemSidebar";
+import CerrarSesion from "./ItemSidebar/CerrarSesion";
 
 export default function Sidebar( { abierto, cerrarSide } ){
 
@@ -24,9 +24,7 @@ export default function Sidebar( { abierto, cerrarSide } ){
             <div onClick={cerrarSide}>
                 <ItemSidebar href="/grupos" icon="extension" text="Grupos" />
             </div>
-            <div className="logout" onClick={cerrarSide}>
-                <CerrarSesion />
-            </div>
+                <CerrarSesion cerrarSide={cerrarSide} />
         </div>
     )
 }

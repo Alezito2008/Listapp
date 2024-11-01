@@ -3,11 +3,10 @@
     size: 100%;
     color: #0C0563;
     align-items: center;
-    justify-content: center;
     flex-direction: column;
     gap: 2rem;
     text-align: center;
-    padding-top: 5rem;
+    padding-top: 3rem;
 }
 
 .elementoCuenta{

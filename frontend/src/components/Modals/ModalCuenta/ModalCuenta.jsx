@@ -4,21 +4,21 @@ import Cargando from "@/components/Cargando/Cargando";
 
 export default function ModalCuenta({ callback, tipoDato, infoCuenta } ){
     const [cargando, setCargando] = useState(false)
-    let {tag, nombre, descripcion} = infoCuenta
+    const {tag, nombre, descripcion} = infoCuenta
     let datosEnviar = {usuario: tag, nombre: nombre, descripcion: descripcion}
     const [dato, setDato] = useState("")
 
     const enviarData = async () => {
         setCargando(true);
-        await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/usuarios/${infoCuenta.id}`, {
+        await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/usuarios/${infoCuenta.tag}`, {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             credentials: "include",
-            body: {
+            body: JSON.stringify({
                 "tag": datosEnviar.usuario,
                 "nombre" : datosEnviar.nombre,
                 "descripcion": datosEnviar.descripcion
-            }
+            })
         });
         setCargando(false)
     }

@@ -1,6 +1,7 @@
 import "./globals.css";
 import "@/styles/iconSize.css"
 import Menu from "@/components/Menu/Menu";
+import ModalExpirado from "@/components/Modals/ModalExpirado/ModalExpirado";
 
 export default function RootLayout({ children }) {
 
@@ -8,7 +9,7 @@ export default function RootLayout({ children }) {
     <html lang="es">
       <head>
         <title>Listapp</title>
-        <meta name="" />
+        <meta name="Listapp" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
@@ -16,6 +17,7 @@ export default function RootLayout({ children }) {
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
       </head>
       <body>
+        <ModalExpirado />
         <Menu />
         <div className="main-content">{children}</div>
       </body>

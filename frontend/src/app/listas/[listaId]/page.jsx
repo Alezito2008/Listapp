@@ -2,20 +2,18 @@
 
 import { useEffect, useState } from 'react';
 import './styles.css'
+import "@/styles/iconSize.css"
 import { useParams } from "next/navigation";
 import Cargando from '@/components/Cargando/Cargando';
 import Item from '@/components/Item/Item';
 import { io } from 'socket.io-client';
-import { useRouter } from 'next/navigation';
-import Cookies from 'js-cookie';
 import ModalAI from '../../../components/Modals/ModalAI/ModalAI';
 import ModalAgregar from '../../../components/Modals/ModalAgregar/ModalAgregar';
+import Link from 'next/link';
 
 export default function Lista() {
 
     const socket = io(process.env.NEXT_PUBLIC_SERVER_URL)
-
-    const router = useRouter()
 
     const { listaId } = useParams()
 
@@ -57,7 +55,6 @@ export default function Lista() {
             setListaInfo(data)
             return
         }
-        router.push('/login')
     }
 
     useEffect(() => {
@@ -160,6 +157,14 @@ export default function Lista() {
                             />
                         ))
                     }
+                    <div className='w-full flex flex-row justify-end items-center pt-4'>
+                        <Link href="/listas">
+                            <button type="button" className='text-white bg-[#0C0563] p-2 rounded-xl'>
+                                <span className='material-symbols-outlined'>undo</span>
+                                <p>Volver a Listas</p>
+                            </button>
+                        </Link>
+                    </div>
             </div>
         </>
     )

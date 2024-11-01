@@ -22,10 +22,6 @@ export default function ListasPage(){
         })
         const data = await response.json()
         setListas(data)
-        if (data.message) window.location.href = "/login"
-        if (response.status === 401) {
-            window.location.href = "/login"
-        }
     }
 
     useEffect(() => {

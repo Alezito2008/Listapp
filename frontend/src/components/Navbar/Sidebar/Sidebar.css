@@ -32,29 +32,27 @@
     left: 0;
 }
 
-.sidebar > div{
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
-    padding-left: 1rem;
-    width: 100%;
-}
-
 .sidebar > div:hover{
     background-color: whitesmoke;
 
-}
-
-.sidebar a {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
 }
 
 .sidebar span {
     font-size: 2.5rem !important;
 }
 
-.sidebar .logout {
-    width: 80%;
-    margin-top: auto;
-    margin-bottom: 7rem;
+.item {
+    display: flex;
+    flex-direction: row;
+    padding-top: 1.5rem;
+    padding-left: 1.5rem;
+    padding-bottom: 1.5rem;
+    width: auto;
+    gap: 1.75rem;
+    align-items: center;
+    justify-content: start;
+}
+
+.item:hover{
+    background-color: whitesmoke;
 }
