@@ -34,7 +34,6 @@ export default function ModalCrear({ tipoLista, cerrarModal }){
                 <div className="flex justify-around items-center bg-white flex-col z-10 rounded-2xl w-80 h-80">
                     <div>
                         <p className="text-3xl text-center">Crear una lista</p>
-                        <p className="text-lg text-center">Ponele un nombre <br />y una descripción a tu lista</p>
                     </div>
                     <div className="flex flex-col items-start justify-start gap-6">
                         <div className="flex flex-row justify-start border-b-2 border-solid border-gray w-full gap-2">

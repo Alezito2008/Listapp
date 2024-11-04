@@ -1,0 +1,10 @@
+.grupo {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: #fff;
+    width: 80%;
+    margin-top: 1rem;
+    border-radius: 5px;
+    place-items: center;
+    padding-block: .3rem;
+}

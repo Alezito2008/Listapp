@@ -5,14 +5,51 @@ import { useState } from "react"
 import ModalPerfil from "@/components/Modals/ModalPerfil/ModalPerfil"
 import ModalEliminarAmigo from "./ModalEliminarAmigo/ModalEliminarAmigo"
 import ModalBloquear from "./ModalBloquear/ModalBloquear"
+import Cargando from "@/components/Cargando/Cargando"
+import { useEffect } from "react"
 
 export default function AmigosPage(){
     const [perfilAbierto, setPerfilAbierto] = useState(false)
     const [eliminarAbierto, setEliminarAbierto] = useState(false)
     const [bloquearAbierto, setBloquearAbierto] = useState(false)
+    const [cargando, setCargando] = useState(false)
+    const [infoCuenta, setInfoCuenta] = useState({})
+
+    const obtenerInfo = async (signal) => {
+        try {
+            setCargando(true);
+            const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/account`, {
+                method: "GET",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                signal,
+            });
+            const data = await response.json();
+            setInfoCuenta(data);
+        } catch (error) {
+            if (error.name !== "AbortError") {
+                console.error("Fetch error:", error);
+            }
+        } finally {
+            setCargando(false);
+        }
+    };
+
+    useEffect(() => {
+        const controller = new AbortController();
+        obtenerInfo(controller.signal);
+
+        return () => {
+            controller.abort();
+        };
+    }, []); 
 
     return(
         <>
+
+        { cargando && <Cargando />}
+
+
         { perfilAbierto &&
             <ModalPerfil 
             callback={() => setPerfilAbierto(false)}
@@ -34,8 +71,8 @@ export default function AmigosPage(){
                     <span className="material-symbols-outlined material-10rem">person</span>
                 </div>
                 <div>
-                    <p className="text-2xl">Placeholder</p>
-                    <p className="text-lg">@placeholder</p>
+                    <p className="text-2xl">{infoCuenta.nombre}</p>
+                    <p className="text-lg">@{infoCuenta.tag}</p>
                 </div>
             </div>
 
@@ -51,9 +88,11 @@ export default function AmigosPage(){
                 <div className="flex flex-col w-full justify-center items-start">
                     <Amigo abrirPerfil={() => setPerfilAbierto(true)} 
                         abrirEliminar={() => setEliminarAbierto(true)} abrirBloquear={() => setBloquearAbierto(true)} 
+                        nombre="Alezito2008" tag="alezito"
                     />
                     <Amigo abrirPerfil={() => setPerfilAbierto(true)} 
                         abrirEliminar={() => setEliminarAbierto(true)} abrirBloquear={() => setBloquearAbierto(true)} 
+                        nombre="Fogolin08" tag="fogo"
                     />
                 </div>
             </div>

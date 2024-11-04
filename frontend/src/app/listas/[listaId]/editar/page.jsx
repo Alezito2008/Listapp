@@ -1,6 +1,5 @@
 'use client'
 
-import Boton from '@/components/Boton/Boton'
 import './styles.css'
 import '@/styles/forms.css'
 
@@ -74,7 +73,7 @@ export default function EditarListaPage() {
         }
     
         return (
-            <>
+            <div className='flex justify-center w-full'>
                 { cargando && <Cargando />}
                 { compartirAbierto && <ModalCompartir
                     listaId={listaId}
@@ -84,7 +83,7 @@ export default function EditarListaPage() {
                 { qrAbierto && <ModalQR
                     cerrarModal={() => setQrAbierto(false)}
                 /> }
-                <div className="editar-lista">
+                <div className="editar-lista w-1/2 pt-20">
                     <div className="flex justify-end mb-3">
                         <button className='boton-compartir' onClick={ e => setCompartirAbierto(true) }>
                             <span className='material-symbols-outlined'>globe</span>
@@ -97,15 +96,19 @@ export default function EditarListaPage() {
                         <input type="text" id="nombre" placeholder='Nombre de la lista' onChange={e => setNombre(e.target.value)} value={nombre}/>
                         <label htmlFor="descripcion">Descripción</label>
                         <input id="descripcion" placeholder='Descripción de la lista' onChange={e => setDescripcion(e.target.value)} value={descripcion}/>
-                        <div className='flex justify-center mt-3 mb-3'>
-                            <Boton texto='Hecho' icono='check' disabled={nombre.trim() === ''}/>
+                        <div className='flex flex-row justify-center gap-6 mt-3 mb-3 pt-6'>
+                            <button type='submit' className='bg-blue-500 p-3 font-bold px-6 rounded-lg text-white flex flex-row w-52 justify-center items-center'>
+                                <span className='material-symbols-outlined'>check</span>
+                                <p>Hecho</p>
+                            </button>
+
+                        <button className='bg-red-500 p-3 font-bold px-6 rounded-lg text-white flex flex-row w-52 justify-center items-center' onClick={eliminarLista}>
+                            <span className="material-symbols-outlined">delete</span>
+                            Eliminar Lista
+                        </button>
                         </div>
                     </form>
-                    <button className='boton-eliminar' onClick={eliminarLista}>
-                        <span className="material-symbols-outlined">delete</span>
-                        Eliminar Lista
-                    </button>
                 </div>
-            </>
+            </div>
         )
 }

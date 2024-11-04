@@ -32,7 +32,7 @@ export default function ModalAI({ cerrarModal, setAgregarAbierto, receta, setRec
     return (
         <>
             <div className="overlay" onClick={cerrarModal}></div>
-            <div className="modal">
+            <div className="modal max-w-96 pt-20">
                 <h1 className="flex items-center mb-4">
                     IA <span className="material-symbols-outlined bolt ">bolt</span>
                 </h1>

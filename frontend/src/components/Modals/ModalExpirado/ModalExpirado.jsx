@@ -45,6 +45,7 @@ export default function ModalExpirado(){
             <div className="flex justify-center items-center size-full text-[#0C0563]">
                 <div className="flex justify-between p-10 items-center bg-white flex-col z-10 rounded-2xl w-96 h-96">
                         <div className="text-center">
+                            <p className="text-4xl underline italic p-2">Iniciar Sesión</p>
                             <p className="text-xl">Necesitás estar logueado para usar Listapp. Creá una cuenta o volvé a loguearte!</p>
                             <p>Tu sesión puede haber expirado.</p>
                         </div>

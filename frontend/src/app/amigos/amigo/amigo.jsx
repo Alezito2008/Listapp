@@ -5,7 +5,7 @@ import useClickOutside from "@/hooks/useClickOutside/useClickOutside"
 import { useRef } from "react"
 import Opciones from "@/components/Opciones/Opciones"
 
-export default function Amigo({abrirPerfil, abrirEliminar, abrirBloquear}){
+export default function Amigo({abrirPerfil, abrirEliminar, abrirBloquear, nombre, tag}){
     const [opcionesAbiertas, setOpcionesAbiertas] = useState(false)
 
     const opcionesRef = useRef(null)
@@ -14,9 +14,9 @@ export default function Amigo({abrirPerfil, abrirEliminar, abrirBloquear}){
         <div className="flex flex-row w-4/5 bg-white rounded-xl m-2 ml-0 h-12 items-center justify-between p-2">
             <button type="button" className="flex flex-row items-center gap-12" onClick={abrirPerfil} >
                 <span className="material-symbols-outlined material-3rem">account_circle</span>
-                <span>Amigo</span>
+                <span>{nombre}</span>
             </button>
-            <span>@usuario</span>
+            <span>@{tag}</span>
                 <Opciones opcionesAbiertas={opcionesAbiertas} opcionesRef={opcionesRef} abrirOpciones={() => setOpcionesAbiertas(!opcionesAbiertas)}
                     callback1={abrirEliminar} text1="Eliminar" icon1="delete" 
                     callback2={abrirBloquear} text2="Bloquear" icon2="block"

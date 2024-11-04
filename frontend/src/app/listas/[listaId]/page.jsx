@@ -123,6 +123,15 @@ export default function Lista() {
             />}
             
             <div className='contenedor-lista'>
+                <div className='flex flex-row justify-between'>
+                    <div className='flex justify-start'>
+                        <Link href="/listas">
+                            <button type="button" className='flex flex-row text-white bg-[#0C0563] p-2 rounded-xl gap-2'>
+                                <span className='material-symbols-outlined'>undo</span>
+                                <p>Atrás</p>
+                            </button>
+                        </Link>
+                    </div>
                     <div className='flex justify-end mt-2 gap-3'>
 
                         { listaInfo.tipo === 'c' && 
@@ -140,6 +149,7 @@ export default function Lista() {
                                 +
                         </button>
                     </div>
+                </div>
                     {
                         items.map(({id, nombre, cantidadNecesitada, marcado, medida}) => (
                             <Item
@@ -157,14 +167,6 @@ export default function Lista() {
                             />
                         ))
                     }
-                    <div className='w-full flex flex-row justify-end items-center pt-4'>
-                        <Link href="/listas">
-                            <button type="button" className='text-white bg-[#0C0563] p-2 rounded-xl'>
-                                <span className='material-symbols-outlined'>undo</span>
-                                <p>Volver a Listas</p>
-                            </button>
-                        </Link>
-                    </div>
             </div>
         </>
     )

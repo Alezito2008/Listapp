@@ -2,7 +2,7 @@
     padding: 2rem;
     display: flex;
     flex-direction: column;
-    min-height: 100dvh;
+    min-height: 85dvh;
 }
 
 .editar-lista h1 {
@@ -11,28 +11,13 @@
     margin-bottom: 1rem;
 }
 
-.boton-eliminar {
-    bottom: 6rem;
-    background-color: var(--red);
-    color: #fff;
-    font-weight: 500;
-    border-radius: 5px;
-    padding: .5rem;
-    display: flex;
-    justify-content: center;
-    place-items: center;
-    gap: .5rem;
-    width: 100%;
-    height: 2.5rem;
-    margin-top: auto;
-}
-
 .boton-compartir {
     display: flex;
     place-items: center;
     color: #333;
     background-color: #C2E7FF;
     padding: 1.3rem 1rem;
+    margin-top: 3rem;
     border-radius: 10px;
     max-height: 2.3rem;
     font-weight: 500;

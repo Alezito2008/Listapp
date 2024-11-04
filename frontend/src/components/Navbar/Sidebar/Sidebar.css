@@ -41,10 +41,9 @@
     font-size: 2.5rem !important;
 }
 
-.item {
+.item-menu{
     display: flex;
     flex-direction: row;
-    padding-top: 1.5rem;
     padding-left: 1.5rem;
     padding-bottom: 1.5rem;
     width: auto;
@@ -53,6 +52,6 @@
     justify-content: start;
 }
 
-.item:hover{
+.item-menu:hover{
     background-color: whitesmoke;
 }

@@ -25,7 +25,7 @@ export default function Navbar({ children, abrirSide }) {
         setInfoLista(data)
     }
 
-    const esLista = path.slice(0,8) == "/listas/"
+    const esLista = path.slice(0,8) == "/listas/" && (path.slice(10) != "/editar" && !isNaN(path.slice(10)))
     const id = path.slice(8)
     
     useEffect(() => {

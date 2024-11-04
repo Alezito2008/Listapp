@@ -39,15 +39,19 @@ export default function GruposPage(){
                 <div className="flex flex-col w-full justify-center items-start">
                         <Grupo  
                             abrirEliminar={() => setEliminarAbierto(true)}
+                            name="TP Lengua"
                         />
                         <Grupo  
                             abrirEliminar={() => setEliminarAbierto(true)}
+                            name="Excursión"
                         />
                         <Grupo  
                             abrirEliminar={() => setEliminarAbierto(true)} 
+                            name="Familia"
                         />
                         <Grupo  
                             abrirEliminar={() => setEliminarAbierto(true)} 
+                            name="Proyecto"
                         />
                 </div>
             </div>

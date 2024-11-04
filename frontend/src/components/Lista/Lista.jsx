@@ -40,7 +40,7 @@ export default function Lista({ nombre, idLista, tipo, grupal=false, fecha }) {
                 cerrarModal={() => setQrAbierto(false)}
         /> }
 
-        <div className={listaBorrada ? "hidden" : 'flex flex-row items-center justify-between w-full bg-white min-h-16 rounded-2xl p-2'}>
+        <div className={listaBorrada ? "hidden" : 'flex flex-row items-center justify-between w-full bg-white min-h-16 rounded-2xl p-2 px-6'}>
             <div className='flex flex-row justify-between w-1/2 h-full'>   
                 <Link href={'/listas/' + idLista} className='w-40 pt-2'>
                     <div className='pr-4'>
@@ -63,7 +63,8 @@ export default function Lista({ nombre, idLista, tipo, grupal=false, fecha }) {
                 <div>
                     <p>{fecha}</p>
                 </div>
-                <Opciones opcionesAbiertas={opcionesAbiertas} abrirOpciones={() => setOpcionesAbiertas(!opcionesAbiertas)} opcionesRef={opcionesRef}
+                <Opciones 
+                    opcionesAbiertas={opcionesAbiertas} abrirOpciones={() => setOpcionesAbiertas(!opcionesAbiertas)} opcionesRef={opcionesRef}
                     callback1={() => setEliminarAbierto(true)} text1="Eliminar" icon1="delete"
                     callback2={() => setCompartirAbierto(true)} text2="Compartir" icon2="person_add"
                 />

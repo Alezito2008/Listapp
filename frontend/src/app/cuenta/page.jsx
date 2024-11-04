@@ -93,7 +93,7 @@ export default function CuentaPage(){
                     </div>
                     <div className="elementoCuenta">
                         <label htmlFor="cumple">Cumpleaños:</label>
-                        <span className="rounded border-2 border-[#0C0563] border-solid ml-3 px-2">11/11/1111</span>
+                        <span className="rounded border-2 border-[#0C0563] border-solid ml-3 px-2">12/09/2008</span>
                         <BotonEditar callback={() => {abrirModal(); setDatoModal("cumpleaños")}} />
                     </div>
                 </div>
