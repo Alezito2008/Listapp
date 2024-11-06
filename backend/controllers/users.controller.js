@@ -221,6 +221,7 @@ const changePassword = async (req, res) => {
 
         res.status(401).json({error: 'Contraseña incorrecta'})
     } catch (error) {
+        console.log(error)
         res.sendStatus(500)
     }
 }

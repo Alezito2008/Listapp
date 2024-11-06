@@ -4,12 +4,14 @@ import "@/styles/iconSize.css"
 import Link from 'next/link';
 import Logo from '../Logo/Logo';
 import SidebarBoton from './Sidebar/SidebarBoton';
+import Solicitudes from '../Solicitudes/Solicitudes';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { useEffect } from 'react';
 
 export default function Navbar({ children, abrirSide }) {
     const [infoLista, setInfoLista] = useState({})
+    const [solicitudesAbierto, setSolicitudesAbierto] = useState(false);
 
     const path = usePathname()
 
@@ -32,6 +34,11 @@ export default function Navbar({ children, abrirSide }) {
         if(esLista){
             obtenerLista(id)
         }
+        if(path == "/amigos"){
+            setSolicitudesAbierto(true)
+            return
+        }
+        setSolicitudesAbierto(false)
     }, [path])
 
     return (
@@ -53,7 +60,10 @@ export default function Navbar({ children, abrirSide }) {
                     </Link>
                 </div>
             }
-            <div>
+            <div className='flex-row gap-8'>
+                {   solicitudesAbierto && <Solicitudes
+
+                /> }
                 <Link href="/cuenta">
                     <img src="/perfil.svg" alt="Avatar" />
                 </Link>
