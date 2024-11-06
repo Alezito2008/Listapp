@@ -84,6 +84,17 @@ GEMINI_API_KEY = [api key de Gemini]
 - **Método**: <span style="color: lime"> **GET** </span>
 - **Descripción**: Obtiene información del usuario
 
+### /changepassword
+- **Método**: <span style="color: yellow"> **POST** </span>
+- **Descripción**: Actualiza la contraseña de un usuario
+-- **Body**:
+```json
+{
+    "contraseñaAnterior": "anterior",
+    "nuevaContraseña": "nueva"
+}
+```
+
 ## Listas
 
 ### /listas
