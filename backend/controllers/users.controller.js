@@ -36,7 +36,7 @@ const registrarUsuario = async (req, res) => {
             nombre,
             tag,
             administrador: usuario.administrador
-        }, process.env.JWT_SECRET, { expiresIn: '1h' })
+        }, process.env.JWT_SECRET, { expiresIn: '3d' })
 
         res.status(200).cookie('token', token).json({ message: 'Usuario Registrado' })
     } catch (error) {
@@ -192,6 +192,39 @@ const infoCuenta = async (req, res) => {
     }
 }
 
+const changePassword = async (req, res) => {
+    const { token } = req.cookies
+
+    let info;
+    try {
+        info = jwt.verify(token, process.env.JWT_SECRET)
+    } catch (error) {
+        return res.status(401).json({ message: 'Token inválido o expirado' })
+    }
+
+    try {
+        const {contraseñaAnterior, nuevaContraseña} = req.body
+
+        const usuario = await Usuario.findByPk(info.id)
+
+        const hashAntiguo = await usuario.hash
+
+        const resultado = await bcrypt.compare(contraseñaAnterior, hashAntiguo)
+
+        if (resultado) {
+            const salt = bcrypt.genSaltSync(10)
+            const hash = bcrypt.hashSync(nuevaContraseña, salt)
+
+            await usuario.update({ hash })
+            return res.status(200).json({message: 'Contraseña actualizada'})
+        }
+
+        res.status(401).json({error: 'Contraseña incorrecta'})
+    } catch (error) {
+        res.sendStatus(500)
+    }
+}
+
 module.exports = {
     registrarUsuario,
     iniciarSesion,
@@ -199,5 +232,6 @@ module.exports = {
     obtenerUsuario,
     actualizarUsuario,
     eliminarUsuario,
-    infoCuenta
+    infoCuenta,
+    changePassword
 }
