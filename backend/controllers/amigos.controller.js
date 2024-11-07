@@ -23,12 +23,12 @@ const enviarSolicitud = async (req, res) => {
 
         const amigo = await Usuario.findOne({ where: { tag: tagAmigo } })
         
-        if (tagAmigo === info.tag) return res.status(400).json({ error: 'No podés enviarte una solicitud a vos mismo' })
+        if (tagAmigo === info.tag) return res.status(400).json({ error: 'No podés enviarte una solicitud a vos mismo.' })
         
         if (!amigo) return res.status(404).json({ error: 'Usuario no encontrado' })
         
         const solicitud = await Amigos.findOne({ where: { userId: id, amigoId: amigo.id } })
-        if (solicitud) return res.status(400).json({ error: 'Ya enviaste una solicitud' })
+        if (solicitud) return res.status(400).json({ error: 'Ya le enviaste una solicitud a este usuario.' })
 
         const sonAmigos = await Amigos.findOne({
             where: {
@@ -39,14 +39,14 @@ const enviarSolicitud = async (req, res) => {
             }
         });
 
-        if (sonAmigos) return res.status(400).json({ error: 'Ya son amigos o hay una solicitud pendiente' });
+        if (sonAmigos) return res.status(400).json({ error: 'Ya son amigos o hay una solicitud pendiente entre ustedes.' });
 
         await Amigos.create({ userId: id, amigoId: amigo.id })
 
         res.status(200).json({ message: 'Solicitud enviada' })
 
     } catch (error) {
-        return res.status(500).json({ error: 'Hubo un error' })
+        return res.status(500).json({ error: 'Hubo un error interno del sistema. Volvé a intentarlo!' })
     }
 }
 

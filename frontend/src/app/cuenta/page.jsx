@@ -65,7 +65,7 @@ export default function CuentaPage(){
                 <span className="text-2xl">¡Hola {infoCuenta.nombre}!</span>
                 <div className="flex flex-row justify-center gap-2">
                 {   infoCuenta.descripcion ?
-                    <p>infoCuenta.descripcion</p>
+                    <p>{infoCuenta.descripcion}</p>
                     :
                     <p className="italic">¡Poné tu propia descripción!</p>
                 }   

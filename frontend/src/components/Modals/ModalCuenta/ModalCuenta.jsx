@@ -1,6 +1,7 @@
 "use client"
 import { useState } from "react";
 import Cargando from "@/components/Cargando/Cargando";
+import Cookies from "js-cookie"
 
 export default function ModalCuenta({ callback, tipoDato, infoCuenta } ){
     const [cargando, setCargando] = useState(false)
@@ -23,6 +24,8 @@ export default function ModalCuenta({ callback, tipoDato, infoCuenta } ){
             })
         });
         setCargando(false)
+        Cookies.remove("token");
+        window.location.href = "/login";
     }
 
     const cambiarContraseña = async () => {

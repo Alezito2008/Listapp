@@ -7,6 +7,8 @@ import ModalEliminarAmigo from "./ModalEliminarAmigo/ModalEliminarAmigo"
 import ModalBloquear from "./ModalBloquear/ModalBloquear"
 import Cargando from "@/components/Cargando/Cargando"
 import { useEffect } from "react"
+import ModalSolicitudOk from "./ModalSolicitudOk/ModalSolicitudOk"
+import ModalSolicitudBad from "./ModalSolicitudBad/ModalSolicitudBad"
 
 export default function AmigosPage(){
     const [perfilAbierto, setPerfilAbierto] = useState(false)
@@ -14,6 +16,10 @@ export default function AmigosPage(){
     const [bloquearAbierto, setBloquearAbierto] = useState(false)
     const [cargando, setCargando] = useState(false)
     const [infoCuenta, setInfoCuenta] = useState({})
+    const [añadirAmigo, setAñadirAmigo] = useState("")
+    const [solicitudOkAbierto, setSolicitudOkAbierto] = useState(false)
+    const [solicitudBadAbierto, setSolicitudBadAbierto] = useState(false)
+    const [error, setError] = useState("")
 
     const obtenerInfo = async (signal) => {
         try {
@@ -34,6 +40,27 @@ export default function AmigosPage(){
             setCargando(false);
         }
     };
+
+    const enviarSolicitud = async () => {
+        setCargando(true)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/enviarsolicitud`,{
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            credentials: "include",
+            body: JSON.stringify({
+                "tagAmigo": añadirAmigo
+            })
+        })
+        const data = await response.json()
+        if(!data.error){
+            setSolicitudOkAbierto(true)
+        }
+        else {
+            setError(data.error)
+            setSolicitudBadAbierto(true)
+        }
+        setCargando(false)
+    }
 
     useEffect(() => {
         const controller = new AbortController();
@@ -65,6 +92,16 @@ export default function AmigosPage(){
             callback={() => setBloquearAbierto(false)}
         />  }
 
+        {   solicitudOkAbierto && <ModalSolicitudOk
+                callback={() => {setSolicitudOkAbierto(false); setAñadirAmigo("")}}
+                amigo={añadirAmigo}
+        /> }
+
+        {   solicitudBadAbierto && <ModalSolicitudBad
+                callback={() => {setSolicitudBadAbierto(false); setAñadirAmigo("")}}
+                error={error}
+        /> }
+
         <div className="flex flex-col text-[#0C0563] justify-start items-center gap-8 pl-40 size-full bg-gray-100">
             <div className="flex flex-row gap-10 justify-start w-full pt-12">
                 <div className="rounded-xl border-solid border-8 border-[#0C0563] size-40 flex justify-center items-center">
@@ -77,8 +114,10 @@ export default function AmigosPage(){
             </div>
 
             <div className="flex flex-col w-full justify-center items-start gap-4">
-                <span className="text-3xl">Añadir amigos</span>
-                <input type="text" placeholder="@           Buscar" className="w-4/5 outline-none rounded-lg pl-4 h-10"/>
+                <span className="text-3xl">Añadir amigos</span> 
+                <input type="text" onChange={(e) => setAñadirAmigo(e.target.value)} value={añadirAmigo}
+                    onKeyDown={(e) => {if(e.key == "Enter") enviarSolicitud()}}
+                    placeholder="@           Usuario de nuevo amigo" className="w-4/5 outline-none rounded-lg pl-4 h-10"/>
             </div>
             <div className="flex flex-col w-full">
                 <div className="flex flex-row justify-between items-center w-full">
