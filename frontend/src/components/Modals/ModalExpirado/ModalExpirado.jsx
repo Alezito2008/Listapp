@@ -29,6 +29,10 @@ export default function ModalExpirado(){
     };
 
     useEffect(() => {
+        if(path == "/"){
+            window.location.href = "/inicio"
+            return
+        }
         const controller = new AbortController();
         obtenerInfo(controller.signal);
 

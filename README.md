@@ -208,7 +208,6 @@ GEMINI_API_KEY = [api key de Gemini]
 
 ### /aceptarsolicitud
 - **Método**: <span style="color: yellow"> **POST** </span>
-- **Método**: <span style="color: yellow"> **POST** </span>
 - **Body**:
 ```json
 {

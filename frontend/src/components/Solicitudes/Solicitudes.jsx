@@ -4,11 +4,13 @@ import { useEffect, useState } from "react"
 import MenuSolicitudes from "./MenuSolicitudes/MenuSolicitudes"
 import useClickOutside from "@/hooks/useClickOutside/useClickOutside"
 import { useRef } from "react"
+import ModalAceptado from "./ModalAceptado/ModalAceptado"
 
 export default function Solicitudes(){
     const [menuAbierto, setMenuAbierto] = useState(false)
-    const [solicitudes, setSolicitudes] = useState([])
-    const [cargando, setCargando] = useState(false)     
+    const [solicitudes, setSolicitudes] = useState({}) 
+    const [aceptadoAbierto, setAceptadoAbierto] = useState(false)
+    const [nombre, setNombre] = useState(false)
     const menuRef = useRef(null)
     useClickOutside(menuRef, () => setMenuAbierto(false))
 
@@ -49,13 +51,19 @@ export default function Solicitudes(){
 
     return(
         <>
+        {   aceptadoAbierto && <ModalAceptado
+                nombre={nombre} callback={() => {() => setMenuAbierto(false)}}
+        /> }
         <div className="relative inline-block" ref={menuRef}>
             <button type="button" onClick={() => setMenuAbierto(!menuAbierto)}>
-                <img src={solicitudes ? "/solicitudesHay.svg" : "/solicitudes.svg"} alt="solicitudes" className="size-[2.5rem] mt-1" />
+                <img src={solicitudes.length > 0 ? "/solicitudesHay.svg" : "/solicitudes.svg"} alt="solicitudes" className="size-[2.5rem] mt-1" />
             </button>
 
             {   menuAbierto && <MenuSolicitudes
                     solicitudes={solicitudes}
+                    abrirAceptado={() => setAceptadoAbierto(!aceptadoAbierto)}
+                    setNombre={(name) => setNombre(name)}
+
             /> }
         </div>
         </>
