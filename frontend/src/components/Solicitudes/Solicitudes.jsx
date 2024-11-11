@@ -10,7 +10,7 @@ export default function Solicitudes(){
     const [menuAbierto, setMenuAbierto] = useState(false)
     const [solicitudes, setSolicitudes] = useState({}) 
     const [aceptadoAbierto, setAceptadoAbierto] = useState(false)
-    const [nombre, setNombre] = useState(false)
+    const [nombre, setNombre] = useState("")
     const menuRef = useRef(null)
     useClickOutside(menuRef, () => setMenuAbierto(false))
 
@@ -38,6 +38,7 @@ export default function Solicitudes(){
         }
     };
     
+    obtenerSolicitudes()
     useEffect(() => {
         const controller = new AbortController();
         const signal = controller.signal;
@@ -52,7 +53,7 @@ export default function Solicitudes(){
     return(
         <>
         {   aceptadoAbierto && <ModalAceptado
-                nombre={nombre} callback={() => {() => setMenuAbierto(false)}}
+                nombre={nombre} callback={() => {() => setMenuAbierto(false); setAceptadoAbierto(false)}}
         /> }
         <div className="relative inline-block" ref={menuRef}>
             <button type="button" onClick={() => setMenuAbierto(!menuAbierto)}>
@@ -63,6 +64,7 @@ export default function Solicitudes(){
                     solicitudes={solicitudes}
                     abrirAceptado={() => setAceptadoAbierto(!aceptadoAbierto)}
                     setNombre={(name) => setNombre(name)}
+                    cerrarMenu={() => setMenuAbierto(false)}
 
             /> }
         </div>

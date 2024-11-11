@@ -9,6 +9,7 @@ import Cargando from "@/components/Cargando/Cargando"
 import { useEffect } from "react"
 import ModalSolicitudOk from "./ModalSolicitudOk/ModalSolicitudOk"
 import ModalSolicitudBad from "./ModalSolicitudBad/ModalSolicitudBad"
+import "./styles.css"
 
 export default function AmigosPage(){
     const [perfilAbierto, setPerfilAbierto] = useState(false)
@@ -20,6 +21,8 @@ export default function AmigosPage(){
     const [solicitudOkAbierto, setSolicitudOkAbierto] = useState(false)
     const [solicitudBadAbierto, setSolicitudBadAbierto] = useState(false)
     const [error, setError] = useState("")
+    const [amigos, setAmigos] = useState([])
+    const [infoAmigo, setInfoAmigo] = useState([])
 
     const obtenerInfo = async (signal) => {
         try {
@@ -62,9 +65,23 @@ export default function AmigosPage(){
         setCargando(false)
     }
 
+    const obtenerAmigos = async () => {
+        setCargando(true)
+        const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/amigos`, {
+            method: "GET",
+            headers: {"Content-Type": "application/json"},
+            credentials: "include"
+        })
+        const data = await response.json()
+        if(data.error) return
+        setAmigos(data)
+        setCargando(false)
+    }
+
     useEffect(() => {
         const controller = new AbortController();
         obtenerInfo(controller.signal);
+        obtenerAmigos()
 
         return () => {
             controller.abort();
@@ -80,16 +97,19 @@ export default function AmigosPage(){
         { perfilAbierto &&
             <ModalPerfil 
             callback={() => setPerfilAbierto(false)}
+            infoAmigo={infoAmigo}
         />  }
 
         { eliminarAbierto &&
             <ModalEliminarAmigo
             callback={() => setEliminarAbierto(false)}
+            infoAmigo={infoAmigo}
         />  }
         
         { bloquearAbierto &&
             <ModalBloquear
             callback={() => setBloquearAbierto(false)}
+            infoAmigo={infoAmigo}
         />  }
 
         {   solicitudOkAbierto && <ModalSolicitudOk
@@ -124,16 +144,24 @@ export default function AmigosPage(){
                     <div className="flex w-full"><span className="text-2xl">Lista de amigos</span></div>
                     <div className="flex w-full justify-start mr-52"><span className="text-xl">Usuarios</span></div>
                 </div>
-                <div className="flex flex-col w-full justify-center items-start">
-                    <Amigo abrirPerfil={() => setPerfilAbierto(true)} 
-                        abrirEliminar={() => setEliminarAbierto(true)} abrirBloquear={() => setBloquearAbierto(true)} 
-                        nombre="Alezito2008" tag="alezito"
-                    />
-                    <Amigo abrirPerfil={() => setPerfilAbierto(true)} 
-                        abrirEliminar={() => setEliminarAbierto(true)} abrirBloquear={() => setBloquearAbierto(true)} 
-                        nombre="Fogolin08" tag="fogo"
-                    />
-                </div>
+                {   !amigos.map ?
+                        <div className="w-full pl-10 pt-10 text-xl text-gray-500 italic">
+                            <p>
+                                No tenés ningún amigo agregado. Enviales una solicitud de amistad!
+                            </p>
+                        </div>
+                    :
+                    amigos.map(amigo => (
+                        <Amigo
+                            key={amigo.tag}
+                            abrirPerfil={() => setPerfilAbierto(true)}
+                            abrirEliminar={() => setEliminarAbierto(true)}
+                            abrirBloquear={() => setBloquearAbierto(true)}
+                            nombre={amigo.nombre} tag={amigo.tag}
+                            setInfoAmigo={() => setInfoAmigo({ nombre: amigo.nombre, tag: amigo.tag })}
+                        />
+                    ))
+                }
             </div>
         </div>
         </>

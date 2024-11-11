@@ -1,5 +1,5 @@
 
-export default function ModalPerfil({callback}){
+export default function ModalPerfil({callback, infoAmigo}){
     return(
         <>
             <div className="overlay" onClick={callback}></div>
@@ -11,8 +11,8 @@ export default function ModalPerfil({callback}){
                         </div>
                         <div className="flex flex-col justify-between gap-4">
                             <div>
-                                <p className="text-3xl">Placeholder</p>
-                                <p className="text-xl">@placeholder</p>
+                                <p className="text-3xl">{infoAmigo.nombre}</p>
+                                <p className="text-xl">@{infoAmigo.tag}</p>
                             </div>
                             <div>
                                 <p>Fecha de registro:</p>
@@ -22,7 +22,6 @@ export default function ModalPerfil({callback}){
                     </div>
                 <div className="flex flex-row gap-10">
                     <button type="button" onClick={callback} className="flex justify-center items-center rounded-xl bg-gray-200 h-6 px-6 py-4">Cerrar</button>
-                    <button type="button" onClick={callback} className="flex justify-center items-center rounded-xl bg-[#0C0563] text-white h-6 px-6 py-4">Enviar Solicitud</button>
                 </div>
                 </div>
             </div>

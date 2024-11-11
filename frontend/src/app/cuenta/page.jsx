@@ -61,7 +61,7 @@ export default function CuentaPage(){
 
         <div className="cuenta">
             <div className="flex flex-col justify-start items-center gap-4">
-                <Avatar value={infoCuenta.tag} style='shape' size={180} />
+                <Avatar value={infoCuenta.tag ? infoCuenta.tag : "placeholder"} style='shape' size={180} />
                 <span className="text-2xl">¡Hola {infoCuenta.nombre}!</span>
                 <div className="flex flex-row justify-center gap-2">
                 {   infoCuenta.descripcion ?

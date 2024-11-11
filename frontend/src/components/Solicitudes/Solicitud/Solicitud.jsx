@@ -1,7 +1,7 @@
 "use client"
 import "@/styles/iconSize.css"
 
-export default function Solicitud({nombre, tag, abrirAceptado, setNombre}){
+export default function Solicitud({nombre, tag, abrirAceptado, setNombre, cerrarMenu}){
 
     const aceptarSolicitud = async () => {
         const response = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/api/aceptarSolicitud`,{
@@ -14,8 +14,9 @@ export default function Solicitud({nombre, tag, abrirAceptado, setNombre}){
         })
         const data = await response.json()
         console.log(data)
-        if(data.message = "Solicitud aceptada"){
+        if(data.message == "Solicitud aceptada"){
             setNombre(nombre)
+            cerrarMenu()
             abrirAceptado()
         }
     }
