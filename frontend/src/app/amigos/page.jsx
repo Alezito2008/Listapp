@@ -144,7 +144,7 @@ export default function AmigosPage(){
                     <div className="flex w-full"><span className="text-2xl">Lista de amigos</span></div>
                     <div className="flex w-full justify-start mr-52"><span className="text-xl">Usuarios</span></div>
                 </div>
-                {   !amigos.map ?
+                {   amigos.length == 0 ?
                         <div className="w-full pl-10 pt-10 text-xl text-gray-500 italic">
                             <p>
                                 No tenés ningún amigo agregado. Enviales una solicitud de amistad!

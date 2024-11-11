@@ -16,7 +16,7 @@ export default function ModalPerfil({callback, infoAmigo}){
                             </div>
                             <div>
                                 <p>Fecha de registro:</p>
-                                <p>dd/mm/yy</p>
+                                <p>11/11/24</p>
                             </div>
                         </div>
                     </div>

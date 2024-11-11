@@ -18,9 +18,9 @@
 
 .novedades .items {
     display: flex;
-    justify-content: center;
+    padding-left: 3rem;
     align-items: flex-end;
-    gap: 1rem;
+    gap: 2rem;
     padding-top: 1rem;
 }
 
@@ -29,5 +29,6 @@
     border-radius: 1rem;
     width: 15rem;
     height: 10rem;
+    padding: 1rem;
 
 }
